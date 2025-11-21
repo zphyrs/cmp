@@ -89,7 +89,7 @@
 
       <DialogFooter>
         <Button variant="outline" @click="$emit('close')">Cancel</Button>
-        <Button @click="handleSubmit" class="bg-[#007d79] hover:bg-[#006663]">Upload Document</Button>
+        <Button @click="handleSubmit" className="bg-[#007d79] hover:bg-[#006663]">Upload Document</Button>
       </DialogFooter>
     </DialogContent>
   </Dialog>

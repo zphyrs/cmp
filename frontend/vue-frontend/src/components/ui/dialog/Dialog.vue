@@ -1,7 +1,7 @@
 <template>
   <div v-if="open" class="fixed inset-0 z-50 flex items-center justify-center">
     <!-- Backdrop -->
-    <div class="absolute inset-0 bg-black/50" @click="handleClose" />
+    <div class="absolute inset-0 bg-black/70" @click="handleClose" />
 
     <!-- Dialog Content -->
     <div class="relative bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-auto">
