@@ -47,7 +47,7 @@
                     <Building2 :class="`w-8 h-8 ${selectedRole === 'CMT_TEAM' ? 'text-white' : 'text-slate-600'}`" />
                   </div>
                   <div class="text-center">
-                    <p class="font-semibold text-lg text-slate-800">Contract Management</p> 
+                    <p class="font-semibold text-lg text-slate-800">Contract Management</p>
                     <p class="text-sm text-slate-500">Team</p>
                   </div>
                 </div>
@@ -77,12 +77,10 @@
           </div>
 
           <!-- Sign In Button -->
-          <div>{{ selectedRole }}</div>
-          <div>{{ name }}</div>
           <Button
             @click="handleLogin"
             :disabled="!selectedRole || !name.trim()"
-            class="w-full h-14 text-lg bg-[#007d79] hover:bg-[#006663] transition-colors">
+            className="w-full h-14 text-lg bg-[#007d79] hover:bg-[#006663] transition-colors">
             Sign In to Portal
           </Button>
         </CardContent>
