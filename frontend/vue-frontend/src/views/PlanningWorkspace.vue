@@ -12,12 +12,7 @@
               <h1 class="text-xl font-bold text-slate-800">CMT PORTAL</h1>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            @click="router.push('/workspace-selector')"
-            class="flex items-center gap-2"
-          >
+          <Button variant="ghost" size="sm" @click="router.push('/workspace-selector')" class="flex items-center gap-2">
             <Home class="w-4 h-4" />
             Home
           </Button>
@@ -37,8 +32,7 @@
             @click="handleLogout"
             variant="ghost"
             size="icon"
-            class="rounded-full hover:bg-red-50 hover:text-red-600"
-          >
+            class="rounded-full hover:bg-red-50 hover:text-red-600">
             <LogOut class="w-5 h-5" />
           </Button>
         </div>
@@ -54,11 +48,15 @@
 
       <!-- Tabs -->
       <Tabs v-model="activeTab" class="space-y-6">
-        <TabsList class="bg-white p-1 shadow-sm border border-slate-200">
-          <TabsTrigger value="catalogue" class="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
+        <TabsList className="bg-white p-1 shadow-sm border border-slate-200">
+          <TabsTrigger
+            value="catalogue"
+            className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
             Contract Catalogue
           </TabsTrigger>
-          <TabsTrigger value="sharepoint" class="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
+          <TabsTrigger
+            value="sharepoint"
+            className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
             Planning SharePoint
           </TabsTrigger>
         </TabsList>
@@ -73,8 +71,7 @@
                 <div
                   v-for="template in CONTRACT_TEMPLATES.pricingCatalogue"
                   :key="template.id"
-                  class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-md transition-shadow"
-                >
+                  class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-md transition-shadow">
                   <div class="flex items-center gap-3">
                     <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
                       <FileText class="w-6 h-6 text-white" />
@@ -90,8 +87,7 @@
                     size="sm"
                     variant="ghost"
                     @click="handleDownload(template.fileName)"
-                    class="hover:bg-blue-200"
-                  >
+                    class="hover:bg-blue-200">
                     <Download class="w-4 h-4" />
                   </Button>
                 </div>
@@ -107,8 +103,7 @@
                 <div
                   v-for="template in CONTRACT_TEMPLATES.scopeOfWorks"
                   :key="template.id"
-                  class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-md transition-shadow"
-                >
+                  class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-md transition-shadow">
                   <div class="flex items-center gap-3">
                     <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
                       <FileText class="w-6 h-6 text-white" />
@@ -123,8 +118,7 @@
                     size="sm"
                     variant="ghost"
                     @click="handleDownload(template.fileName)"
-                    class="hover:bg-blue-200"
-                  >
+                    class="hover:bg-blue-200">
                     <Download class="w-4 h-4" />
                   </Button>
                 </div>
@@ -141,36 +135,28 @@
               <h3 class="text-2xl font-semibold text-slate-800">Planning Documents by Area</h3>
               <Button
                 @click="uploadModalOpen = true"
-                class="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2"
-              >
+                className="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2">
                 <UploadIcon class="w-4 h-4" />
                 Upload Document
               </Button>
             </div>
 
             <Tabs v-model="selectedArea">
-              <TabsList class="w-full justify-start bg-slate-100 p-1">
+              <TabsList className="w-full justify-start bg-slate-100 p-1">
                 <TabsTrigger
                   v-for="area in AREAS"
                   :key="area"
                   :value="area"
-                  class="data-[state=active]:bg-white px-6 py-2"
-                >
+                  className="data-[state=active]:bg-white px-6 py-2">
                   {{ area }}
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent
-                v-for="area in AREAS"
-                :key="area"
-                :value="area"
-                class="mt-6"
-              >
+              <TabsContent v-for="area in AREAS" :key="area" :value="area" class="mt-6">
                 <div class="space-y-6">
                   <div
                     v-for="[groupName, docs] in Object.entries(groupDocumentsByCategory(getAreaDocuments(area)))"
-                    :key="groupName"
-                  >
+                    :key="groupName">
                     <div class="flex items-center gap-3 mb-4">
                       <Folder class="w-5 h-5 text-[#007d79]" />
                       <h4 class="font-semibold text-lg text-slate-800">{{ groupName }}</h4>
@@ -180,8 +166,7 @@
                       <div
                         v-for="doc in docs"
                         :key="doc.id"
-                        class="p-4 bg-slate-50 border border-slate-200 rounded-lg hover:shadow-md transition-shadow"
-                      >
+                        class="p-4 bg-slate-50 border border-slate-200 rounded-lg hover:shadow-md transition-shadow">
                         <div class="flex items-start justify-between">
                           <div class="flex-1">
                             <p class="font-medium text-slate-800 mb-1">
@@ -220,85 +205,69 @@
       :open="uploadModalOpen"
       @close="uploadModalOpen = false"
       workspace="planning"
-      :preSelectedArea="selectedArea"
-    />
+      :preSelectedArea="selectedArea" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
-import Button from '@/components/ui/button/Button.vue'
-import Card from '@/components/ui/card/Card.vue'
-import CardContent from '@/components/ui/card/CardContent.vue'
-import Tabs from '@/components/ui/tabs/Tabs.vue'
-import TabsList from '@/components/ui/tabs/TabsList.vue'
-import TabsTrigger from '@/components/ui/tabs/TabsTrigger.vue'
-import TabsContent from '@/components/ui/tabs/TabsContent.vue'
-import UploadModal from '@/components/UploadModal.vue'
-import {
-  Building2,
-  Bell,
-  User,
-  LogOut,
-  Home,
-  Download,
-  FileText,
-  Folder,
-  Upload as UploadIcon
-} from 'lucide-vue-next'
-import {
-  CONTRACT_TEMPLATES,
-  AREAS,
-  getDocumentsFromStorage,
-  type Document
-} from '@/data/mockData'
-import { useToast } from '@/composables/useToast'
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
+import Button from "@/components/ui/button/Button.vue";
+import Card from "@/components/ui/card/Card.vue";
+import CardContent from "@/components/ui/card/CardContent.vue";
+import Tabs from "@/components/ui/tabs/Tabs.vue";
+import TabsList from "@/components/ui/tabs/TabsList.vue";
+import TabsTrigger from "@/components/ui/tabs/TabsTrigger.vue";
+import TabsContent from "@/components/ui/tabs/TabsContent.vue";
+import UploadModal from "@/components/UploadModal.vue";
+import { Building2, Bell, User, LogOut, Home, Download, FileText, Folder, Upload as UploadIcon } from "lucide-vue-next";
+import { CONTRACT_TEMPLATES, AREAS, getDocumentsFromStorage, type Document } from "@/data/mockData";
+import { useToast } from "@/composables/useToast";
 
-const router = useRouter()
-const authStore = useAuthStore()
-const { toast } = useToast()
+const router = useRouter();
+const authStore = useAuthStore();
+const { toast } = useToast();
 
-const user = computed(() => authStore.user)
-const activeTab = ref('catalogue')
-const selectedArea = ref('Morowali')
-const uploadModalOpen = ref(false)
+const user = computed(() => authStore.user);
+const activeTab = ref("catalogue");
+const selectedArea = ref("Morowali");
+const uploadModalOpen = ref(false);
 
 const handleLogout = () => {
-  authStore.logout()
-  router.push('/login')
-}
+  authStore.logout();
+  router.push("/login");
+};
 
 const handleDownload = (fileName: string) => {
   toast({
-    title: 'Download Started',
-    description: `Downloading ${fileName}...`
-  })
-}
+    title: "Download Started",
+    description: `Downloading ${fileName}...`,
+  });
+};
 
 const getAreaDocuments = (area: string): Document[] => {
-  const allDocs = getDocumentsFromStorage()
-  return allDocs.filter(doc => doc.workspace === 'planning' && doc.area === area)
-}
+  const allDocs = getDocumentsFromStorage();
+  return allDocs.filter((doc) => doc.workspace === "planning" && doc.area === area);
+};
 
 const groupDocumentsByCategory = (documents: Document[]) => {
   const groups = {
-    'Contract Request Forms': [] as Document[],
-    'Procurement Committee': [] as Document[],
-    'Submitted Docs': [] as Document[]
-  }
+    "Contract Request Forms": [] as Document[],
+    "Procurement Committee": [] as Document[],
+    "Submitted Docs": [] as Document[],
+  };
 
-  documents.forEach(doc => {
-    if (doc.category === 'Contract Request Form') {
-      groups['Contract Request Forms'].push(doc)
-    } else if (doc.category === 'Procurement Request') {
-      groups['Procurement Committee'].push(doc)
+  documents.forEach((doc) => {
+    if (doc.category === "Contract Request Form") {
+      groups["Contract Request Forms"].push(doc);
+    } else if (doc.category === "Procurement Request") {
+      groups["Procurement Committee"].push(doc);
     } else {
-      groups['Submitted Docs'].push(doc)
+      groups["Submitted Docs"].push(doc);
     }
-  })
+  });
 
-  return groups
-}
+  return groups;
+};
 </script>
