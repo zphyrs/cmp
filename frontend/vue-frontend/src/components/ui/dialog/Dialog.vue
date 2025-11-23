@@ -4,7 +4,7 @@
     <div class="absolute inset-0 bg-black/70" @click="handleClose" />
 
     <!-- Dialog Content -->
-    <div class="relative bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-auto">
+    <div class="relative bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-[80vh] overflow-auto">
       <slot />
     </div>
   </div>

@@ -29,6 +29,7 @@ export interface Document {
   workspace: string
   uploadDate: string
   contractId?: string
+  metadata?: Record<string, any>
 }
 
 export const AREAS = ['Morowali', 'Pomalaa', 'Sorowako', 'Bahodopi']
@@ -233,7 +234,133 @@ export const getContractExpiryStatus = (endDate: string): 'normal' | 'warning' |
 export const getDocumentsFromStorage = (): Document[] => {
   if (typeof window === 'undefined') return []
   const docs = localStorage.getItem('cmt_documents')
-  return docs ? JSON.parse(docs) : []
+
+  // Return sample documents if no saved documents exist
+  if (!docs) {
+    return getSampleDocuments()
+  }
+
+  const parsedDocs = JSON.parse(docs)
+
+  // If stored documents don't have metadata, migrate them
+  const migratedDocs = parsedDocs.map((doc: any) => {
+    if (!doc.metadata) {
+      return addSampleMetadata(doc)
+    }
+    return doc
+  })
+
+  return migratedDocs
+}
+
+// Sample documents with metadata for testing
+const getSampleDocuments = (): Document[] => [
+  {
+    id: 'DOC-001',
+    fileName: 'contract_mining_services.pdf',
+    description: 'Mining equipment rental and maintenance contract for Q1 2024',
+    category: 'Contract Request Form',
+    area: 'Morowali',
+    workspace: 'planning',
+    uploadDate: '2024-01-15T10:30:00Z',
+    contractId: 'C-2024-001',
+    metadata: {
+      contractRequestId: 'CRQ-2024-001',
+      contractType: 'Service Contract',
+      expectedStartDate: '2024-02-01',
+      duration: 12,
+      estimatedValue: 2500000,
+      requester: 'John Doe - Operations Manager'
+    }
+  },
+  {
+    id: 'DOC-002',
+    fileName: 'safety_procedure_heavy_equipment.pdf',
+    description: 'Standard operating procedures for heavy equipment operation',
+    category: 'Safety Procedures',
+    area: 'Sorowako',
+    workspace: 'execution',
+    uploadDate: '2024-01-20T14:15:00Z',
+    metadata: {
+      procedureNumber: 'SP-2024-001',
+      procedureType: 'Standard Operating Procedure',
+      riskLevel: 'High Risk',
+      effectiveDate: '2024-01-15',
+      reviewDate: '2024-07-15'
+    }
+  },
+  {
+    id: 'DOC-003',
+    linkUrl: 'https://example.com/monthly-report',
+    description: 'Monthly compliance report for environmental regulations',
+    category: 'Compliance Report',
+    area: 'Bahodopi',
+    workspace: 'execution',
+    uploadDate: '2024-01-25T09:00:00Z',
+    metadata: {
+      reportPeriod: 'Monthly',
+      reportDate: '2024-01-25',
+      complianceType: 'Environmental Compliance',
+      auditor: 'PT Environmental Audit Services',
+      overallRating: 'Good'
+    }
+  },
+  {
+    id: 'DOC-004',
+    fileName: 'cost_structure_q1_2024.xlsx',
+    description: 'Detailed cost breakdown for Q1 2024 operations',
+    category: 'Cost Structure',
+    area: 'Pomalaa',
+    workspace: 'planning',
+    uploadDate: '2024-01-30T16:45:00Z',
+    metadata: {
+      totalAmount: 5000000,
+      currency: 'IDR',
+      fiscalYear: '2024',
+      costCenter: 'CC-OPER-001'
+    }
+  },
+  {
+    id: 'DOC-005',
+    fileName: 'meeting_minutes_project_review.pdf',
+    description: 'Weekly project review meeting minutes',
+    category: 'Minutes of Meeting',
+    area: 'Morowali',
+    workspace: 'central-hub',
+    uploadDate: '2024-02-05T11:30:00Z',
+    metadata: {
+      meetingDate: '2024-02-05',
+      meetingType: 'Project Review',
+      attendees: 12,
+      facilitator: 'Jane Smith - Project Manager',
+      location: 'Main Conference Room'
+    }
+  }
+]
+
+// Helper function to add sample metadata to existing documents
+const addSampleMetadata = (doc: Document): Document => {
+  const metadataMap: Record<string, any> = {
+    'Contract Request Form': {
+      contractRequestId: 'CRQ-LEGACY',
+      contractType: 'Service Contract',
+      expectedStartDate: '2024-01-01',
+      duration: 6,
+      estimatedValue: 1000000,
+      requester: 'Legacy User'
+    },
+    'Cost Structure': {
+      totalAmount: 1000000,
+      currency: 'IDR',
+      fiscalYear: '2024',
+      costCenter: 'CC-DEFAULT'
+    }
+  }
+
+  return {
+    ...doc,
+    metadata: metadataMap[doc.category] || {}
+  }
 }
 
 // Helper function to save documents to localStorage
