@@ -202,6 +202,11 @@ export const CONTRACT_TEMPLATES = {
 } as const
 
 export const DOCUMENT_CATEGORIES = [
+  'Cost Structure',
+  'Reference',
+  'Scope of Works',
+  'Work Instructions',
+  'Safety Procedures',
   'Minutes of Meeting',
   'Deviation Form',
   'Procurement Request',

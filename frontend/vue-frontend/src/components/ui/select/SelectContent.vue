@@ -8,7 +8,7 @@
         cn(
           'overflow-y-auto overflow-x-hidden rounded-md border border-gray-300 bg-white text-black shadow-md',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
-          'max-h-[300px] focus:outline-none',
+          'max-h-[150px] focus:outline-none',
           className,
         )
       "
@@ -81,9 +81,44 @@ const updatePosition = () => {
     const rect = triggerElement.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
 
+    // Check if trigger is inside a modal/dialog - use more specific selectors
+    const modalElement = triggerElement.closest('.fixed.z-50, [role="dialog"], .modal, [data-state="open"]');
+    const isInModal = !!modalElement;
+
+    // Debug: log untuk memeriksa apakah modal terdeteksi
+    console.log('Modal detection:', {
+      trigger: triggerElement,
+      modalElement,
+      isInModal,
+      triggerClass: triggerElement?.className,
+      modalClass: modalElement?.className
+    });
+
     // Calculate position
-    let top = rect.bottom + window.scrollY + 4; // 4px gap
+    let top, left;
+
+    if (isInModal) {
+      // In modal, use fixed positioning relative to viewport
+      top = rect.bottom + 4; // 4px gap, no scrollY needed for fixed
+      left = rect.left;
+    } else {
+      // Outside modal, use absolute positioning with scroll
+      top = rect.bottom + window.scrollY + 4;
+      left = rect.left + window.scrollX;
+    }
+
     let side = "bottom";
+
+    // Debug: log positioning info
+    console.log('Position calculation:', {
+      isInModal,
+      rect,
+      top,
+      left,
+      windowScrollY: window.scrollY,
+      windowScrollX: window.scrollX,
+      viewportHeight
+    });
 
     // Calculate the width to use
     let dropdownWidth = rect.width;
@@ -111,31 +146,45 @@ const updatePosition = () => {
       }
     }
 
-    // Use absolute positioning for consistent width
-    contentRef.value.style.position = "absolute";
-    contentRef.value.style.top = `${top}px`;
-    contentRef.value.style.left = `${rect.left + window.scrollX}px`;
-    contentRef.value.style.width = `${dropdownWidth}px`;
-    contentRef.value.style.minWidth = `${dropdownWidth}px`;
-    contentRef.value.style.zIndex = "50";
+    // Use positioning based on context with !important to override any CSS
+    contentRef.value.style.setProperty('position', isInModal ? "fixed" : "absolute", 'important');
+    contentRef.value.style.setProperty('top', `${top}px`, 'important');
+    contentRef.value.style.setProperty('left', `${left}px`, 'important');
+    contentRef.value.style.setProperty('width', `${dropdownWidth}px`, 'important');
+    contentRef.value.style.setProperty('min-width', `${dropdownWidth}px`, 'important');
+    // Set z-index based on context (modal uses z-50 = 200, so we need higher)
+    contentRef.value.style.setProperty('z-index', isInModal ? "60" : "50", 'important');
+
+    // Debug: log final styles
+    console.log('Final styles applied:', {
+      position: contentRef.value.style.position,
+      top: contentRef.value.style.top,
+      left: contentRef.value.style.left,
+      zIndex: contentRef.value.style.zIndex,
+      computedTop: window.getComputedStyle(contentRef.value).top,
+      computedLeft: window.getComputedStyle(contentRef.value).left,
+      computedPosition: window.getComputedStyle(contentRef.value).position
+    });
 
     // Check if dropdown would go below viewport
     const contentHeight = contentRef.value.scrollHeight;
-    if (top + contentHeight > viewportHeight + window.scrollY) {
-      // Not enough space below, show above
-      top = rect.top + window.scrollY - contentHeight - 4;
-      side = "top";
-      contentRef.value.style.top = `${top}px`;
+    if (isInModal) {
+      // For fixed positioning in modal, check against viewport height
+      if (top + contentHeight > viewportHeight) {
+        // Not enough space below, show above
+        top = rect.top - contentHeight - 4;
+        side = "top";
+      }
+    } else {
+      // For absolute positioning, check against viewport with scroll
+      if (top + contentHeight > viewportHeight + window.scrollY) {
+        // Not enough space below, show above
+        top = rect.top + window.scrollY - contentHeight - 4;
+        side = "top";
+      }
     }
 
-    // Update contentStyle for reactivity
-    contentStyle.value = {
-      top: `${top}px`,
-      left: `${rect.left + window.scrollX}px`,
-      width: `${dropdownWidth}px`,
-      minWidth: `${dropdownWidth}px`,
-      transformOrigin: side === "top" ? "bottom" : "top",
-    };
+    // contentStyle tidak lagi digunakan - fokus pada inline styles
 
     // Set CSS custom properties for other styling
     document.documentElement.style.setProperty("--radix-select-content-available-height", "300px");

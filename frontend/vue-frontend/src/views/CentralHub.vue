@@ -55,9 +55,9 @@
             Dashboard
           </TabsTrigger>
           <TabsTrigger
-            value="sharepoint"
+            value="document"
             class="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
-            Central SharePoint
+            Central Documents
           </TabsTrigger>
         </TabsList>
 
@@ -140,8 +140,8 @@
           </Card>
         </TabsContent>
 
-        <!-- Central SharePoint Tab -->
-        <TabsContent value="sharepoint" class="space-y-6">
+        <!-- Central Document Tab -->
+        <TabsContent value="document" class="space-y-6">
           <Card class="shadow-lg border-0">
             <CardContent class="p-8">
               <div class="flex items-center justify-between mb-6">

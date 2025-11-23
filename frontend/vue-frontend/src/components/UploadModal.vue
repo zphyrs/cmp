@@ -54,7 +54,7 @@
           <Input id="link-url" type="url" placeholder="https://example.com/document" v-model="linkUrl" />
         </div>
 
-        <!-- Area Select -->
+        <!-- Area Select
         <div>
           <Label class="mb-2 block">Area *</Label>
           <Select v-model="area" width="w-full">
@@ -65,17 +65,21 @@
               <SelectItem v-for="(a, index) in AREAS" :key="a" :value="a" :index="index">{{ a }}</SelectItem>
             </SelectContent>
           </Select>
-        </div>
+        </div> -->
 
         <!-- Contract Select (Optional) -->
         <div v-if="workspace === 'execution'">
           <Label class="mb-2 block">Related Contract (Optional)</Label>
-          <Select v-model="contract" :width="400">
+          <Select v-model="contract" width="w-full">
             <SelectTrigger>
               <SelectValue placeholder="Select contract" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem v-for="(c, index) in CONTRACTS.filter((c) => !area || c.area === area)" :key="c.id" :value="c.id" :index="index">
+              <SelectItem
+                v-for="(c, index) in CONTRACTS.filter((c) => !area || c.area === area)"
+                :key="c.id"
+                :value="c.id"
+                :index="index">
                 {{ c.id }} - {{ c.title }}
               </SelectItem>
             </SelectContent>
@@ -85,7 +89,7 @@
         <!-- Category Select -->
         <div>
           <Label class="mb-2 block">Document Category *</Label>
-          <Select v-model="category" width="w-56">
+          <Select v-model="category" width="w-full">
             <SelectTrigger>
               <SelectValue placeholder="Select category" />
             </SelectTrigger>

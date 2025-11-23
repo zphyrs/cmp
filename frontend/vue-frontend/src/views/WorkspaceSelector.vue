@@ -107,10 +107,10 @@ const workspaces: Workspace[] = [
   {
     id: "planning",
     title: "Planning",
-    description: "Contract Catalogue & Planning SharePoint",
+    description: "Contract Catalogue & Planning Documents",
     icon: FileText,
     color: "from-blue-500 to-blue-600",
-    subItems: ["Contract Catalogue", "Planning SharePoint"],
+    subItems: ["Contract Catalogue", "Planning Documents"],
   },
   {
     id: "execution",

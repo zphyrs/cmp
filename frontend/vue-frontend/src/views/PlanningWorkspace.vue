@@ -48,25 +48,32 @@
 
       <!-- Tabs -->
       <Tabs v-model="activeTab" class="space-y-6">
-        <TabsList className="bg-white p-1 shadow-sm border border-slate-200">
-          <TabsTrigger
-            value="catalogue"
-            className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
-            Contract Catalogue
-          </TabsTrigger>
-          <TabsTrigger
-            value="sharepoint"
-            className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
-            Planning SharePoint
-          </TabsTrigger>
-        </TabsList>
+        <div class="flex justify-between">
+          <TabsList className="bg-white p-1 shadow-sm border border-slate-200">
+            <TabsTrigger
+              value="catalogue"
+              className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
+              Contract Catalogue
+            </TabsTrigger>
+            <TabsTrigger
+              value="document"
+              className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
+              Planning Documents
+            </TabsTrigger>
+          </TabsList>
+
+          <Button @click="uploadModalOpen = true" className="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2">
+            <UploadIcon class="w-4 h-4" />
+            Upload Document
+          </Button>
+        </div>
 
         <!-- Contract Catalogue Tab -->
         <TabsContent value="catalogue" class="space-y-8">
           <!-- Work Package - Pricing Catalogue -->
           <Card class="shadow-lg border-0">
             <CardContent class="p-8">
-              <h3 class="text-2xl font-semibold text-slate-800 mb-6">Work Package - Pricing Catalogue</h3>
+              <h3 class="text-2xl font-semibold text-slate-800 mb-6">Work Package Pricing Catalogue</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div
                   v-for="template in CONTRACT_TEMPLATES.pricingCatalogue"
@@ -98,7 +105,7 @@
           <!-- Work Package - Scope of Works -->
           <Card class="shadow-lg border-0">
             <CardContent class="p-8">
-              <h3 class="text-2xl font-semibold text-slate-800 mb-6">Work Package - Scope of Works</h3>
+              <h3 class="text-2xl font-semibold text-slate-800 mb-6">Work Package Scope of Works</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div
                   v-for="template in CONTRACT_TEMPLATES.scopeOfWorks"
@@ -127,18 +134,12 @@
           </Card>
         </TabsContent>
 
-        <!-- Planning SharePoint Tab -->
-        <TabsContent value="sharepoint" class="space-y-6">
+        <!-- Planning Document Tab -->
+        <TabsContent value="document" class="space-y-6">
           <!-- Area Tabs -->
           <div class="bg-white rounded-lg shadow-lg p-6">
             <div class="flex items-center justify-between mb-6">
               <h3 class="text-2xl font-semibold text-slate-800">Planning Documents by Area</h3>
-              <Button
-                @click="uploadModalOpen = true"
-                className="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2">
-                <UploadIcon class="w-4 h-4" />
-                Upload Document
-              </Button>
             </div>
 
             <Tabs v-model="selectedArea">
