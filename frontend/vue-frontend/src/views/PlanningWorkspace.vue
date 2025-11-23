@@ -77,7 +77,7 @@
         <!-- Contract Catalogue Tab -->
         <TabsContent value="catalogue" class="space-y-8">
           <!-- Work Package - Pricing Catalogue -->
-          <Card class="shadow-lg border-0">
+          <Card class="shadow-lg border-0 mb-4">
             <CardContent class="p-8">
               <h3 class="text-2xl font-semibold text-slate-800 mb-6">Work Package Pricing Catalogue</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
