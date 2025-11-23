@@ -279,7 +279,7 @@ const getSampleDocuments = (): Document[] => [
     description: 'Standard operating procedures for heavy equipment operation',
     category: 'Safety Procedures',
     area: 'Sorowako',
-    workspace: 'execution',
+    workspace: 'planning',
     uploadDate: '2024-01-20T14:15:00Z',
     metadata: {
       procedureNumber: 'SP-2024-001',

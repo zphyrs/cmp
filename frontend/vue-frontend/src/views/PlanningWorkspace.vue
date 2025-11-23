@@ -139,21 +139,21 @@
           <!-- Area Tabs -->
           <div class="bg-white rounded-lg shadow-lg p-6">
             <div class="flex items-center justify-between mb-6">
-              <h3 class="text-2xl font-semibold text-slate-800">Planning Documents by Area</h3>
+              <h3 class="text-2xl font-semibold text-slate-800">Planning Documents</h3>
             </div>
 
             <Tabs v-model="selectedArea">
-              <TabsList className="w-full justify-start bg-slate-100 p-1">
+              <TabsList className="w-full justify-start bg-slate-100 p-1 flex-wrap">
                 <TabsTrigger
-                  v-for="area in AREAS"
+                  v-for="area in allAreaOptions"
                   :key="area"
                   :value="area"
                   className="data-[state=active]:bg-white px-6 py-2">
-                  {{ area }}
+                  {{ area === "all" ? "All Areas" : area }}
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent v-for="area in AREAS" :key="area" :value="area" class="mt-6">
+              <TabsContent v-for="area in allAreaOptions" :key="area" :value="area" class="mt-6">
                 <div class="space-y-6">
                   <div
                     v-for="[groupName, docs] in Object.entries(groupDocumentsByCategory(getAreaDocuments(area)))"
@@ -177,6 +177,11 @@
                             <div class="flex gap-2 flex-wrap">
                               <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded">
                                 {{ doc.category }}
+                              </span>
+                              <span
+                                v-if="area === 'all'"
+                                class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded font-medium">
+                                {{ doc.area }}
                               </span>
                               <span class="text-xs px-2 py-1 bg-slate-200 text-slate-700 rounded">
                                 {{ new Date(doc.uploadDate).toLocaleDateString() }}
@@ -232,8 +237,11 @@ const { toast } = useToast();
 
 const user = computed(() => authStore.user);
 const activeTab = ref("catalogue");
-const selectedArea = ref("Morowali");
+const selectedArea = ref("all"); // Default to "all" areas
 const uploadModalOpen = ref(false);
+
+// All areas including "All Areas" option
+const allAreaOptions = ["all", ...AREAS];
 
 const handleLogout = () => {
   authStore.logout();
@@ -249,7 +257,19 @@ const handleDownload = (fileName: string) => {
 
 const getAreaDocuments = (area: string): Document[] => {
   const allDocs = getDocumentsFromStorage();
-  return allDocs.filter((doc) => doc.workspace === "planning" && doc.area === area);
+
+  if (area === "all") {
+    // Return all planning documents regardless of area
+    return allDocs.filter((doc) => doc.workspace === "planning");
+  } else {
+    // Return documents for specific area
+    return allDocs.filter((doc) => doc.workspace === "planning" && doc.area === area);
+  }
+};
+
+const getAllPlanningDocuments = (): Document[] => {
+  const allDocs = getDocumentsFromStorage();
+  return allDocs.filter((doc) => doc.workspace === "planning");
 };
 
 const groupDocumentsByCategory = (documents: Document[]) => {
