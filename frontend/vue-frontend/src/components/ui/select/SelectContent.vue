@@ -13,7 +13,7 @@
         )
       "
       :data-state="select?.open?.value ? 'open' : 'closed'"
-      tabindex="-1">
+      tabindex="0">
       <div
         v-if="showScrollUpButton"
         class="flex cursor-default items-center justify-center py-1 border-b border-gray-200 bg-gray-50">
@@ -156,7 +156,10 @@ const handleClickOutside = (event: MouseEvent) => {
 };
 
 const handleKeyDown = (event: KeyboardEvent) => {
-  select?.handleKeyDown(event, availableItems.value);
+  // Only handle keyboard events if this dropdown is open and has focus
+  if (select?.open?.value && contentRef.value && document.activeElement === contentRef.value) {
+    select?.handleKeyDown(event, availableItems.value);
+  }
 };
 
 const checkScroll = () => {
@@ -212,6 +215,11 @@ watch(
           contentRef.value.style.minWidth = `${dropdownWidth}px`;
         }
         checkScroll();
+
+        // Focus the dropdown for keyboard navigation
+        if (contentRef.value) {
+          contentRef.value.focus();
+        }
       });
     }
   },
