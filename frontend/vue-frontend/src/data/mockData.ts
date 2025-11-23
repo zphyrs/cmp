@@ -30,6 +30,10 @@ export interface Document {
   uploadDate: string
   contractId?: string
   metadata?: Record<string, any>
+  status?: 'pending_review' | 'approved' | 'rejected'
+  reviewedBy?: string
+  reviewedDate?: string
+  reviewNotes?: string
 }
 
 export const AREAS = ['Morowali', 'Pomalaa', 'Sorowako', 'Bahodopi']
@@ -264,6 +268,9 @@ const getSampleDocuments = (): Document[] => [
     workspace: 'planning',
     uploadDate: '2024-01-15T10:30:00Z',
     contractId: 'C-2024-001',
+    status: 'approved',
+    reviewedBy: 'CMT Admin',
+    reviewedDate: '2024-01-16T09:00:00Z',
     metadata: {
       contractRequestId: 'CRQ-2024-001',
       contractType: 'Service Contract',
@@ -281,6 +288,9 @@ const getSampleDocuments = (): Document[] => [
     area: 'Sorowako',
     workspace: 'planning',
     uploadDate: '2024-01-20T14:15:00Z',
+    status: 'approved',
+    reviewedBy: 'CMT Admin',
+    reviewedDate: '2024-01-21T10:30:00Z',
     metadata: {
       procedureNumber: 'SP-2024-001',
       procedureType: 'Standard Operating Procedure',
@@ -297,6 +307,9 @@ const getSampleDocuments = (): Document[] => [
     area: 'Bahodopi',
     workspace: 'execution',
     uploadDate: '2024-01-25T09:00:00Z',
+    status: 'approved',
+    reviewedBy: 'CMT Manager',
+    reviewedDate: '2024-01-26T14:00:00Z',
     metadata: {
       reportPeriod: 'Monthly',
       reportDate: '2024-01-25',
@@ -313,6 +326,7 @@ const getSampleDocuments = (): Document[] => [
     area: 'Pomalaa',
     workspace: 'planning',
     uploadDate: '2024-01-30T16:45:00Z',
+    status: 'pending_review',
     metadata: {
       totalAmount: 5000000,
       currency: 'IDR',
@@ -326,14 +340,107 @@ const getSampleDocuments = (): Document[] => [
     description: 'Weekly project review meeting minutes',
     category: 'Minutes of Meeting',
     area: 'Morowali',
-    workspace: 'central-hub',
+    workspace: 'planning',
     uploadDate: '2024-02-05T11:30:00Z',
+    status: 'pending_review',
     metadata: {
       meetingDate: '2024-02-05',
       meetingType: 'Project Review',
       attendees: 12,
       facilitator: 'Jane Smith - Project Manager',
       location: 'Main Conference Room'
+    }
+  },
+  {
+    id: 'DOC-006',
+    fileName: 'procurement_request_equipment.pdf',
+    description: 'Heavy equipment procurement request for construction phase',
+    category: 'Procurement Request',
+    area: 'Pomalaa',
+    workspace: 'planning',
+    uploadDate: '2024-02-08T13:20:00Z',
+    status: 'pending_review',
+    metadata: {
+      requestNumber: 'PRQ-2024-006',
+      requestDate: '2024-02-08',
+      requester: 'Mike Johnson - Procurement Manager',
+      requesterEmail: 'mike.johnson@company.com',
+      budgetAmount: 3000000,
+      urgency: 'Urgent'
+    }
+  },
+  {
+    id: 'DOC-007',
+    fileName: 'technical_specification_machinery.pdf',
+    description: 'Technical specifications for mining machinery installation',
+    category: 'Technical Specification',
+    area: 'Sorowako',
+    workspace: 'planning',
+    uploadDate: '2024-02-10T15:45:00Z',
+    status: 'approved',
+    reviewedBy: 'Engineering Lead',
+    reviewedDate: '2024-02-11T08:00:00Z',
+    metadata: {
+      specificationNumber: 'TS-2024-007',
+      equipmentType: 'Mining Equipment',
+      version: '2.1',
+      issueDate: '2024-02-10',
+      technicalOwner: 'Engineering Department'
+    }
+  },
+  {
+    id: 'DOC-008',
+    fileName: 'administration_policy_2024.pdf',
+    description: 'Updated company administration policies for 2024',
+    category: 'Administration Document',
+    area: 'Bahodopi',
+    workspace: 'planning',
+    uploadDate: '2024-02-12T09:15:00Z',
+    status: 'approved',
+    reviewedBy: 'HR Manager',
+    reviewedDate: '2024-02-13T11:00:00Z',
+    metadata: {
+      documentType: 'Policy',
+      effectiveDate: '2024-02-15',
+      department: 'Human Resources',
+      approvedBy: 'HR Director',
+      reviewFrequency: 'Annually'
+    }
+  },
+  {
+    id: 'DOC-009',
+    fileName: 'work_order_construction.pdf',
+    description: 'Construction work order for facility expansion',
+    category: 'Scope of Works',
+    area: 'Morowali',
+    workspace: 'planning',
+    uploadDate: '2024-02-14T10:30:00Z',
+    status: 'pending_review',
+    metadata: {
+      workOrderNumber: 'WO-2024-009',
+      startDate: '2024-03-01',
+      endDate: '2024-06-30',
+      estimatedValue: 15000000,
+      workLocation: 'Morowali'
+    }
+  },
+  {
+    id: 'DOC-010',
+    fileName: 'deviation_form_material.pdf',
+    description: 'Material specification deviation request',
+    category: 'Deviation Form',
+    area: 'Pomalaa',
+    workspace: 'planning',
+    uploadDate: '2024-02-16T14:20:00Z',
+    status: 'approved',
+    reviewedBy: 'Quality Assurance Lead',
+    reviewedDate: '2024-02-17T09:30:00Z',
+    metadata: {
+      deviationNumber: 'DF-2024-010',
+      deviationType: 'Technical Deviation',
+      severity: 'Major',
+      reportedDate: '2024-02-16',
+      reportedBy: 'Tom Wilson - QA Engineer'
     }
   }
 ]
@@ -359,7 +466,10 @@ const addSampleMetadata = (doc: Document): Document => {
 
   return {
     ...doc,
-    metadata: metadataMap[doc.category] || {}
+    // Only add metadata if document doesn't already have it
+    metadata: Object.keys(doc.metadata || {}).length > 0 ? doc.metadata : metadataMap[doc.category] || {},
+    // Ensure status exists, default to approved for legacy documents
+    status: doc.status || 'approved'
   }
 }
 
@@ -375,9 +485,47 @@ export const addDocument = (document: Omit<Document, 'id' | 'uploadDate'>): Docu
   const newDoc: Document = {
     ...document,
     id: `DOC-${Date.now()}`,
-    uploadDate: new Date().toISOString()
+    uploadDate: new Date().toISOString(),
+    status: document.status || 'pending_review' // Default to pending review
   }
   documents.push(newDoc)
   saveDocumentsToStorage(documents)
   return newDoc
+}
+
+// Approval functions
+export const approveDocument = (documentId: string, reviewedBy: string, reviewNotes?: string): boolean => {
+  const documents = getDocumentsFromStorage()
+  const docIndex = documents.findIndex(doc => doc.id === documentId)
+
+  if (docIndex !== -1) {
+    documents[docIndex] = {
+      ...documents[docIndex],
+      status: 'approved',
+      reviewedBy,
+      reviewedDate: new Date().toISOString(),
+      reviewNotes: reviewNotes || ''
+    }
+    saveDocumentsToStorage(documents)
+    return true
+  }
+  return false
+}
+
+export const rejectDocument = (documentId: string, reviewedBy: string, reviewNotes?: string): boolean => {
+  const documents = getDocumentsFromStorage()
+  const docIndex = documents.findIndex(doc => doc.id === documentId)
+
+  if (docIndex !== -1) {
+    documents[docIndex] = {
+      ...documents[docIndex],
+      status: 'rejected',
+      reviewedBy,
+      reviewedDate: new Date().toISOString(),
+      reviewNotes: reviewNotes || ''
+    }
+    saveDocumentsToStorage(documents)
+    return true
+  }
+  return false
 }

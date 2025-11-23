@@ -298,13 +298,14 @@ const handleSubmit = () => {
     linkUrl: documentType.value === "link" ? linkUrl.value : null,
     workspace: props.workspace,
     metadata: Object.keys(metadata.value).length > 0 ? metadata.value : undefined,
+    status: "pending_review", // Documents need CMT approval
   };
 
   addDocument(newDocument as any);
 
   toast({
     title: "Document Uploaded",
-    description: `${documentType.value === "file" ? fileName.value : "Link"} has been uploaded successfully.`,
+    description: `${documentType.value === "file" ? fileName.value : "Link"} has been submitted for review.`,
   });
 
   // Reset form

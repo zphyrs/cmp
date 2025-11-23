@@ -60,6 +60,12 @@
               className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
               Planning Documents
             </TabsTrigger>
+            <TabsTrigger
+              value="review"
+              v-if="user?.role === 'CMT_TEAM'"
+              className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
+              Review Required
+            </TabsTrigger>
           </TabsList>
 
           <Button @click="uploadModalOpen = true" className="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2">
@@ -204,6 +210,82 @@
             </Tabs>
           </div>
         </TabsContent>
+
+        <!-- Review Required Tab (CMT only) -->
+        <TabsContent v-if="user?.role === 'CMT_TEAM'" value="review" class="space-y-6">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-2xl font-semibold text-slate-800">Documents Pending Review</h3>
+              <span class="text-sm text-slate-500">
+                {{ getPendingReviewDocuments().length }} document(s) pending review
+              </span>
+            </div>
+
+            <div v-if="getPendingReviewDocuments().length > 0" class="space-y-4">
+              <div
+                v-for="doc in getPendingReviewDocuments()"
+                :key="doc.id"
+                class="border border-amber-200 bg-amber-50 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                      <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-medium rounded">
+                        PENDING REVIEW
+                      </span>
+                      <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded">
+                        {{ doc.category }}
+                      </span>
+                      <span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded font-medium">
+                        {{ doc.area }}
+                      </span>
+                      <span class="px-2 py-1 bg-slate-200 text-slate-700 text-xs rounded">
+                        {{ new Date(doc.uploadDate).toLocaleDateString() }}
+                      </span>
+                    </div>
+
+                    <p class="font-medium text-slate-800 mb-1">
+                      {{ doc.fileName || doc.linkUrl }}
+                    </p>
+                    <p class="text-sm text-slate-600 mb-3">{{ doc.description }}</p>
+
+                    <!-- Metadata Display -->
+                    <div v-if="doc.metadata && Object.keys(doc.metadata).length > 0" class="mb-3">
+                      <div class="text-xs text-slate-500 mb-1">Metadata:</div>
+                      <div class="flex gap-1 flex-wrap">
+                        <span
+                          v-for="[key, value] in Object.entries(doc.metadata)"
+                          :key="key"
+                          class="text-xs px-1 py-0.5 bg-gray-100 text-gray-600 rounded">
+                          {{ key }}: {{ value }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex gap-2 mt-3">
+                      <Button
+                        size="sm"
+                        @click="handleApproveDocument(doc.id)"
+                        className="bg-green-600 hover:bg-green-700 text-white">
+                        ✓ Approve
+                      </Button>
+                      <Button size="sm" variant="destructive" @click="handleRejectDocument(doc.id)">✗ Reject</Button>
+                      <Button size="sm" variant="ghost">
+                        <Download class="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div v-else class="text-center py-12">
+              <Folder class="w-16 h-16 mx-auto mb-4 text-slate-300" />
+              <h4 class="text-lg font-medium text-slate-600 mb-2">No Documents Pending Review</h4>
+              <p class="text-slate-500">All documents have been reviewed or no documents have been submitted yet.</p>
+            </div>
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
 
@@ -228,7 +310,14 @@ import TabsTrigger from "@/components/ui/tabs/TabsTrigger.vue";
 import TabsContent from "@/components/ui/tabs/TabsContent.vue";
 import UploadModal from "@/components/UploadModal.vue";
 import { Building2, Bell, User, LogOut, Home, Download, FileText, Folder, Upload as UploadIcon } from "lucide-vue-next";
-import { CONTRACT_TEMPLATES, AREAS, getDocumentsFromStorage, type Document } from "@/data/mockData";
+import {
+  CONTRACT_TEMPLATES,
+  AREAS,
+  getDocumentsFromStorage,
+  approveDocument,
+  rejectDocument,
+  type Document,
+} from "@/data/mockData";
 import { useToast } from "@/composables/useToast";
 
 const router = useRouter();
@@ -259,17 +348,53 @@ const getAreaDocuments = (area: string): Document[] => {
   const allDocs = getDocumentsFromStorage();
 
   if (area === "all") {
-    // Return all planning documents regardless of area
-    return allDocs.filter((doc) => doc.workspace === "planning");
+    // Return all approved planning documents regardless of area
+    return allDocs.filter((doc) => doc.workspace === "planning" && doc.status === "approved");
   } else {
-    // Return documents for specific area
-    return allDocs.filter((doc) => doc.workspace === "planning" && doc.area === area);
+    // Return approved documents for specific area
+    return allDocs.filter((doc) => doc.workspace === "planning" && doc.area === area && doc.status === "approved");
   }
 };
 
 const getAllPlanningDocuments = (): Document[] => {
   const allDocs = getDocumentsFromStorage();
-  return allDocs.filter((doc) => doc.workspace === "planning");
+  return allDocs.filter((doc) => doc.workspace === "planning" && doc.status === "approved");
+};
+
+const getPendingReviewDocuments = (): Document[] => {
+  const allDocs = getDocumentsFromStorage();
+  return allDocs.filter((doc) => doc.status === "pending_review");
+};
+
+// Approval functions
+const handleApproveDocument = (documentId: string, reviewNotes?: string) => {
+  if (approveDocument(documentId, user.value?.name || "CMT Admin", reviewNotes)) {
+    toast({
+      title: "Document Approved",
+      description: "Document has been approved and moved to Planning Documents.",
+    });
+  } else {
+    toast({
+      title: "Error",
+      description: "Failed to approve document.",
+      variant: "destructive",
+    });
+  }
+};
+
+const handleRejectDocument = (documentId: string, reviewNotes?: string) => {
+  if (rejectDocument(documentId, user.value?.name || "CMT Admin", reviewNotes)) {
+    toast({
+      title: "Document Rejected",
+      description: "Document has been rejected.",
+    });
+  } else {
+    toast({
+      title: "Error",
+      description: "Failed to reject document.",
+      variant: "destructive",
+    });
+  }
 };
 
 const groupDocumentsByCategory = (documents: Document[]) => {
