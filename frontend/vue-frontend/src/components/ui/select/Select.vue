@@ -1,40 +1,136 @@
 <template>
   <div class="relative">
-    <select
-      :value="modelValue"
-      @change="handleChange"
-      :class="cn(
-        'flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-        className
-      )"
-      :disabled="disabled"
-    >
-      <option value="" disabled selected v-if="props.placeholder && !modelValue">
-        {{ props.placeholder }}
-      </option>
-      <slot />
-    </select>
+    <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
+import { provide, ref, watch, toRefs, nextTick } from 'vue'
 
 interface SelectProps {
   modelValue?: string
+  defaultValue?: string
   disabled?: boolean
-  class?: string
-  placeholder?: string
+  required?: boolean
+  width?: string | number
 }
 
-const props = defineProps<SelectProps>()
+const props = withDefaults(defineProps<SelectProps>(), {
+  defaultValue: ''
+})
 
 const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
 
-const handleChange = (event: Event) => {
-  const target = event.target as HTMLSelectElement
-  emit('update:modelValue', target.value)
+const open = ref(false)
+const value = ref(props.modelValue || props.defaultValue)
+const displayText = ref('')
+const highlightedIndex = ref(-1)
+const hoverIndex = ref(-1)
+
+watch(() => props.modelValue, (newValue) => {
+  if (newValue !== undefined) {
+    value.value = newValue
+  }
+})
+
+const toggleOpen = () => {
+  if (!props.disabled) {
+    open.value = !open.value
+  }
 }
+
+const setOpen = (isOpen: boolean) => {
+  if (!props.disabled) {
+    open.value = isOpen
+  }
+}
+
+const selectValue = (newValue: string, newText?: string) => {
+  value.value = newValue
+  displayText.value = newText || newValue
+  emit('update:modelValue', newValue)
+  open.value = false
+}
+
+const triggerElement = ref<HTMLElement>()
+
+const setTriggerElement = (element: HTMLElement) => {
+  triggerElement.value = element
+}
+
+// Keyboard navigation functions
+const handleKeyDown = (event: KeyboardEvent, items?: string[]) => {
+  if (!items || items.length === 0) return
+
+  switch (event.key) {
+    case 'ArrowDown':
+      event.preventDefault()
+      if (!open.value) {
+        open.value = true
+        highlightedIndex.value = 0
+      } else {
+        highlightedIndex.value = (highlightedIndex.value + 1) % items.length
+      }
+      break
+    case 'ArrowUp':
+      event.preventDefault()
+      if (!open.value) {
+        open.value = true
+        highlightedIndex.value = items.length - 1
+      } else {
+        highlightedIndex.value = highlightedIndex.value <= 0
+          ? items.length - 1
+          : highlightedIndex.value - 1
+      }
+      break
+    case 'Enter':
+    case ' ':
+      event.preventDefault()
+      if (open.value && highlightedIndex.value >= 0 && highlightedIndex.value < items.length) {
+        selectValue(items[highlightedIndex.value], items[highlightedIndex.value])
+      } else {
+        open.value = true
+      }
+      break
+    case 'Escape':
+      event.preventDefault()
+      open.value = false
+      highlightedIndex.value = -1
+      break
+  }
+}
+
+const resetHighlightedIndex = () => {
+  highlightedIndex.value = -1
+}
+
+const setHoverIndex = (index: number) => {
+  hoverIndex.value = index
+}
+
+const resetHoverIndex = () => {
+  hoverIndex.value = -1
+}
+
+provide('select', {
+  open,
+  value,
+  displayText,
+  highlightedIndex,
+  hoverIndex,
+  triggerElement,
+  width: props.width,
+  disabled: props.disabled,
+  required: props.required,
+  toggleOpen,
+  setOpen,
+  selectValue,
+  setTriggerElement,
+  handleKeyDown,
+  resetHighlightedIndex,
+  setHoverIndex,
+  resetHoverIndex
+})
 </script>

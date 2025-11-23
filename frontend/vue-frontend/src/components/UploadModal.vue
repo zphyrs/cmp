@@ -57,26 +57,41 @@
         <!-- Area Select -->
         <div>
           <Label class="mb-2 block">Area *</Label>
-          <Select v-model="area" placeholder="Select area">
-            <SelectItem v-for="a in AREAS" :key="a" :value="a">{{ a }}</SelectItem>
+          <Select v-model="area" width="w-full">
+            <SelectTrigger>
+              <SelectValue placeholder="Select area" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem v-for="(a, index) in AREAS" :key="a" :value="a" :index="index">{{ a }}</SelectItem>
+            </SelectContent>
           </Select>
         </div>
 
         <!-- Contract Select (Optional) -->
         <div v-if="workspace === 'execution'">
           <Label class="mb-2 block">Related Contract (Optional)</Label>
-          <Select v-model="contract" placeholder="Select contract">
-            <SelectItem v-for="c in CONTRACTS.filter((c) => !area || c.area === area)" :key="c.id" :value="c.id">
-              {{ c.id }} - {{ c.title }}
-            </SelectItem>
+          <Select v-model="contract" :width="400">
+            <SelectTrigger>
+              <SelectValue placeholder="Select contract" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem v-for="(c, index) in CONTRACTS.filter((c) => !area || c.area === area)" :key="c.id" :value="c.id" :index="index">
+                {{ c.id }} - {{ c.title }}
+              </SelectItem>
+            </SelectContent>
           </Select>
         </div>
 
         <!-- Category Select -->
         <div>
           <Label class="mb-2 block">Document Category *</Label>
-          <Select v-model="category" placeholder="Select category">
-            <SelectItem v-for="cat in DOCUMENT_CATEGORIES" :key="cat" :value="cat">{{ cat }}</SelectItem>
+          <Select v-model="category" width="w-56">
+            <SelectTrigger>
+              <SelectValue placeholder="Select category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem v-for="cat in DOCUMENT_CATEGORIES" :key="cat" :value="cat">{{ cat }}</SelectItem>
+            </SelectContent>
           </Select>
         </div>
 

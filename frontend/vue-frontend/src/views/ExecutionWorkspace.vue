@@ -49,13 +49,13 @@
       <!-- Area Filter -->
       <div class="mb-6 flex items-center gap-4">
         <label class="text-sm font-medium text-slate-700">Filter by Area:</label>
-        <Select v-model="selectedArea">
-          <SelectTrigger class="w-64">
-            <SelectValue placeholder="Select area" :model-value="selectedArea" />
+        <Select v-model="selectedArea" width="w-64">
+          <SelectTrigger>
+            <SelectValue placeholder="Select area" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="All Areas">All Areas</SelectItem>
-            <SelectItem v-for="area in AREAS" :key="area" :value="area">{{ area }}</SelectItem>
+            <SelectItem value="All Areas" :index="0">All Areas</SelectItem>
+            <SelectItem v-for="(area, index) in AREAS" :key="area" :value="area" :index="index + 1">{{ area }}</SelectItem>
           </SelectContent>
         </Select>
       </div>
