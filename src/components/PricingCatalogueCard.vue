@@ -2,6 +2,8 @@
   <DocumentCard
     :data="props.template"
     :hide-history-button="authStore.isUser"
+    :first-uploader-name="firstUploaderName"
+    :first-upload-date="firstUploadDate"
     variant="pricing"
     @download="handleDownload"
     @show-history="handleShowHistory" />
@@ -15,6 +17,8 @@ const authStore = useAuthStore();
 
 const props = defineProps<{
   template: CatalogueItem;
+  firstUploaderName?: string;
+  firstUploadDate?: string;
 }>();
 
 const emit = defineEmits<{

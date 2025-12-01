@@ -18,8 +18,17 @@
         <p class="font-medium text-slate-800">{{ props.data.fileType }} {{ props.data.version }}</p>
         <p class="text-sm text-slate-600">{{ props.data.fileName }}</p>
 
-        <div class="flex items-center gap-1 mt-2">
-          <span class="text-xs text-slate-500">Uploaded by:</span>
+        <div v-if="!hideFirstUploaderInfo" class="flex items-center gap-1 mt-2">
+          <span class="text-xs text-slate-500">First Uploaded by:</span>
+          <span class="text-xs font-medium">{{ props.firstUploaderName }}</span>
+          <span class="text-xs text-slate-500">({{ formattedFirstUploadDate }})</span>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <span class="text-xs text-slate-500">
+            <span v-if="!hideFirstUploaderInfo">Last</span>
+            Uploaded by:
+          </span>
           <span class="text-xs font-medium">{{ props.data.uploaderName }}</span>
           <span class="text-xs text-slate-500">({{ formattedDate }})</span>
         </div>
@@ -67,11 +76,15 @@ interface DocumentCardProps {
   data: CatalogueItem;
   variant?: "pricing" | "scope" | "library";
   hideHistoryButton?: boolean;
+  hideFirstUploaderInfo?: boolean;
+  firstUploaderName?: string;
+  firstUploadDate?: string;
 }
 
 const props = withDefaults(defineProps<DocumentCardProps>(), {
   variant: "pricing",
   hideHistoryButton: false,
+  hideFirstUploaderInfo: false,
 });
 
 const emit = defineEmits<{
@@ -84,6 +97,18 @@ const subtitle = computed(() => {
     return `Category: ${props.data.category} | ${props.data.fileType || "Reference Document"}`;
   }
   return `${props.data.category} | ${props.data.fileType || "Reference Document"}`;
+});
+
+const formattedFirstUploadDate = computed(() => {
+  if (!props.firstUploadDate) return "";
+
+  return new Date(props.firstUploadDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 });
 
 const formattedDate = computed(() => {

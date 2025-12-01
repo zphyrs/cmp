@@ -62,6 +62,7 @@
               <DocumentCard
                 class="w-full"
                 :hide-history-button="true"
+                :hide-first-uploader-info="true"
                 :data="item"
                 :variant="item.category === Category.PRICING_CATALOGUE ? 'pricing' : 'scope'"
                 @download="handleDownload" />

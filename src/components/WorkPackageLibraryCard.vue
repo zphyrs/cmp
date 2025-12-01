@@ -1,5 +1,5 @@
 <template>
-  <DocumentCard :data="props.template" variant="library" @download="handleDownload" @show-history="handleShowHistory" />
+  <DocumentCard :data="props.template" variant="library" :hide-history-button="true" @download="handleDownload" />
 </template>
 
 <script setup lang="ts">

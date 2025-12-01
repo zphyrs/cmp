@@ -1,5 +1,11 @@
 <template>
-  <DocumentCard :data="props.template" variant="scope" @download="handleDownload" @show-history="handleShowHistory" />
+  <DocumentCard
+    :data="props.template"
+    :first-uploader-name="firstUploaderName"
+    :first-upload-date="firstUploadDate"
+    variant="scope"
+    @download="handleDownload"
+    @show-history="handleShowHistory" />
 </template>
 
 <script setup lang="ts">
@@ -8,6 +14,8 @@ import DocumentCard from "./DocumentCard.vue";
 
 const props = defineProps<{
   template: CatalogueItem;
+  firstUploaderName?: string;
+  firstUploadDate?: string;
 }>();
 
 const emit = defineEmits<{

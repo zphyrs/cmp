@@ -125,11 +125,13 @@
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <PricingCatalogueCard
-                  v-for="template in pricingCatalogueExpanded
+                  v-for="item in pricingCatalogueExpanded
                     ? filteredPricingCatalogue
                     : filteredPricingCatalogue.slice(0, 4)"
-                  :key="template.id"
-                  :template="template"
+                  :key="item.id"
+                  :template="item"
+                  :first-uploader-name="item.originalUploader"
+                  :first-upload-date="item.originalUploadDate"
                   @download="handleDownload"
                   @show-history="handleShowHistory" />
               </div>
@@ -186,6 +188,8 @@
                   v-for="template in scopeOfWorksExpanded ? filteredScopeOfWorks : filteredScopeOfWorks.slice(0, 4)"
                   :key="template.id"
                   :template="template"
+                  :first-uploader-name="template.originalUploader"
+                  :first-upload-date="template.originalUploadDate"
                   @download="handleDownload"
                   @show-history="handleShowHistory" />
               </div>
@@ -565,27 +569,44 @@ const contractCatalogue = computed(() => {
     (el) => el.category == Category.PRICING_CATALOGUE && el.status === "approved",
   );
 
-  // Group by fileType and get the most recent approved date for each group
+  // Group by fileType to track both oldest and most recent items
   const groupedByFileType = new Map();
 
-  approvedItems.forEach(item => {
+  approvedItems.forEach((item) => {
     const fileType = item.fileType;
     const currentApprovedDate = new Date(item.approvedDate || item.uploadDate);
 
     if (!groupedByFileType.has(fileType)) {
-      groupedByFileType.set(fileType, item);
+      groupedByFileType.set(fileType, {
+        latest: item,
+        oldest: item,
+      });
     } else {
-      const existingItem = groupedByFileType.get(fileType);
-      const existingApprovedDate = new Date(existingItem.approvedDate || existingItem.uploadDate);
+      const group = groupedByFileType.get(fileType);
+      const latestItem = group.latest;
+      const oldestItem = group.oldest;
+      const latestApprovedDate = new Date(latestItem.approvedDate || latestItem.uploadDate);
+      const oldestUploadDate = new Date(oldestItem.uploadDate);
+      const currentUploadDate = new Date(item.uploadDate);
 
-      // Keep the item with the most recent approved date
-      if (currentApprovedDate > existingApprovedDate) {
-        groupedByFileType.set(fileType, item);
+      // Keep the item with the most recent approved date as latest
+      if (currentApprovedDate > latestApprovedDate) {
+        group.latest = item;
+      }
+
+      // Keep the item with the oldest upload date as oldest
+      if (currentUploadDate < oldestUploadDate) {
+        group.oldest = item;
       }
     }
   });
 
-  return Array.from(groupedByFileType.values());
+  // Return latest items with additional originalUploader field from oldest items
+  return Array.from(groupedByFileType.values()).map((group) => ({
+    ...group.latest,
+    originalUploader: group.oldest.uploaderName,
+    originalUploadDate: group.oldest.uploadDate,
+  }));
 });
 
 const scopeOfWorksCatalogue = computed(() => {
@@ -593,27 +614,44 @@ const scopeOfWorksCatalogue = computed(() => {
     (el) => el.category == Category.SCOPE_OF_WORKS && el.status === "approved",
   );
 
-  // Group by fileType and get the most recent approved date for each group
+  // Group by fileType to track both oldest and most recent items
   const groupedByFileType = new Map();
 
-  approvedItems.forEach(item => {
+  approvedItems.forEach((item) => {
     const fileType = item.fileType;
     const currentApprovedDate = new Date(item.approvedDate || item.uploadDate);
 
     if (!groupedByFileType.has(fileType)) {
-      groupedByFileType.set(fileType, item);
+      groupedByFileType.set(fileType, {
+        latest: item,
+        oldest: item,
+      });
     } else {
-      const existingItem = groupedByFileType.get(fileType);
-      const existingApprovedDate = new Date(existingItem.approvedDate || existingItem.uploadDate);
+      const group = groupedByFileType.get(fileType);
+      const latestItem = group.latest;
+      const oldestItem = group.oldest;
+      const latestApprovedDate = new Date(latestItem.approvedDate || latestItem.uploadDate);
+      const oldestUploadDate = new Date(oldestItem.uploadDate);
+      const currentUploadDate = new Date(item.uploadDate);
 
-      // Keep the item with the most recent approved date
-      if (currentApprovedDate > existingApprovedDate) {
-        groupedByFileType.set(fileType, item);
+      // Keep the item with the most recent approved date as latest
+      if (currentApprovedDate > latestApprovedDate) {
+        group.latest = item;
+      }
+
+      // Keep the item with the oldest upload date as oldest
+      if (currentUploadDate < oldestUploadDate) {
+        group.oldest = item;
       }
     }
   });
 
-  return Array.from(groupedByFileType.values());
+  // Return latest items with additional originalUploader field from oldest items
+  return Array.from(groupedByFileType.values()).map((group) => ({
+    ...group.latest,
+    originalUploader: group.oldest.uploaderName,
+    originalUploadDate: group.oldest.uploadDate,
+  }));
 });
 
 // Filter functions
