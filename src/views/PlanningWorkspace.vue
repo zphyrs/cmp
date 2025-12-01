@@ -46,65 +46,64 @@
         <p class="text-slate-500">Contract Reference Library & Active Planning Documents</p>
       </div>
 
-      <!-- Filter/Search Bar -->
-      <div class="mb-6">
-        <div class="relative max-w-md">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg
-              class="h-5 w-5 text-gray-400"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor">
-              <path
-                fill-rule="evenodd"
-                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clip-rule="evenodd" />
-            </svg>
-          </div>
-          <input
-            type="text"
-            v-model="searchQuery"
-            placeholder="Search work packages, or documents..."
-            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#007d79] focus:border-[#007d79]" />
-        </div>
-      </div>
-
       <!-- Tabs -->
       <Tabs v-model="activeTab" class="space-y-6">
-        <div class="flex justify-between">
-          <TabsList className="bg-white p-1 shadow-sm border border-slate-200">
-            <TabsTrigger
-              value="catalogue"
-              className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
-              Contract Catalogue
-            </TabsTrigger>
-            <TabsTrigger
-              value="document"
-              className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
-              Planning Documents
-            </TabsTrigger>
-            <TabsTrigger
-              value="review"
-              v-if="
-                user?.role === UserRole.CONTRACT_MANAGEMENT_SENIOR_MANAGER ||
-                user?.role === UserRole.CONTRACT_MANAGEMENT_SUPERVISOR
-              "
-              className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
-              Review Required
-            </TabsTrigger>
-          </TabsList>
-
-          <Button
-            v-if="user?.role !== UserRole.USER"
-            @click="uploadModalOpen = true"
-            className="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2">
-            <UploadIcon class="w-4 h-4" />
-            Upload Document
-          </Button>
-        </div>
+        <TabsList className="bg-white p-1 shadow-sm border border-slate-200">
+          <TabsTrigger
+            value="catalogue"
+            className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
+            Contract Catalogue
+          </TabsTrigger>
+          <TabsTrigger
+            value="document"
+            className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
+            Planning Documents
+          </TabsTrigger>
+          <TabsTrigger
+            value="review"
+            v-if="
+              user?.role === UserRole.CONTRACT_MANAGEMENT_SENIOR_MANAGER ||
+              user?.role === UserRole.CONTRACT_MANAGEMENT_SUPERVISOR
+            "
+            className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
+            Review Required
+          </TabsTrigger>
+        </TabsList>
 
         <!-- Contract Catalogue Tab -->
-        <TabsContent value="catalogue" className="space-y-8">
+        <TabsContent value="catalogue" className="space-y-4">
+          <!-- Filter/Search Bar -->
+          <div class="flex justify-between">
+            <div class="relative w-full max-w-md">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg
+                  class="h-5 w-5 text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                v-model="searchQuery"
+                placeholder="Search work packages, or documents..."
+                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#007d79] focus:border-[#007d79]" />
+            </div>
+
+            <!-- Upload Button -->
+            <Button
+              v-if="user?.role !== UserRole.USER"
+              @click="uploadModalOpen = true"
+              className="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2">
+              <UploadIcon class="w-4 h-4" />
+              Upload Document
+            </Button>
+          </div>
+
           <!-- Work Package - Pricing Catalogue -->
           <Card class="shadow-lg border-0">
             <CardContent class="px-8 py-6">
@@ -127,8 +126,7 @@
                     : filteredPricingCatalogue.slice(0, 4)"
                   :key="template.id"
                   :template="template"
-                  @download="handleDownload"
-                />
+                  @download="handleDownload" />
               </div>
               <!-- Show remaining count when collapsed -->
               <div v-if="!pricingCatalogueExpanded && filteredPricingCatalogue.length > 4" class="text-center mt-4">
@@ -183,8 +181,7 @@
                   v-for="template in scopeOfWorksExpanded ? filteredScopeOfWorks : filteredScopeOfWorks.slice(0, 4)"
                   :key="template.id"
                   :template="template"
-                  @download="handleDownload"
-                />
+                  @download="handleDownload" />
               </div>
               <!-- Show remaining count when collapsed -->
               <div v-if="!scopeOfWorksExpanded && filteredScopeOfWorks.length > 4" class="text-center mt-4">
@@ -247,8 +244,7 @@
                       : filteredWorkPackageLibrary.slice(0, 4)"
                     :key="template.id"
                     :template="template"
-                    @download="handleDownload"
-                  />
+                    @download="handleDownload" />
                 </div>
                 <!-- Show remaining count when collapsed -->
                 <div
@@ -553,12 +549,12 @@ const allAreaOptions = ["all", ...AREAS];
 // Filter functions
 const filteredPricingCatalogue = computed(() => {
   if (!searchQuery.value.trim()) {
-    return CONTRACT_TEMPLATES.pricingCatalogue.filter(template => template.status === 'approved');
+    return CONTRACT_TEMPLATES.pricingCatalogue.filter((template) => template.status === "approved");
   }
   const query = searchQuery.value.toLowerCase();
   return CONTRACT_TEMPLATES.pricingCatalogue.filter(
     (template) =>
-      template.status === 'approved' &&
+      template.status === "approved" &&
       (template.code.toLowerCase().includes(query) ||
         template.category.toLowerCase().includes(query) ||
         (template.fileType && template.fileType.toLowerCase().includes(query)) ||
@@ -568,12 +564,12 @@ const filteredPricingCatalogue = computed(() => {
 
 const filteredScopeOfWorks = computed(() => {
   if (!searchQuery.value.trim()) {
-    return CONTRACT_TEMPLATES.scopeOfWorks.filter(template => template.status === 'approved');
+    return CONTRACT_TEMPLATES.scopeOfWorks.filter((template) => template.status === "approved");
   }
   const query = searchQuery.value.toLowerCase();
   return CONTRACT_TEMPLATES.scopeOfWorks.filter(
     (template) =>
-      template.status === 'approved' &&
+      template.status === "approved" &&
       (template.code.toLowerCase().includes(query) ||
         template.category.toLowerCase().includes(query) ||
         (template.fileType && template.fileType.toLowerCase().includes(query)) ||
