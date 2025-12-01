@@ -37,7 +37,7 @@
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem v-for="cat in DOCUMENT_CATEGORIES" :key="cat" :value="cat">{{ cat }}</SelectItem>
+                <SelectItem v-for="cat in Category" :key="cat" :value="cat">{{ cat }}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -96,32 +96,6 @@
           </Select>
         </div> -->
 
-        <!-- Contract Select (Optional) -->
-        <div v-if="workspace === 'execution'" class="grid grid-cols-12 gap-4 items-start">
-          <div class="col-span-4">
-            <Label className="text-sm font-medium text-gray-900">
-              Related Contract
-              <span class="text-gray-400">(Optional)</span>
-            </Label>
-          </div>
-          <div class="col-span-8">
-            <Select v-model="contract" width="w-full">
-              <SelectTrigger>
-                <SelectValue placeholder="Select contract" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem
-                  v-for="(c, index) in CONTRACTS.filter((c) => !area || c.area === area)"
-                  :key="c.id"
-                  :value="c.id"
-                  :index="index">
-                  {{ c.id }} - {{ c.title }}
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
         <!-- Description -->
         <!-- <div>
           <Label for="description" class="mb-2 block">Description *</Label>
@@ -130,7 +104,7 @@
 
         <!-- Dynamic Metadata Form -->
         <DynamicMetadataForm
-          :category="category"
+          :category="filetype"
           :initial-metadata="metadata"
           @update:metadata="updateMetadata"
           @validation="validateMetadata"
@@ -163,7 +137,7 @@ import SelectItem from "@/components/ui/select/SelectItem.vue";
 import SelectTrigger from "@/components/ui/select/SelectTrigger.vue";
 import SelectValue from "@/components/ui/select/SelectValue.vue";
 import DynamicMetadataForm from "@/components/ui/dynamic-metadata-form/DynamicMetadataForm.vue";
-import { AREAS, CONTRACTS, DOCUMENT_CATEGORIES, FILE_TYPES, addDocument } from "@/data/mockData";
+import { AREAS, CONTRACTS, Category, FILE_TYPES, addDocument } from "@/data/mockData";
 import { useToast } from "@/composables/useToast";
 
 interface UploadModalProps {

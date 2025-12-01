@@ -43,7 +43,7 @@ const optionalEmailSchema = z.string().email('Invalid email address').optional()
 
 // Metadata configuration for each document category
 export const METADATA_CONFIG: CategoryMetadataConfig = {
-  'Cost Structure': [
+  'Heavy Equipment Rental': [
     {
       id: 'kategoriPekerjaan',
       label: 'Kategori Pekerjaan',

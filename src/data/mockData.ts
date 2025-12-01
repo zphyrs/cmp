@@ -261,7 +261,8 @@ export interface CatalogueItem {
 
 export enum Category {
   PRICING_CATALOGUE = 'Pricing Catalogue',
-  SCOPE_OF_WORKS = 'Scope of Works'
+  SCOPE_OF_WORKS = 'Scope of Works',
+  LIBRARY = 'Library'
 }
 
 export const CONTRACT_TEMPLATES: CatalogueItem[] = [
@@ -1908,21 +1909,6 @@ export const WORK_PACKAGE_LIBRARY = [
     uploadDate: '2023-11-15T16:35:00Z',
     isLatest: false
   }
-]
-
-export const DOCUMENT_CATEGORIES = [
-  'Cost Structure',
-  'Reference',
-  'Scope of Works',
-  'Work Instructions',
-  'Safety Procedures',
-  'Minutes of Meeting',
-  'Deviation Form',
-  'Procurement Request',
-  'Contract Request Form',
-  'Administration Document',
-  'Technical Specification',
-  'Compliance Report'
 ]
 
 // Helper function to calculate contract expiry status
