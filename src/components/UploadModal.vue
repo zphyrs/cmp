@@ -49,7 +49,14 @@
             <Label for="file_type" className="text-sm font-medium text-gray-900">File Type</Label>
           </div>
           <div class="col-span-8">
-            <Input id="file_type" placeholder="Enter document file type" v-model="filetype" />
+            <Select v-model="filetype" width="w-full">
+              <SelectTrigger>
+                <SelectValue placeholder="Select file type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem v-for="item in FILE_TYPES" :key="item.name" :value="item.name">{{ item.name }}</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
@@ -156,7 +163,7 @@ import SelectItem from "@/components/ui/select/SelectItem.vue";
 import SelectTrigger from "@/components/ui/select/SelectTrigger.vue";
 import SelectValue from "@/components/ui/select/SelectValue.vue";
 import DynamicMetadataForm from "@/components/ui/dynamic-metadata-form/DynamicMetadataForm.vue";
-import { AREAS, CONTRACTS, DOCUMENT_CATEGORIES, addDocument } from "@/data/mockData";
+import { AREAS, CONTRACTS, DOCUMENT_CATEGORIES, FILE_TYPES, addDocument } from "@/data/mockData";
 import { useToast } from "@/composables/useToast";
 
 interface UploadModalProps {
