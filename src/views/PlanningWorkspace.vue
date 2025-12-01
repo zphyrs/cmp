@@ -46,6 +46,29 @@
         <p class="text-slate-500">Contract Reference Library & Active Planning Documents</p>
       </div>
 
+      <!-- Filter/Search Bar -->
+      <div class="mb-6">
+        <div class="relative max-w-md">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg
+              class="h-5 w-5 text-gray-400"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Search work packages, or documents..."
+            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#007d79] focus:border-[#007d79]" />
+        </div>
+      </div>
+
       <!-- Tabs -->
       <Tabs v-model="activeTab" class="space-y-6">
         <div class="flex justify-between">
@@ -100,8 +123,8 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div
                   v-for="template in pricingCatalogueExpanded
-                    ? CONTRACT_TEMPLATES.pricingCatalogue
-                    : CONTRACT_TEMPLATES.pricingCatalogue.slice(0, 4)"
+                    ? filteredPricingCatalogue
+                    : filteredPricingCatalogue.slice(0, 4)"
                   :key="template.id"
                   class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-md transition-shadow">
                   <div class="flex items-center gap-3">
@@ -137,12 +160,8 @@
                 </div>
               </div>
               <!-- Show remaining count when collapsed -->
-              <div
-                v-if="!pricingCatalogueExpanded && CONTRACT_TEMPLATES.pricingCatalogue.length > 4"
-                class="text-center mt-4">
-                <p class="text-sm text-slate-500">
-                  And {{ CONTRACT_TEMPLATES.pricingCatalogue.length - 4 }} more items...
-                </p>
+              <div v-if="!pricingCatalogueExpanded && filteredPricingCatalogue.length > 4" class="text-center mt-4">
+                <p class="text-sm text-slate-500">And {{ filteredPricingCatalogue.length - 4 }} more items...</p>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -154,9 +173,7 @@
               </div>
 
               <!-- Show Less button when expanded -->
-              <div
-                v-if="pricingCatalogueExpanded && CONTRACT_TEMPLATES.pricingCatalogue.length > 4"
-                class="text-center mt-4">
+              <div v-if="pricingCatalogueExpanded && filteredPricingCatalogue.length > 4" class="text-center mt-4">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -165,6 +182,12 @@
                   <span>Show Less</span>
                   <ChevronUp class="w-4 h-4" />
                 </Button>
+              </div>
+
+              <!-- Show no results message when filtered and no results -->
+              <div v-if="searchQuery.trim() && filteredPricingCatalogue.length === 0" class="text-center py-8">
+                <FileText class="w-12 h-12 mx-auto mb-3 text-slate-300" />
+                <p class="text-slate-500">No pricing catalogue items found matching "{{ searchQuery }}"</p>
               </div>
             </CardContent>
           </Card>
@@ -186,9 +209,7 @@
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div
-                  v-for="template in scopeOfWorksExpanded
-                    ? CONTRACT_TEMPLATES.scopeOfWorks
-                    : CONTRACT_TEMPLATES.scopeOfWorks.slice(0, 4)"
+                  v-for="template in scopeOfWorksExpanded ? filteredScopeOfWorks : filteredScopeOfWorks.slice(0, 4)"
                   :key="template.id"
                   class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-md transition-shadow">
                   <div class="flex items-center gap-3">
@@ -224,8 +245,8 @@
                 </div>
               </div>
               <!-- Show remaining count when collapsed -->
-              <div v-if="!scopeOfWorksExpanded && CONTRACT_TEMPLATES.scopeOfWorks.length > 4" class="text-center mt-4">
-                <p class="text-sm text-slate-500">And {{ CONTRACT_TEMPLATES.scopeOfWorks.length - 4 }} more items...</p>
+              <div v-if="!scopeOfWorksExpanded && filteredScopeOfWorks.length > 4" class="text-center mt-4">
+                <p class="text-sm text-slate-500">And {{ filteredScopeOfWorks.length - 4 }} more items...</p>
 
                 <Button
                   variant="ghost"
@@ -238,7 +259,7 @@
               </div>
 
               <!-- Show Less button when expanded -->
-              <div v-if="scopeOfWorksExpanded && CONTRACT_TEMPLATES.scopeOfWorks.length > 2" class="text-center mt-4">
+              <div v-if="scopeOfWorksExpanded && filteredScopeOfWorks.length > 2" class="text-center mt-4">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -247,6 +268,12 @@
                   <span>Show Less</span>
                   <ChevronUp class="w-4 h-4" />
                 </Button>
+              </div>
+
+              <!-- Show no results message when filtered and no results -->
+              <div v-if="searchQuery.trim() && filteredScopeOfWorks.length === 0" class="text-center py-8">
+                <FileText class="w-12 h-12 mx-auto mb-3 text-slate-300" />
+                <p class="text-slate-500">No scope of works items found matching "{{ searchQuery }}"</p>
               </div>
             </CardContent>
           </Card>
@@ -270,12 +297,12 @@
                 </Button>
               </div>
 
-              <div v-if="WORK_PACKAGE_LIBRARY.length > 0">
+              <div v-if="filteredWorkPackageLibrary.length > 0">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div
                     v-for="template in workPackageLibraryExpanded
-                      ? WORK_PACKAGE_LIBRARY
-                      : WORK_PACKAGE_LIBRARY.slice(0, 4)"
+                      ? filteredWorkPackageLibrary
+                      : filteredWorkPackageLibrary.slice(0, 4)"
                     :key="template.id"
                     class="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                     <div class="flex items-center gap-3">
@@ -313,9 +340,11 @@
                   </div>
                 </div>
                 <!-- Show remaining count when collapsed -->
-                <div v-if="!workPackageLibraryExpanded && WORK_PACKAGE_LIBRARY.length > 4" class="text-center mt-4">
+                <div
+                  v-if="!workPackageLibraryExpanded && filteredWorkPackageLibrary.length > 4"
+                  class="text-center mt-4">
                   <p class="text-sm text-slate-500">
-                    And {{ WORK_PACKAGE_LIBRARY.length - 4 }} more archived documents...
+                    And {{ filteredWorkPackageLibrary.length - 4 }} more archived documents...
                   </p>
                   <Button
                     variant="ghost"
@@ -328,7 +357,9 @@
                 </div>
 
                 <!-- Show Less button when expanded -->
-                <div v-if="workPackageLibraryExpanded && WORK_PACKAGE_LIBRARY.length > 4" class="text-center mt-4">
+                <div
+                  v-if="workPackageLibraryExpanded && filteredWorkPackageLibrary.length > 4"
+                  class="text-center mt-4">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -341,7 +372,13 @@
               </div>
               <div v-else class="text-center py-8">
                 <Folder class="w-12 h-12 mx-auto mb-3 text-slate-300" />
-                <p class="text-slate-500">No archived documents in library</p>
+                <p class="text-slate-500">
+                  {{
+                    searchQuery.trim()
+                      ? `No archived documents found matching "${searchQuery}"`
+                      : "No archived documents in library"
+                  }}
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -365,7 +402,9 @@
               <TabsContent v-for="area in allAreaOptions" :key="area" :value="area" className="mt-6">
                 <div class="space-y-6">
                   <div
-                    v-for="[groupName, docs] in Object.entries(groupDocumentsByCategory(getAreaDocuments(area)))"
+                    v-for="[groupName, docs] in Object.entries(
+                      groupDocumentsByCategory(getFilteredPlanningDocuments(area)),
+                    )"
                     :key="groupName">
                     <div class="flex items-center gap-3 mb-4">
                       <Folder class="w-5 h-5 text-[#007d79]" />
@@ -418,6 +457,14 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Show no results message when filtered and no results -->
+                <div
+                  v-if="searchQuery.trim() && getFilteredPlanningDocuments(selectedArea).length === 0"
+                  class="text-center py-8">
+                  <FileText class="w-12 h-12 mx-auto mb-3 text-slate-300" />
+                  <p class="text-slate-500">No planning documents found matching "{{ searchQuery }}"</p>
+                </div>
               </TabsContent>
             </Tabs>
           </div>
@@ -436,13 +483,13 @@
             <div class="flex items-center justify-between mb-6">
               <h3 class="text-2xl font-semibold text-slate-800">Documents Pending Review</h3>
               <span class="text-sm text-slate-500">
-                {{ getPendingReviewDocuments().length }} document(s) pending review
+                {{ filteredPendingReviewDocuments.length }} document(s) pending review
               </span>
             </div>
 
-            <div v-if="getPendingReviewDocuments().length > 0" class="space-y-4">
+            <div v-if="filteredPendingReviewDocuments.length > 0" class="space-y-4">
               <div
-                v-for="doc in getPendingReviewDocuments()"
+                v-for="doc in filteredPendingReviewDocuments"
                 :key="doc.id"
                 class="border border-amber-200 bg-amber-50 rounded-lg p-4 hover:shadow-md transition-shadow">
                 <div class="flex items-start justify-between">
@@ -509,8 +556,18 @@
 
             <div v-else class="text-center py-12">
               <Folder class="w-16 h-16 mx-auto mb-4 text-slate-300" />
-              <h4 class="text-lg font-medium text-slate-600 mb-2">No Documents Pending Review</h4>
-              <p class="text-slate-500">All documents have been reviewed or no documents have been submitted yet.</p>
+              <h4 class="text-lg font-medium text-slate-600 mb-2">
+                {{
+                  searchQuery.trim() ? `No Documents Found Matching "${searchQuery}"` : "No Documents Pending Review"
+                }}
+              </h4>
+              <p class="text-slate-500">
+                {{
+                  searchQuery.trim()
+                    ? "No pending review documents match your search criteria."
+                    : "All documents have been reviewed or no documents have been submitted yet."
+                }}
+              </p>
             </div>
           </div>
         </TabsContent>
@@ -569,6 +626,7 @@ const user = computed(() => authStore.user);
 const activeTab = ref("catalogue");
 const selectedArea = ref("all"); // Default to "all" areas
 const uploadModalOpen = ref(false);
+const searchQuery = ref("");
 
 // Expand/collapse state for each section
 const pricingCatalogueExpanded = ref(false);
@@ -577,6 +635,78 @@ const workPackageLibraryExpanded = ref(false);
 
 // All areas including "All Areas" option
 const allAreaOptions = ["all", ...AREAS];
+
+// Filter functions
+const filteredPricingCatalogue = computed(() => {
+  if (!searchQuery.value.trim()) {
+    return CONTRACT_TEMPLATES.pricingCatalogue;
+  }
+  const query = searchQuery.value.toLowerCase();
+  return CONTRACT_TEMPLATES.pricingCatalogue.filter(
+    (template) =>
+      template.code.toLowerCase().includes(query) ||
+      template.category.toLowerCase().includes(query) ||
+      (template.workName && template.workName.toLowerCase().includes(query)) ||
+      template.fileName.toLowerCase().includes(query),
+  );
+});
+
+const filteredScopeOfWorks = computed(() => {
+  if (!searchQuery.value.trim()) {
+    return CONTRACT_TEMPLATES.scopeOfWorks;
+  }
+  const query = searchQuery.value.toLowerCase();
+  return CONTRACT_TEMPLATES.scopeOfWorks.filter(
+    (template) =>
+      template.code.toLowerCase().includes(query) ||
+      template.category.toLowerCase().includes(query) ||
+      template.fileName.toLowerCase().includes(query),
+  );
+});
+
+const filteredWorkPackageLibrary = computed(() => {
+  if (!searchQuery.value.trim()) {
+    return WORK_PACKAGE_LIBRARY;
+  }
+  const query = searchQuery.value.toLowerCase();
+  return WORK_PACKAGE_LIBRARY.filter(
+    (template) =>
+      template.code.toLowerCase().includes(query) ||
+      template.category.toLowerCase().includes(query) ||
+      (template.workName && template.workName.toLowerCase().includes(query)) ||
+      template.fileName.toLowerCase().includes(query),
+  );
+});
+
+const filteredPlanningDocuments = computed(() => {
+  if (!searchQuery.value.trim()) {
+    return getAreaDocuments(selectedArea.value);
+  }
+  const query = searchQuery.value.toLowerCase();
+  return getAreaDocuments(selectedArea.value).filter(
+    (doc) =>
+      (doc.fileName && doc.fileName.toLowerCase().includes(query)) ||
+      doc.description.toLowerCase().includes(query) ||
+      doc.category.toLowerCase().includes(query) ||
+      doc.area.toLowerCase().includes(query) ||
+      (doc.linkUrl && doc.linkUrl.toLowerCase().includes(query)),
+  );
+});
+
+const filteredPendingReviewDocuments = computed(() => {
+  if (!searchQuery.value.trim()) {
+    return getPendingReviewDocuments();
+  }
+  const query = searchQuery.value.toLowerCase();
+  return getPendingReviewDocuments().filter(
+    (doc) =>
+      (doc.fileName && doc.fileName.toLowerCase().includes(query)) ||
+      doc.description.toLowerCase().includes(query) ||
+      doc.category.toLowerCase().includes(query) ||
+      doc.area.toLowerCase().includes(query) ||
+      (doc.linkUrl && doc.linkUrl.toLowerCase().includes(query)),
+  );
+});
 
 const handleLogout = () => {
   authStore.logout();
@@ -661,5 +791,22 @@ const groupDocumentsByCategory = (documents: Document[]) => {
   });
 
   return groups;
+};
+
+// Function to get filtered documents for planning documents section
+const getFilteredPlanningDocuments = (area: string) => {
+  const documents = area === "all" ? getAllPlanningDocuments() : getAreaDocuments(area);
+  if (!searchQuery.value.trim()) {
+    return documents;
+  }
+  const query = searchQuery.value.toLowerCase();
+  return documents.filter(
+    (doc) =>
+      (doc.fileName && doc.fileName.toLowerCase().includes(query)) ||
+      doc.description.toLowerCase().includes(query) ||
+      doc.category.toLowerCase().includes(query) ||
+      doc.area.toLowerCase().includes(query) ||
+      (doc.linkUrl && doc.linkUrl.toLowerCase().includes(query)),
+  );
 };
 </script>
