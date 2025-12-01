@@ -396,15 +396,27 @@
                   </div>
                 </div>
               </div>
-              <span class="text-sm text-slate-500">
-                {{ filteredPendingReviewDocuments.length }} document(s) pending review
-              </span>
+              <div class="flex items-center gap-3">
+                <!-- Sort Button -->
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  @click="toggleReviewSortOrder"
+                  className="flex items-center gap-1 px-3 py-1.5 border border-slate-300 hover:bg-slate-50">
+                  <ArrowUpDown class="w-4 h-4" />
+                  Date
+                  <ArrowDown v-if="reviewSortOrder === 'desc'" class="w-3 h-3" />
+                  <ArrowUp v-else class="w-3 h-3" />
+                </Button>
+                <span class="text-sm text-slate-500">
+                  {{ filteredPendingReviewDocuments.length }} document(s) pending review
+                </span>
+              </div>
             </div>
 
             <div v-if="filteredPendingReviewDocuments.length > 0" class="space-y-4">
               <div
                 v-for="doc in filteredPendingReviewDocuments"
-                :key="doc.id"
                 class="border border-amber-200 bg-amber-50 rounded-lg p-4 hover:shadow-md transition-shadow">
                 <div class="flex items-start justify-between">
                   <div class="flex-1">
@@ -502,15 +514,27 @@
                   </div>
                 </div>
               </div>
-              <span class="text-sm text-slate-500">
-                {{ getAllPendingDocuments().length }} document(s) pending submission
-              </span>
+              <div class="flex items-center gap-3">
+                <!-- Sort Button -->
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  @click="toggleSubmittedSortOrder"
+                  className="flex items-center gap-1 px-3 py-1.5 border border-slate-300 hover:bg-slate-50">
+                  <ArrowUpDown class="w-4 h-4" />
+                  Date
+                  <ArrowDown v-if="submittedSortOrder === 'desc'" class="w-3 h-3" />
+                  <ArrowUp v-else class="w-3 h-3" />
+                </Button>
+                <span class="text-sm text-slate-500">
+                  {{ filteredSubmittedDocuments.length }} document(s) pending submission
+                </span>
+              </div>
             </div>
 
-            <div v-if="getAllPendingDocuments().length > 0" class="space-y-4">
+            <div v-if="filteredSubmittedDocuments.length > 0" class="space-y-4">
               <div
-                v-for="doc in getAllPendingDocuments()"
-                :key="doc.id"
+                v-for="doc in filteredSubmittedDocuments"
                 class="border border-amber-200 bg-amber-50 rounded-lg p-4 hover:shadow-md transition-shadow">
                 <div class="flex items-start justify-between">
                   <div class="flex-1">
@@ -602,9 +626,7 @@
         <h3 class="text-lg font-semibold text-slate-800 mb-4">Revision Note Required</h3>
 
         <div class="mb-4">
-          <p class="text-sm text-slate-600 mb-2">
-            Please provide a note explaining why this document needs revision:
-          </p>
+          <p class="text-sm text-slate-600 mb-2">Please provide a note explaining why this document needs revision:</p>
           <textarea
             v-model="reviseNote"
             rows="4"
@@ -614,15 +636,8 @@
         </div>
 
         <div class="flex gap-3 justify-end">
-          <Button
-            variant="ghost"
-            @click="closeReviseNoteModal"
-            className="hover:bg-slate-100">
-            Cancel
-          </Button>
-          <Button
-            @click="confirmReviseWithNote"
-            className="bg-red-600 hover:bg-red-700 text-white">
+          <Button variant="ghost" @click="closeReviseNoteModal" className="hover:bg-slate-100">Cancel</Button>
+          <Button @click="confirmReviseWithNote" className="bg-red-600 hover:bg-red-700 text-white">
             Send for Revision
           </Button>
         </div>
@@ -661,6 +676,9 @@ import {
   ChevronUp,
   ExternalLink,
   Clock,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
 } from "lucide-vue-next";
 import {
   CONTRACT_TEMPLATES,
@@ -690,6 +708,10 @@ const selectedDocumentForHistory = ref<CatalogueItem | null>(null);
 const reviseNoteModalOpen = ref(false);
 const selectedDocumentForRevise = ref<Document | null>(null);
 const reviseNote = ref("");
+
+// Sorting states
+const reviewSortOrder = ref<"asc" | "desc">("desc"); // Default: newest first
+const submittedSortOrder = ref<"asc" | "desc">("desc"); // Default: newest first
 
 // Expand/collapse state for each section
 const pricingCatalogueExpanded = ref(false);
@@ -869,18 +891,51 @@ const filteredPlanningDocuments = computed(() => {
 });
 
 const filteredPendingReviewDocuments = computed(() => {
-  if (!searchQuery.value.trim()) {
-    return getPendingReviewDocuments();
+  let documents = getPendingReviewDocuments();
+
+  // Apply search filter
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase();
+    documents = documents.filter(
+      (doc) =>
+        (doc.fileName && doc.fileName.toLowerCase().includes(query)) ||
+        doc.description.toLowerCase().includes(query) ||
+        doc.category.toLowerCase().includes(query) ||
+        doc.area.toLowerCase().includes(query) ||
+        (doc.linkUrl && doc.linkUrl.toLowerCase().includes(query)),
+    );
   }
-  const query = searchQuery.value.toLowerCase();
-  return getPendingReviewDocuments().filter(
-    (doc) =>
-      (doc.fileName && doc.fileName.toLowerCase().includes(query)) ||
-      doc.description.toLowerCase().includes(query) ||
-      doc.category.toLowerCase().includes(query) ||
-      doc.area.toLowerCase().includes(query) ||
-      (doc.linkUrl && doc.linkUrl.toLowerCase().includes(query)),
-  );
+
+  // Apply sorting by upload date - create a new array to avoid mutation
+  return [...documents].sort((a, b) => {
+    const dateA = new Date(a.uploadDate).getTime();
+    const dateB = new Date(b.uploadDate).getTime();
+    return reviewSortOrder.value === "desc" ? dateB - dateA : dateA - dateB;
+  });
+});
+
+const filteredSubmittedDocuments = computed(() => {
+  let documents = getAllPendingDocuments();
+
+  // Apply search filter
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase();
+    documents = documents.filter(
+      (doc) =>
+        (doc.fileName && doc.fileName.toLowerCase().includes(query)) ||
+        doc.description.toLowerCase().includes(query) ||
+        doc.category.toLowerCase().includes(query) ||
+        doc.area.toLowerCase().includes(query) ||
+        (doc.linkUrl && doc.linkUrl.toLowerCase().includes(query)),
+    );
+  }
+
+  // Apply sorting by upload date - create a new array to avoid mutation
+  return [...documents].sort((a, b) => {
+    const dateA = new Date(a.uploadDate).getTime();
+    const dateB = new Date(b.uploadDate).getTime();
+    return submittedSortOrder.value === "desc" ? dateB - dateA : dateA - dateB;
+  });
 });
 
 const handleLogout = () => {
@@ -1021,6 +1076,15 @@ const confirmReviseWithNote = () => {
       variant: "destructive",
     });
   }
+};
+
+// Sorting toggle functions
+const toggleReviewSortOrder = () => {
+  reviewSortOrder.value = reviewSortOrder.value === "desc" ? "asc" : "desc";
+};
+
+const toggleSubmittedSortOrder = () => {
+  submittedSortOrder.value = submittedSortOrder.value === "desc" ? "asc" : "desc";
 };
 
 const groupDocumentsByCategory = (documents: Document[]) => {
