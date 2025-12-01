@@ -453,7 +453,7 @@
                     <!-- Action Buttons -->
                     <div class="flex gap-2 mt-3">
                       <Button size="sm" variant="primary" @click="handleApproveDocument(doc.id)">✓ Approve</Button>
-                      <Button size="sm" variant="destructive" @click="handleRejectDocument(doc.id)">✗ Revise</Button>
+                      <Button size="sm" variant="destructive" @click="openReviseNoteModal(doc)">✗ Revise</Button>
                       <Button size="sm" variant="default">
                         <Download class="w-4 h-4" />
                         Download
@@ -558,6 +558,8 @@
 
                     <!-- Action Buttons -->
                     <div class="flex gap-2 mt-3">
+                      <Button size="sm" variant="primary" @click="handleApproveDocument(doc.id)">✓ Approve</Button>
+                      <Button size="sm" variant="destructive" @click="openReviseNoteModal(doc)">✗ Revise</Button>
                       <Button size="sm" variant="default" @click="handleDownload(doc.fileName || 'document')">
                         <Download class="w-4 h-4" />
                         Download
@@ -593,6 +595,39 @@
       :preSelectedArea="selectedArea" />
 
     <HistoryModal :is-open="historyModalOpen" :document-info="selectedDocumentForHistory" @close="closeHistoryModal" />
+
+    <!-- Revise Note Modal -->
+    <div v-if="reviseNoteModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <h3 class="text-lg font-semibold text-slate-800 mb-4">Revision Note Required</h3>
+
+        <div class="mb-4">
+          <p class="text-sm text-slate-600 mb-2">
+            Please provide a note explaining why this document needs revision:
+          </p>
+          <textarea
+            v-model="reviseNote"
+            rows="4"
+            class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#007d79] focus:border-[#007d79] resize-none"
+            placeholder="Enter your revision note here..."
+            ref="reviseNoteTextarea"></textarea>
+        </div>
+
+        <div class="flex gap-3 justify-end">
+          <Button
+            variant="ghost"
+            @click="closeReviseNoteModal"
+            className="hover:bg-slate-100">
+            Cancel
+          </Button>
+          <Button
+            @click="confirmReviseWithNote"
+            className="bg-red-600 hover:bg-red-700 text-white">
+            Send for Revision
+          </Button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -652,6 +687,9 @@ const uploadModalOpen = ref(false);
 const searchQuery = ref("");
 const historyModalOpen = ref(false);
 const selectedDocumentForHistory = ref<CatalogueItem | null>(null);
+const reviseNoteModalOpen = ref(false);
+const selectedDocumentForRevise = ref<Document | null>(null);
+const reviseNote = ref("");
 
 // Expand/collapse state for each section
 const pricingCatalogueExpanded = ref(false);
@@ -940,6 +978,46 @@ const handleRejectDocument = (documentId: string, reviewNotes?: string) => {
     toast({
       title: "Error",
       description: "Failed to reject document.",
+      variant: "destructive",
+    });
+  }
+};
+
+// Functions for handling revise with note
+const openReviseNoteModal = (document: Document) => {
+  selectedDocumentForRevise.value = document;
+  reviseNote.value = "";
+  reviseNoteModalOpen.value = true;
+};
+
+const closeReviseNoteModal = () => {
+  reviseNoteModalOpen.value = false;
+  selectedDocumentForRevise.value = null;
+  reviseNote.value = "";
+};
+
+const confirmReviseWithNote = () => {
+  if (!selectedDocumentForRevise.value) return;
+
+  if (!reviseNote.value.trim()) {
+    toast({
+      title: "Note Required",
+      description: "Please provide a note for the revision request.",
+      variant: "destructive",
+    });
+    return;
+  }
+
+  if (rejectDocument(selectedDocumentForRevise.value.id, user.value?.name || "CMT Admin", reviseNote.value.trim())) {
+    toast({
+      title: "Revision Requested",
+      description: "Document has been sent back for revision with note.",
+    });
+    closeReviseNoteModal();
+  } else {
+    toast({
+      title: "Error",
+      description: "Failed to process revision request.",
       variant: "destructive",
     });
   }
