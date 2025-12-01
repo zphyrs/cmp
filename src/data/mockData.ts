@@ -28,19 +28,6 @@ export interface Document {
   reviewNotes?: string
 }
 
-export interface CatalogueItem {
-  id: string
-  code: string
-  category: string
-  fileType: string
-  fileName: string
-  uploadDate: string
-  status: 'approved' | 'pending' | 'rejected'
-  uploaderName: string
-  approverName?: string
-  approvedDate?: string
-}
-
 export interface FileType {
   id: string
   name: string
@@ -260,7 +247,6 @@ export const CONTRACTS: Contract[] = [
 ]
 export interface CatalogueItem {
   id: string
-  code: string
   category: string
   fileType: string
   fileName: string
@@ -269,6 +255,7 @@ export interface CatalogueItem {
   uploaderName: string
   approverName?: string
   approvedDate?: string
+  description?: string
 }
 
 export const CONTRACT_TEMPLATES: {
@@ -278,10 +265,9 @@ export const CONTRACT_TEMPLATES: {
   pricingCatalogue: [
     {
       id: 'CP003-001',
-      code: 'CP-003',
-      category: 'Mining',
+      category: 'Pricing Catalogue',
       fileType: 'Heavy Equipment Rental',
-      fileName: 'CP-003_Cost_Structure_Mining_Heavy_Equipment.pdf',
+      fileName: 'CP-003_Cost_Structure_Mining_Heavy_Equipment',
       uploadDate: '2024-02-20T10:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -290,10 +276,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-002',
-      code: 'CP-003',
-      category: 'Construction',
+      category: 'Pricing Catalogue',
       fileType: 'Infrastructure Development',
-      fileName: 'CP-003_Cost_Structure_Construction_Infrastructure.pdf',
+      fileName: 'CP-003_Cost_Structure_Construction_Infrastructure',
       uploadDate: '2024-02-22T14:30:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -302,10 +287,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-002-DUP', // Note: Corrected duplicate ID to be unique
-      code: 'CP-003',
-      category: 'Construction',
+      category: 'Pricing Catalogue',
       fileType: 'Infrastructure Development',
-      fileName: 'CP-003_Cost_Structure_Construction_Infrastructure_v2.pdf',
+      fileName: 'CP-003_Cost_Structure_Construction_Infrastructure_v2',
       uploadDate: '2024-02-22T14:30:00Z',
       status: 'rejected', // Varied status for the duplicate
       uploaderName: 'Admin CMT',
@@ -314,10 +298,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-003',
-      code: 'CP-003',
-      category: 'Transportation',
+      category: 'Pricing Catalogue',
       fileType: 'Material Logistics',
-      fileName: 'CP-003_Cost_Structure_Transportation_Logistics.pdf',
+      fileName: 'CP-003_Cost_Structure_Transportation_Logistics',
       uploadDate: '2024-02-18T09:15:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -326,20 +309,18 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-004',
-      code: 'CP-003',
-      category: 'Engineering',
+      category: 'Pricing Catalogue',
       fileType: 'Consultancy Services',
-      fileName: 'CP-003_Cost_Structure_Engineering_Consultancy.pdf',
+      fileName: 'CP-003_Cost_Structure_Engineering_Consultancy',
       uploadDate: '2024-02-25T11:45:00Z',
       status: 'pending',
       uploaderName: 'Admin CMT'
     },
     {
       id: 'CP003-005',
-      code: 'CP-003',
-      category: 'Mining',
+      category: 'Pricing Catalogue',
       fileType: 'Drilling Equipment Rental',
-      fileName: 'CP-003_Cost_Structure_Mining_Drilling_Equipment.pdf',
+      fileName: 'CP-003_Cost_Structure_Mining_Drilling_Equipment',
       uploadDate: '2024-01-15T08:30:00Z',
       status: 'rejected',
       uploaderName: 'Admin CMT',
@@ -348,10 +329,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-006',
-      code: 'CP-003',
-      category: 'Construction',
+      category: 'Pricing Catalogue',
       fileType: 'Road Development',
-      fileName: 'CP-003_Cost_Structure_Construction_Road_Development.pdf',
+      fileName: 'CP-003_Cost_Structure_Construction_Road_Development',
       uploadDate: '2024-01-18T11:20:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -360,20 +340,18 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-007',
-      code: 'CP-003',
-      category: 'Environmental',
+      category: 'Pricing Catalogue',
       fileType: 'Waste Management',
-      fileName: 'CP-003_Cost_Structure_Environmental_Waste_Management.pdf',
+      fileName: 'CP-003_Cost_Structure_Environmental_Waste_Management',
       uploadDate: '2024-01-22T13:45:00Z',
       status: 'pending',
       uploaderName: 'Admin CMT'
     },
     {
       id: 'CP003-008',
-      code: 'CP-003',
-      category: 'Safety',
+      category: 'Pricing Catalogue',
       fileType: 'Safety Equipment Supply',
-      fileName: 'CP-003_Cost_Structure_Safety_Equipment.pdf',
+      fileName: 'CP-003_Cost_Structure_Safety_Equipment',
       uploadDate: '2024-01-25T09:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -382,20 +360,18 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-009',
-      code: 'CP-003',
-      category: 'IT Services',
+      category: 'Pricing Catalogue',
       fileType: 'Software Implementation',
-      fileName: 'CP-003_Cost_Structure_IT_Software.pdf',
+      fileName: 'CP-003_Cost_Structure_IT_Software',
       uploadDate: '2024-01-28T14:15:00Z',
       status: 'pending',
       uploaderName: 'Admin CMT'
     },
     {
       id: 'CP003-010',
-      code: 'CP-003',
-      category: 'Mining',
+      category: 'Pricing Catalogue',
       fileType: 'Blasting Services',
-      fileName: 'CP-003_Cost_Structure_Mining_Blasting.pdf',
+      fileName: 'CP-003_Cost_Structure_Mining_Blasting',
       uploadDate: '2024-02-01T10:30:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -404,10 +380,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-011',
-      code: 'CP-003',
-      category: 'Construction',
+      category: 'Pricing Catalogue',
       fileType: 'Building Construction',
-      fileName: 'CP-003_Cost_Structure_Construction_Building.pdf',
+      fileName: 'CP-003_Cost_Structure_Construction_Building',
       uploadDate: '2024-02-04T12:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -416,20 +391,18 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-012',
-      code: 'CP-003',
-      category: 'Electrical',
+      category: 'Pricing Catalogue',
       fileType: 'Power Installation',
-      fileName: 'CP-003_Cost_Structure_Electrical_Power.pdf',
+      fileName: 'CP-003_Cost_Structure_Electrical_Power',
       uploadDate: '2024-02-07T15:30:00Z',
       status: 'pending',
       uploaderName: 'Admin CMT'
     },
     {
       id: 'CP003-013',
-      code: 'CP-003',
-      category: 'Mechanical',
+      category: 'Pricing Catalogue',
       fileType: 'Equipment Maintenance',
-      fileName: 'CP-003_Cost_Structure_Mechanical_Maintenance.pdf',
+      fileName: 'CP-003_Cost_Structure_Mechanical_Maintenance',
       uploadDate: '2024-02-10T08:45:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -438,10 +411,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-014',
-      code: 'CP-003',
-      category: 'Survey',
+      category: 'Pricing Catalogue',
       fileType: 'Geotechnical Survey',
-      fileName: 'CP-003_Cost_Structure_Survey_Geotechnical.pdf',
+      fileName: 'CP-003_Cost_Structure_Survey_Geotechnical',
       uploadDate: '2024-02-13T11:10:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -450,10 +422,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-015',
-      code: 'CP-003',
-      category: 'Logistics',
+      category: 'Pricing Catalogue',
       fileType: 'Supply Chain Management',
-      fileName: 'CP-003_Cost_Structure_Logistics_Supply_Chain.pdf',
+      fileName: 'CP-003_Cost_Structure_Logistics_Supply_Chain',
       uploadDate: '2024-02-16T13:25:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -462,10 +433,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-016',
-      code: 'CP-003',
-      category: 'Training',
+      category: 'Pricing Catalogue',
       fileType: 'Employee Training',
-      fileName: 'CP-003_Cost_Structure_Training_Employee.pdf',
+      fileName: 'CP-003_Cost_Structure_Training_Employee',
       uploadDate: '2024-02-19T09:40:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -474,10 +444,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-017',
-      code: 'CP-003',
-      category: 'Medical',
+      category: 'Pricing Catalogue',
       fileType: 'Healthcare Services',
-      fileName: 'CP-003_Cost_Structure_Medical_Healthcare.pdf',
+      fileName: 'CP-003_Cost_Structure_Medical_Healthcare',
       uploadDate: '2024-02-22T16:05:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -486,10 +455,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-018',
-      code: 'CP-003',
-      category: 'Catering',
+      category: 'Pricing Catalogue',
       fileType: 'Food Services',
-      fileName: 'CP-003_Cost_Structure_Catering_Food.pdf',
+      fileName: 'CP-003_Cost_Structure_Catering_Food',
       uploadDate: '2024-02-25T10:20:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -498,10 +466,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-019',
-      code: 'CP-003',
-      category: 'Security',
+      category: 'Pricing Catalogue',
       fileType: 'Security Services',
-      fileName: 'CP-003_Cost_Structure_Security_Services.pdf',
+      fileName: 'CP-003_Cost_Structure_Security_Services',
       uploadDate: '2024-02-28T12:50:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -510,10 +477,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-020',
-      code: 'CP-003',
-      category: 'Cleaning',
+      category: 'Pricing Catalogue',
       fileType: 'Facility Cleaning',
-      fileName: 'CP-003_Cost_Structure_Cleaning_Facility.pdf',
+      fileName: 'CP-003_Cost_Structure_Cleaning_Facility',
       uploadDate: '2024-03-02T14:15:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -522,10 +488,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-021',
-      code: 'CP-003',
-      category: 'Mining',
+      category: 'Pricing Catalogue',
       fileType: 'Ore Processing',
-      fileName: 'CP-003_Cost_Structure_Mining_Processing.pdf',
+      fileName: 'CP-003_Cost_Structure_Mining_Processing',
       uploadDate: '2024-03-05T11:35:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -534,10 +499,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-022',
-      code: 'CP-003',
-      category: 'Construction',
+      category: 'Pricing Catalogue',
       fileType: 'Foundation Work',
-      fileName: 'CP-003_Cost_Structure_Construction_Foundation.pdf',
+      fileName: 'CP-003_Cost_Structure_Construction_Foundation',
       uploadDate: '2024-03-08T15:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -546,10 +510,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-023',
-      code: 'CP-003',
-      category: 'Plumbing',
+      category: 'Pricing Catalogue',
       fileType: 'Water System Installation',
-      fileName: 'CP-003_Cost_Structure_Plumbing_Water.pdf',
+      fileName: 'CP-003_Cost_Structure_Plumbing_Water',
       uploadDate: '2024-03-11T09:25:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -558,10 +521,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-024',
-      code: 'CP-003',
-      category: 'HVAC',
+      category: 'Pricing Catalogue',
       fileType: 'Climate Control System',
-      fileName: 'CP-003_Cost_Structure_HVAC_Climate.pdf',
+      fileName: 'CP-003_Cost_Structure_HVAC_Climate',
       uploadDate: '2024-03-14T13:40:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -570,10 +532,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-025',
-      code: 'CP-003',
-      category: 'Fire Safety',
+      category: 'Pricing Catalogue',
       fileType: 'Fire Protection System',
-      fileName: 'CP-003_Cost_Structure_Fire_Safety.pdf',
+      fileName: 'CP-003_Cost_Structure_Fire_Safety',
       uploadDate: '2024-03-17T10:55:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -582,10 +543,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-026',
-      code: 'CP-003',
-      category: 'Telecommunication',
+      category: 'Pricing Catalogue',
       fileType: 'Communication Network',
-      fileName: 'CP-003_Cost_Structure_Telecom_Network.pdf',
+      fileName: 'CP-003_Cost_Structure_Telecom_Network',
       uploadDate: '2024-03-20T16:10:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -594,10 +554,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-027',
-      code: 'CP-003',
-      category: 'Laboratory',
+      category: 'Pricing Catalogue',
       fileType: 'Testing Services',
-      fileName: 'CP-003_Cost_Structure_Lab_Testing.pdf',
+      fileName: 'CP-003_Cost_Structure_Lab_Testing',
       uploadDate: '2024-03-23T08:30:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -606,10 +565,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-028',
-      code: 'CP-003',
-      category: 'Research',
+      category: 'Pricing Catalogue',
       fileType: 'R&D Services',
-      fileName: 'CP-003_Cost_Structure_Research_RD.pdf',
+      fileName: 'CP-003_Cost_Structure_Research_RD',
       uploadDate: '2024-03-26T14:45:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -618,10 +576,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-029',
-      code: 'CP-003',
-      category: 'Quality Control',
+      category: 'Pricing Catalogue',
       fileType: 'Inspection Services',
-      fileName: 'CP-003_Cost_Structure_QC_Inspection.pdf',
+      fileName: 'CP-003_Cost_Structure_QC_Inspection',
       uploadDate: '2024-03-29T11:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -630,10 +587,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-030',
-      code: 'CP-003',
-      category: 'Welding',
+      category: 'Pricing Catalogue',
       fileType: 'Welding Services',
-      fileName: 'CP-003_Cost_Structure_Welding_Services.pdf',
+      fileName: 'CP-003_Cost_Structure_Welding_Services',
       uploadDate: '2024-04-01T12:15:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -642,10 +598,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-031',
-      code: 'CP-003',
-      category: 'Painting',
+      category: 'Pricing Catalogue',
       fileType: 'Industrial Painting',
-      fileName: 'CP-003_Cost_Structure_Painting_Industrial.pdf',
+      fileName: 'CP-003_Cost_Structure_Painting_Industrial',
       uploadDate: '2024-04-04T15:30:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -654,10 +609,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-032',
-      code: 'CP-003',
-      category: 'Landscaping',
+      category: 'Pricing Catalogue',
       fileType: 'Ground Maintenance',
-      fileName: 'CP-003_Cost_Structure_Landscaping_Ground.pdf',
+      fileName: 'CP-003_Cost_Structure_Landscaping_Ground',
       uploadDate: '2024-04-07T09:45:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -666,10 +620,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-033',
-      code: 'CP-003',
-      category: 'Pest Control',
+      category: 'Pricing Catalogue',
       fileType: 'Pest Management',
-      fileName: 'CP-003_Cost_Structure_Pest_Control.pdf',
+      fileName: 'CP-003_Cost_Structure_Pest_Control',
       uploadDate: '2024-04-10T13:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -678,10 +631,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-034',
-      code: 'CP-003',
-      category: 'Waste Management',
+      category: 'Pricing Catalogue',
       fileType: 'Recycling Services',
-      fileName: 'CP-003_Cost_Structure_Waste_Recycling.pdf',
+      fileName: 'CP-003_Cost_Structure_Waste_Recycling',
       uploadDate: '2024-04-13T16:20:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -690,10 +642,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-035',
-      code: 'CP-003',
-      category: 'Energy',
+      category: 'Pricing Catalogue',
       fileType: 'Renewable Energy',
-      fileName: 'CP-003_Cost_Structure_Energy_Renewable.pdf',
+      fileName: 'CP-003_Cost_Structure_Energy_Renewable',
       uploadDate: '2024-04-16T10:35:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -702,10 +653,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-036',
-      code: 'CP-003',
-      category: 'Water Treatment',
+      category: 'Pricing Catalogue',
       fileType: 'Water Purification',
-      fileName: 'CP-003_Cost_Structure_Water_Treatment.pdf',
+      fileName: 'CP-003_Cost_Structure_Water_Treatment',
       uploadDate: '2024-04-19T14:50:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -714,10 +664,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-037',
-      code: 'CP-003',
-      category: 'Fuel',
+      category: 'Pricing Catalogue',
       fileType: 'Fuel Supply',
-      fileName: 'CP-003_Cost_Structure_Fuel_Supply.pdf',
+      fileName: 'CP-003_Cost_Structure_Fuel_Supply',
       uploadDate: '2024-04-22T08:05:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -726,10 +675,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-038',
-      code: 'CP-003',
-      category: 'Lubricants',
+      category: 'Pricing Catalogue',
       fileType: 'Industrial Lubricants',
-      fileName: 'CP-003_Cost_Structure_Lubricants_Industrial.pdf',
+      fileName: 'CP-003_Cost_Structure_Lubricants_Industrial',
       uploadDate: '2024-04-25T12:25:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -738,10 +686,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-039',
-      code: 'CP-003',
-      category: 'Spare Parts',
+      category: 'Pricing Catalogue',
       fileType: 'Equipment Parts',
-      fileName: 'CP-003_Cost_Structure_Spare_Parts.pdf',
+      fileName: 'CP-003_Cost_Structure_Spare_Parts',
       uploadDate: '2024-04-28T15:40:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -750,10 +697,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP003-040',
-      code: 'CP-003',
-      category: 'Tools',
+      category: 'Pricing Catalogue',
       fileType: 'Industrial Tools',
-      fileName: 'CP-003_Cost_Structure_Tools_Industrial.pdf',
+      fileName: 'CP-003_Cost_Structure_Tools_Industrial',
       uploadDate: '2024-05-01T11:55:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -765,10 +711,9 @@ export const CONTRACT_TEMPLATES: {
     // Latest versions
     {
       id: 'CP002-001',
-      code: 'CP-002',
-      category: 'Consultancy',
+      category: 'Scope of Works',
       fileType: 'Consultancy Services',
-      fileName: 'CP-002_Reference_Scope_Consultancy.pdf',
+      fileName: 'CP-002_Reference_Scope_Consultancy',
       uploadDate: '2024-02-21T13:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -777,10 +722,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-002',
-      code: 'CP-002',
-      category: 'Study',
+      category: 'Scope of Works',
       fileType: 'Technical Studies',
-      fileName: 'CP-002_Reference_Scope_Study.pdf',
+      fileName: 'CP-002_Reference_Scope_Study',
       uploadDate: '2024-02-19T16:20:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -789,20 +733,18 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-003',
-      code: 'CP-002',
-      category: 'Mining and Earth Work',
+      category: 'Scope of Works',
       fileType: 'Mining and Earthmoving Operations',
-      fileName: 'CP-002_Reference_Scope_Mining_Earth_Work.pdf',
+      fileName: 'CP-002_Reference_Scope_Mining_Earth_Work',
       uploadDate: '2024-02-24T08:45:00Z',
       status: 'pending',
       uploaderName: 'Admin CMT'
     },
     {
       id: 'CP002-004',
-      code: 'CP-002',
-      category: 'Construction Work',
+      category: 'Scope of Works',
       fileType: 'General Construction Services',
-      fileName: 'CP-002_Reference_Scope_Construction.pdf',
+      fileName: 'CP-002_Reference_Scope_Construction',
       uploadDate: '2024-02-17T12:10:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -811,10 +753,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-005',
-      code: 'CP-002',
-      category: 'Medium Term Services',
+      category: 'Scope of Works',
       fileType: 'Medium Term Service Contracts',
-      fileName: 'CP-002_Reference_Scope_Medium_Term.pdf',
+      fileName: 'CP-002_Reference_Scope_Medium_Term',
       uploadDate: '2024-02-23T15:30:00Z',
       status: 'rejected',
       uploaderName: 'Admin CMT',
@@ -823,10 +764,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-006',
-      code: 'CP-002',
-      category: 'Engineering Design',
+      category: 'Scope of Works',
       fileType: 'Engineering Design Services',
-      fileName: 'CP-002_Reference_Scope_Engineering_Design.pdf',
+      fileName: 'CP-002_Reference_Scope_Engineering_Design',
       uploadDate: '2024-01-10T11:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -835,20 +775,18 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-007',
-      code: 'CP-002',
-      category: 'Feasibility Study',
+      category: 'Scope of Works',
       fileType: 'Feasibility Study Services',
-      fileName: 'CP-002_Reference_Scope_Feasibility_Study.pdf',
+      fileName: 'CP-002_Reference_Scope_Feasibility_Study',
       uploadDate: '2024-01-12T14:30:00Z',
       status: 'pending',
       uploaderName: 'Admin CMT'
     },
     {
       id: 'CP002-008',
-      code: 'CP-002',
-      category: 'Environmental Impact',
+      category: 'Scope of Works',
       fileType: 'Environmental Impact Assessment',
-      fileName: 'CP-002_Reference_Scope_Environmental_Impact.pdf',
+      fileName: 'CP-002_Reference_Scope_Environmental_Impact',
       uploadDate: '2024-01-15T09:15:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -857,10 +795,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-009',
-      code: 'CP-002',
-      category: 'Health and Safety',
+      category: 'Scope of Works',
       fileType: 'Health and Safety Services',
-      fileName: 'CP-002_Reference_Scope_Health_Safety.pdf',
+      fileName: 'CP-002_Reference_Scope_Health_Safety',
       uploadDate: '2024-01-18T16:45:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -869,10 +806,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-010',
-      code: 'CP-002',
-      category: 'Quality Assurance',
+      category: 'Scope of Works',
       fileType: 'Quality Assurance Services',
-      fileName: 'CP-002_Reference_Scope_Quality_Assurance.pdf',
+      fileName: 'CP-002_Reference_Scope_Quality_Assurance',
       uploadDate: '2024-01-20T10:20:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -881,10 +817,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-011',
-      code: 'CP-002',
-      category: 'Project Management',
+      category: 'Scope of Works',
       fileType: 'Project Management Services',
-      fileName: 'CP-002_Reference_Scope_Project_Management.pdf',
+      fileName: 'CP-002_Reference_Scope_Project_Management',
       uploadDate: '2024-01-22T13:55:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -893,10 +828,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-012',
-      code: 'CP-002',
-      category: 'Infrastructure Development',
+      category: 'Scope of Works',
       fileType: 'Infrastructure Development Projects',
-      fileName: 'CP-002_Reference_Scope_Infrastructure.pdf',
+      fileName: 'CP-002_Reference_Scope_Infrastructure',
       uploadDate: '2024-01-25T08:40:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -905,10 +839,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-013',
-      code: 'CP-002',
-      category: 'Power Generation',
+      category: 'Scope of Works',
       fileType: 'Power Generation Services',
-      fileName: 'CP-002_Reference_Scope_Power_Generation.pdf',
+      fileName: 'CP-002_Reference_Scope_Power_Generation',
       uploadDate: '2024-01-28T15:10:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -917,10 +850,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-014',
-      code: 'CP-002',
-      category: 'Water Supply',
+      category: 'Scope of Works',
       fileType: 'Water Supply Services',
-      fileName: 'CP-002_Reference_Scope_Water_Supply.pdf',
+      fileName: 'CP-002_Reference_Scope_Water_Supply',
       uploadDate: '2024-01-30T12:25:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -929,10 +861,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-015',
-      code: 'CP-002',
-      category: 'Waste Management',
+      category: 'Scope of Works',
       fileType: 'Waste Management Services',
-      fileName: 'CP-002_Reference_Scope_Waste_Management.pdf',
+      fileName: 'CP-002_Reference_Scope_Waste_Management',
       uploadDate: '2024-02-01T09:50:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -941,10 +872,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-016',
-      code: 'CP-002',
-      category: 'Telecommunication',
+      category: 'Scope of Works',
       fileType: 'Telecommunication Services',
-      fileName: 'CP-002_Reference_Scope_Telecommunication.pdf',
+      fileName: 'CP-002_Reference_Scope_Telecommunication',
       uploadDate: '2024-02-03T14:15:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -953,10 +883,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-017',
-      code: 'CP-002',
-      category: 'Transportation',
+      category: 'Scope of Works',
       fileType: 'Transportation Services',
-      fileName: 'CP-002_Reference_Scope_Transportation.pdf',
+      fileName: 'CP-002_Reference_Scope_Transportation',
       uploadDate: '2024-02-05T11:30:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -965,10 +894,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-018',
-      code: 'CP-002',
-      category: 'Logistics',
+      category: 'Scope of Works',
       fileType: 'Logistics Services',
-      fileName: 'CP-002_Reference_Scope_Logistics.pdf',
+      fileName: 'CP-002_Reference_Scope_Logistics',
       uploadDate: '2024-02-07T16:05:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -977,10 +905,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-019',
-      code: 'CP-002',
-      category: 'Maintenance Services',
+      category: 'Scope of Works',
       fileType: 'Maintenance and Support Services',
-      fileName: 'CP-002_Reference_Scope_Maintenance.pdf',
+      fileName: 'CP-002_Reference_Scope_Maintenance',
       uploadDate: '2024-02-09T10:40:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -989,10 +916,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-020',
-      code: 'CP-002',
-      category: 'Training and Development',
+      category: 'Scope of Works',
       fileType: 'Training and Development Programs',
-      fileName: 'CP-002_Reference_Scope_Training.pdf',
+      fileName: 'CP-002_Reference_Scope_Training',
       uploadDate: '2024-02-11T13:20:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1001,10 +927,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-021',
-      code: 'CP-002',
-      category: 'Human Resources',
+      category: 'Scope of Works',
       fileType: 'Human Resources Services',
-      fileName: 'CP-002_Reference_Scope_Human_Resources.pdf',
+      fileName: 'CP-002_Reference_Scope_Human_Resources',
       uploadDate: '2024-02-13T08:55:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1013,10 +938,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-022',
-      code: 'CP-002',
-      category: 'Financial Management',
+      category: 'Scope of Works',
       fileType: 'Financial Management Services',
-      fileName: 'CP-002_Reference_Scope_Financial.pdf',
+      fileName: 'CP-002_Reference_Scope_Financial',
       uploadDate: '2024-02-15T15:30:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1025,10 +949,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-023',
-      code: 'CP-002',
-      category: 'Legal Services',
+      category: 'Scope of Works',
       fileType: 'Legal Consulting Services',
-      fileName: 'CP-002_Reference_Scope_Legal.pdf',
+      fileName: 'CP-002_Reference_Scope_Legal',
       uploadDate: '2024-02-17T12:05:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1037,10 +960,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-024',
-      code: 'CP-002',
-      category: 'Procurement Services',
+      category: 'Scope of Works',
       fileType: 'Procurement and Sourcing Services',
-      fileName: 'CP-002_Reference_Scope_Procurement.pdf',
+      fileName: 'CP-002_Reference_Scope_Procurement',
       uploadDate: '2024-02-19T09:40:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1049,10 +971,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-025',
-      code: 'CP-002',
-      category: 'Supply Chain Management',
+      category: 'Scope of Works',
       fileType: 'Supply Chain Management Services',
-      fileName: 'CP-002_Reference_Scope_Supply_Chain.pdf',
+      fileName: 'CP-002_Reference_Scope_Supply_Chain',
       uploadDate: '2024-02-21T14:15:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1061,10 +982,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-026',
-      code: 'CP-002',
-      category: 'Manufacturing Services',
+      category: 'Scope of Works',
       fileType: 'Manufacturing and Production Services',
-      fileName: 'CP-002_Reference_Scope_Manufacturing.pdf',
+      fileName: 'CP-002_Reference_Scope_Manufacturing',
       uploadDate: '2024-02-23T11:50:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1073,10 +993,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-027',
-      code: 'CP-002',
-      category: 'Mining Operations',
+      category: 'Scope of Works',
       fileType: 'Mining Operations Support',
-      fileName: 'CP-002_Reference_Scope_Mining_Operations.pdf',
+      fileName: 'CP-002_Reference_Scope_Mining_Operations',
       uploadDate: '2024-02-25T16:25:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1085,10 +1004,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-028',
-      code: 'CP-002',
-      category: 'Oil and Gas Services',
+      category: 'Scope of Works',
       fileType: 'Oil and Gas Services',
-      fileName: 'CP-002_Reference_Scope_Oil_Gas.pdf',
+      fileName: 'CP-002_Reference_Scope_Oil_Gas',
       uploadDate: '2024-02-27T10:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1097,10 +1015,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-029',
-      code: 'CP-002',
-      category: 'Renewable Energy',
+      category: 'Scope of Works',
       fileType: 'Renewable Energy Projects',
-      fileName: 'CP-002_Reference_Scope_Renewable_Energy.pdf',
+      fileName: 'CP-002_Reference_Scope_Renewable_Energy',
       uploadDate: '2024-03-01T13:35:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1109,10 +1026,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-030',
-      code: 'CP-002',
-      category: 'Chemical Processing',
+      category: 'Scope of Works',
       fileType: 'Chemical Processing Services',
-      fileName: 'CP-002_Reference_Scope_Chemical_Processing.pdf',
+      fileName: 'CP-002_Reference_Scope_Chemical_Processing',
       uploadDate: '2024-03-03T09:10:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1121,10 +1037,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-031',
-      code: 'CP-002',
-      category: 'Food and Beverage',
+      category: 'Scope of Works',
       fileType: 'Food and Beverage Services',
-      fileName: 'CP-002_Reference_Scope_Food_Beverage.pdf',
+      fileName: 'CP-002_Reference_Scope_Food_Beverage',
       uploadDate: '2024-03-05T15:45:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1133,10 +1048,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-032',
-      code: 'CP-002',
-      category: 'Pharmaceutical Services',
+      category: 'Scope of Works',
       fileType: 'Pharmaceutical Services',
-      fileName: 'CP-002_Reference_Scope_Pharmaceutical.pdf',
+      fileName: 'CP-002_Reference_Scope_Pharmaceutical',
       uploadDate: '2024-03-07T12:20:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1145,10 +1059,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-033',
-      code: 'CP-002',
-      category: 'Healthcare Services',
+      category: 'Scope of Works',
       fileType: 'Healthcare and Medical Services',
-      fileName: 'CP-002_Reference_Scope_Healthcare.pdf',
+      fileName: 'CP-002_Reference_Scope_Healthcare',
       uploadDate: '2024-03-09T08:55:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1157,10 +1070,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-034',
-      code: 'CP-002',
-      category: 'Education and Training',
+      category: 'Scope of Works',
       fileType: 'Education and Training Programs',
-      fileName: 'CP-002_Reference_Scope_Education.pdf',
+      fileName: 'CP-002_Reference_Scope_Education',
       uploadDate: '2024-03-11T14:30:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1169,10 +1081,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-035',
-      code: 'CP-002',
-      category: 'Research and Development',
+      category: 'Scope of Works',
       fileType: 'Research and Development Services',
-      fileName: 'CP-002_Reference_Scope_Research.pdf',
+      fileName: 'CP-002_Reference_Scope_Research',
       uploadDate: '2024-03-13T11:05:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1181,10 +1092,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-036',
-      code: 'CP-002',
-      category: 'Technology Services',
+      category: 'Scope of Works',
       fileType: 'Technology Consulting Services',
-      fileName: 'CP-002_Reference_Scope_Technology.pdf',
+      fileName: 'CP-002_Reference_Scope_Technology',
       uploadDate: '2024-03-15T16:40:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1193,10 +1103,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-037',
-      code: 'CP-002',
-      category: 'IT Infrastructure',
+      category: 'Scope of Works',
       fileType: 'IT Infrastructure Services',
-      fileName: 'CP-002_Reference_Scope_IT_Infrastructure.pdf',
+      fileName: 'CP-002_Reference_Scope_IT_Infrastructure',
       uploadDate: '2024-03-17T10:15:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1205,10 +1114,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-038',
-      code: 'CP-002',
-      category: 'Digital Transformation',
+      category: 'Scope of Works',
       fileType: 'Digital Transformation Services',
-      fileName: 'CP-002_Reference_Scope_Digital_Transformation.pdf',
+      fileName: 'CP-002_Reference_Scope_Digital_Transformation',
       uploadDate: '2024-03-19T13:50:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1217,10 +1125,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-039',
-      code: 'CP-002',
-      category: 'Cybersecurity',
+      category: 'Scope of Works',
       fileType: 'Cybersecurity Services',
-      fileName: 'CP-002_Reference_Scope_Cybersecurity.pdf',
+      fileName: 'CP-002_Reference_Scope_Cybersecurity',
       uploadDate: '2024-03-21T09:25:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1229,10 +1136,9 @@ export const CONTRACT_TEMPLATES: {
     },
     {
       id: 'CP002-040',
-      code: 'CP-002',
-      category: 'Data Analytics',
+      category: 'Scope of Works',
       fileType: 'Data Analytics Services',
-      fileName: 'CP-002_Reference_Scope_Data_Analytics.pdf',
+      fileName: 'CP-002_Reference_Scope_Data_Analytics',
       uploadDate: '2024-03-23T15:00:00Z',
       status: 'approved',
       uploaderName: 'Admin CMT',
@@ -1249,7 +1155,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Mining',
     fileType: 'Heavy Equipment Rental',
-    fileName: 'CP-003_Cost_Structure_Mining_Heavy_Equipment_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Mining_Heavy_Equipment_V1',
     uploadDate: '2023-12-15T10:00:00Z',
     isLatest: false
   },
@@ -1258,7 +1164,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Mining',
     fileType: 'Heavy Equipment Rental',
-    fileName: 'CP-003_Cost_Structure_Mining_Heavy_Equipment_V2.pdf',
+    fileName: 'CP-003_Cost_Structure_Mining_Heavy_Equipment_V2',
     uploadDate: '2023-11-20T14:30:00Z',
     isLatest: false
   },
@@ -1267,7 +1173,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Construction',
     fileType: 'Infrastructure Development',
-    fileName: 'CP-003_Cost_Structure_Construction_Infrastructure_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Construction_Infrastructure_V1',
     uploadDate: '2024-01-10T14:30:00Z',
     isLatest: false
   },
@@ -1276,7 +1182,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Construction',
     fileType: 'Infrastructure Development',
-    fileName: 'CP-003_Cost_Structure_Construction_Infrastructure_V2.pdf',
+    fileName: 'CP-003_Cost_Structure_Construction_Infrastructure_V2',
     uploadDate: '2023-12-05T09:15:00Z',
     isLatest: false
   },
@@ -1285,7 +1191,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Transportation',
     fileType: 'Material Logistics',
-    fileName: 'CP-003_Cost_Structure_Transportation_Logistics_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Transportation_Logistics_V1',
     uploadDate: '2023-11-30T11:45:00Z',
     isLatest: false
   },
@@ -1294,7 +1200,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Engineering',
     fileType: 'Consultancy Services',
-    fileName: 'CP-003_Cost_Structure_Engineering_Consultancy_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Engineering_Consultancy_V1',
     uploadDate: '2023-12-10T15:20:00Z',
     isLatest: false
   },
@@ -1303,7 +1209,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Mining',
     fileType: 'Drilling Equipment Rental',
-    fileName: 'CP-003_Cost_Structure_Mining_Drilling_Equipment_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Mining_Drilling_Equipment_V1',
     uploadDate: '2023-12-01T08:30:00Z',
     isLatest: false
   },
@@ -1312,7 +1218,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Construction',
     fileType: 'Road Development',
-    fileName: 'CP-003_Cost_Structure_Construction_Road_Development_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Construction_Road_Development_V1',
     uploadDate: '2023-11-25T13:10:00Z',
     isLatest: false
   },
@@ -1321,7 +1227,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Environmental',
     fileType: 'Waste Management',
-    fileName: 'CP-003_Cost_Structure_Environmental_Waste_Management_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Environmental_Waste_Management_V1',
     uploadDate: '2023-12-08T10:40:00Z',
     isLatest: false
   },
@@ -1330,7 +1236,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Safety',
     fileType: 'Safety Equipment Supply',
-    fileName: 'CP-003_Cost_Structure_Safety_Equipment_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Safety_Equipment_V1',
     uploadDate: '2023-11-15T14:55:00Z',
     isLatest: false
   },
@@ -1339,7 +1245,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'IT Services',
     fileType: 'Software Implementation',
-    fileName: 'CP-003_Cost_Structure_IT_Software_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_IT_Software_V1',
     uploadDate: '2023-12-20T09:25:00Z',
     isLatest: false
   },
@@ -1348,7 +1254,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Mining',
     fileType: 'Blasting Services',
-    fileName: 'CP-003_Cost_Structure_Mining_Blasting_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Mining_Blasting_V1',
     uploadDate: '2023-11-10T16:00:00Z',
     isLatest: false
   },
@@ -1357,7 +1263,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Construction',
     fileType: 'Building Construction',
-    fileName: 'CP-003_Cost_Structure_Construction_Building_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Construction_Building_V1',
     uploadDate: '2023-12-05T11:35:00Z',
     isLatest: false
   },
@@ -1366,7 +1272,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Electrical',
     fileType: 'Power Installation',
-    fileName: 'CP-003_Cost_Structure_Electrical_Power_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Electrical_Power_V1',
     uploadDate: '2023-11-28T13:50:00Z',
     isLatest: false
   },
@@ -1375,7 +1281,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Mechanical',
     fileType: 'Equipment Maintenance',
-    fileName: 'CP-003_Cost_Structure_Mechanical_Maintenance_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Mechanical_Maintenance_V1',
     uploadDate: '2023-12-12T08:15:00Z',
     isLatest: false
   },
@@ -1384,7 +1290,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Survey',
     fileType: 'Geotechnical Survey',
-    fileName: 'CP-003_Cost_Structure_Survey_Geotechnical_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Survey_Geotechnical_V1',
     uploadDate: '2023-11-18T15:30:00Z',
     isLatest: false
   },
@@ -1393,7 +1299,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Logistics',
     fileType: 'Supply Chain Management',
-    fileName: 'CP-003_Cost_Structure_Logistics_Supply_Chain_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Logistics_Supply_Chain_V1',
     uploadDate: '2023-12-03T10:05:00Z',
     isLatest: false
   },
@@ -1402,7 +1308,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Training',
     fileType: 'Employee Training',
-    fileName: 'CP-003_Cost_Structure_Training_Employee_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Training_Employee_V1',
     uploadDate: '2023-11-22T14:20:00Z',
     isLatest: false
   },
@@ -1411,7 +1317,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Medical',
     fileType: 'Healthcare Services',
-    fileName: 'CP-003_Cost_Structure_Medical_Healthcare_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Medical_Healthcare_V1',
     uploadDate: '2023-12-15T09:45:00Z',
     isLatest: false
   },
@@ -1420,7 +1326,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Catering',
     fileType: 'Food Services',
-    fileName: 'CP-003_Cost_Structure_Catering_Food_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Catering_Food_V1',
     uploadDate: '2023-11-08T16:10:00Z',
     isLatest: false
   },
@@ -1429,7 +1335,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Security',
     fileType: 'Security Services',
-    fileName: 'CP-003_Cost_Structure_Security_Services_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Security_Services_V1',
     uploadDate: '2023-12-01T12:25:00Z',
     isLatest: false
   },
@@ -1438,7 +1344,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Cleaning',
     fileType: 'Facility Cleaning',
-    fileName: 'CP-003_Cost_Structure_Cleaning_Facility_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Cleaning_Facility_V1',
     uploadDate: '2023-11-25T11:40:00Z',
     isLatest: false
   },
@@ -1447,7 +1353,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Mining',
     fileType: 'Ore Processing',
-    fileName: 'CP-003_Cost_Structure_Mining_Processing_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Mining_Processing_V1',
     uploadDate: '2023-12-08T14:55:00Z',
     isLatest: false
   },
@@ -1456,7 +1362,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Construction',
     fileType: 'Foundation Work',
-    fileName: 'CP-003_Cost_Structure_Construction_Foundation_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Construction_Foundation_V1',
     uploadDate: '2023-11-12T09:10:00Z',
     isLatest: false
   },
@@ -1465,7 +1371,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Plumbing',
     fileType: 'Water System Installation',
-    fileName: 'CP-003_Cost_Structure_Plumbing_Water_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Plumbing_Water_V1',
     uploadDate: '2023-12-18T15:35:00Z',
     isLatest: false
   },
@@ -1474,7 +1380,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'HVAC',
     fileType: 'Climate Control System',
-    fileName: 'CP-003_Cost_Structure_HVAC_Climate_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_HVAC_Climate_V1',
     uploadDate: '2023-11-05T08:50:00Z',
     isLatest: false
   },
@@ -1483,7 +1389,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Fire Safety',
     fileType: 'Fire Protection System',
-    fileName: 'CP-003_Cost_Structure_Fire_Safety_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Fire_Safety_V1',
     uploadDate: '2023-12-10T13:15:00Z',
     isLatest: false
   },
@@ -1492,7 +1398,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Telecommunication',
     fileType: 'Communication Network',
-    fileName: 'CP-003_Cost_Structure_Telecom_Network_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Telecom_Network_V1',
     uploadDate: '2023-11-30T10:40:00Z',
     isLatest: false
   },
@@ -1501,7 +1407,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Laboratory',
     fileType: 'Testing Services',
-    fileName: 'CP-003_Cost_Structure_Lab_Testing_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Lab_Testing_V1',
     uploadDate: '2023-12-14T16:25:00Z',
     isLatest: false
   },
@@ -1510,7 +1416,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Research',
     fileType: 'R&D Services',
-    fileName: 'CP-003_Cost_Structure_Research_RD_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Research_RD_V1',
     uploadDate: '2023-11-20T12:00:00Z',
     isLatest: false
   },
@@ -1519,7 +1425,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Quality Control',
     fileType: 'Inspection Services',
-    fileName: 'CP-003_Cost_Structure_QC_Inspection_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_QC_Inspection_V1',
     uploadDate: '2023-12-05T14:30:00Z',
     isLatest: false
   },
@@ -1528,7 +1434,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Welding',
     fileType: 'Welding Services',
-    fileName: 'CP-003_Cost_Structure_Welding_Services_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Welding_Services_V1',
     uploadDate: '2023-11-15T09:45:00Z',
     isLatest: false
   },
@@ -1537,7 +1443,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Painting',
     fileType: 'Industrial Painting',
-    fileName: 'CP-003_Cost_Structure_Painting_Industrial_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Painting_Industrial_V1',
     uploadDate: '2023-12-12T11:10:00Z',
     isLatest: false
   },
@@ -1546,7 +1452,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Landscaping',
     fileType: 'Ground Maintenance',
-    fileName: 'CP-003_Cost_Structure_Landscaping_Ground_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Landscaping_Ground_V1',
     uploadDate: '2023-11-08T15:55:00Z',
     isLatest: false
   },
@@ -1555,7 +1461,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Pest Control',
     fileType: 'Pest Management',
-    fileName: 'CP-003_Cost_Structure_Pest_Control_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Pest_Control_V1',
     uploadDate: '2023-12-18T08:20:00Z',
     isLatest: false
   },
@@ -1564,7 +1470,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Waste Management',
     fileType: 'Recycling Services',
-    fileName: 'CP-003_Cost_Structure_Waste_Recycling_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Waste_Recycling_V1',
     uploadDate: '2023-11-25T13:35:00Z',
     isLatest: false
   },
@@ -1573,7 +1479,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Energy',
     fileType: 'Renewable Energy',
-    fileName: 'CP-003_Cost_Structure_Energy_Renewable_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Energy_Renewable_V1',
     uploadDate: '2023-12-08T10:50:00Z',
     isLatest: false
   },
@@ -1582,7 +1488,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Water Treatment',
     fileType: 'Water Purification',
-    fileName: 'CP-003_Cost_Structure_Water_Treatment_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Water_Treatment_V1',
     uploadDate: '2023-11-12T16:15:00Z',
     isLatest: false
   },
@@ -1591,7 +1497,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Fuel',
     fileType: 'Fuel Supply',
-    fileName: 'CP-003_Cost_Structure_Fuel_Supply_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Fuel_Supply_V1',
     uploadDate: '2023-12-15T12:40:00Z',
     isLatest: false
   },
@@ -1600,7 +1506,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Lubricants',
     fileType: 'Industrial Lubricants',
-    fileName: 'CP-003_Cost_Structure_Lubricants_Industrial_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Lubricants_Industrial_V1',
     uploadDate: '2023-11-20T09:05:00Z',
     isLatest: false
   },
@@ -1609,7 +1515,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Spare Parts',
     fileType: 'Equipment Parts',
-    fileName: 'CP-003_Cost_Structure_Spare_Parts_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Spare_Parts_V1',
     uploadDate: '2023-12-10T14:20:00Z',
     isLatest: false
   },
@@ -1618,7 +1524,7 @@ export const WORK_PACKAGE_LIBRARY = [
     code: 'CP-003',
     category: 'Tools',
     fileType: 'Industrial Tools',
-    fileName: 'CP-003_Cost_Structure_Tools_Industrial_V1.pdf',
+    fileName: 'CP-003_Cost_Structure_Tools_Industrial_V1',
     uploadDate: '2023-11-05T11:45:00Z',
     isLatest: false
   },
@@ -1627,7 +1533,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-001-V1',
     code: 'CP-002',
     category: 'Consultancy',
-    fileName: 'CP-002_Reference_Scope_Consultancy_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Consultancy_V1',
     uploadDate: '2023-11-20T13:00:00Z',
     isLatest: false
   },
@@ -1635,7 +1541,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-001-V2',
     code: 'CP-002',
     category: 'Consultancy',
-    fileName: 'CP-002_Reference_Scope_Consultancy_V2.pdf',
+    fileName: 'CP-002_Reference_Scope_Consultancy_V2',
     uploadDate: '2023-10-15T09:30:00Z',
     isLatest: false
   },
@@ -1643,7 +1549,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-002-V1',
     code: 'CP-002',
     category: 'Study',
-    fileName: 'CP-002_Reference_Scope_Study_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Study_V1',
     uploadDate: '2024-01-05T16:20:00Z',
     isLatest: false
   },
@@ -1651,7 +1557,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-002-V2',
     code: 'CP-002',
     category: 'Study',
-    fileName: 'CP-002_Reference_Scope_Study_V2.pdf',
+    fileName: 'CP-002_Reference_Scope_Study_V2',
     uploadDate: '2023-11-28T11:45:00Z',
     isLatest: false
   },
@@ -1659,7 +1565,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-003-V1',
     code: 'CP-002',
     category: 'Mining and Earth Work',
-    fileName: 'CP-002_Reference_Scope_Mining_Earth_Work_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Mining_Earth_Work_V1',
     uploadDate: '2023-12-10T14:10:00Z',
     isLatest: false
   },
@@ -1667,7 +1573,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-004-V1',
     code: 'CP-002',
     category: 'Construction Work',
-    fileName: 'CP-002_Reference_Scope_Construction_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Construction_V1',
     uploadDate: '2023-10-12T12:10:00Z',
     isLatest: false
   },
@@ -1675,7 +1581,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-004-V2',
     code: 'CP-002',
     category: 'Construction Work',
-    fileName: 'CP-002_Reference_Scope_Construction_V2.pdf',
+    fileName: 'CP-002_Reference_Scope_Construction_V2',
     uploadDate: '2023-11-18T15:35:00Z',
     isLatest: false
   },
@@ -1683,7 +1589,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-005-V1',
     code: 'CP-002',
     category: 'Medium Term Services',
-    fileName: 'CP-002_Reference_Scope_Medium_Term_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Medium_Term_V1',
     uploadDate: '2023-12-01T10:25:00Z',
     isLatest: false
   },
@@ -1691,7 +1597,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-006-V1',
     code: 'CP-002',
     category: 'Engineering Design',
-    fileName: 'CP-002_Reference_Scope_Engineering_Design_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Engineering_Design_V1',
     uploadDate: '2023-11-22T13:50:00Z',
     isLatest: false
   },
@@ -1699,7 +1605,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-007-V1',
     code: 'CP-002',
     category: 'Feasibility Study',
-    fileName: 'CP-002_Reference_Scope_Feasibility_Study_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Feasibility_Study_V1',
     uploadDate: '2023-12-15T08:15:00Z',
     isLatest: false
   },
@@ -1707,7 +1613,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-008-V1',
     code: 'CP-002',
     category: 'Environmental Impact',
-    fileName: 'CP-002_Reference_Scope_Environmental_Impact_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Environmental_Impact_V1',
     uploadDate: '2023-11-08T16:40:00Z',
     isLatest: false
   },
@@ -1715,7 +1621,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-009-V1',
     code: 'CP-002',
     category: 'Health and Safety',
-    fileName: 'CP-002_Reference_Scope_Health_Safety_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Health_Safety_V1',
     uploadDate: '2023-12-05T11:05:00Z',
     isLatest: false
   },
@@ -1723,7 +1629,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-010-V1',
     code: 'CP-002',
     category: 'Quality Assurance',
-    fileName: 'CP-002_Reference_Scope_Quality_Assurance_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Quality_Assurance_V1',
     uploadDate: '2023-11-30T14:30:00Z',
     isLatest: false
   },
@@ -1731,7 +1637,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-011-V1',
     code: 'CP-002',
     category: 'Project Management',
-    fileName: 'CP-002_Reference_Scope_Project_Management_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Project_Management_V1',
     uploadDate: '2023-12-12T09:55:00Z',
     isLatest: false
   },
@@ -1739,7 +1645,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-012-V1',
     code: 'CP-002',
     category: 'Infrastructure Development',
-    fileName: 'CP-002_Reference_Scope_Infrastructure_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Infrastructure_V1',
     uploadDate: '2023-11-15T12:20:00Z',
     isLatest: false
   },
@@ -1747,7 +1653,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-013-V1',
     code: 'CP-002',
     category: 'Power Generation',
-    fileName: 'CP-002_Reference_Scope_Power_Generation_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Power_Generation_V1',
     uploadDate: '2023-12-18T15:45:00Z',
     isLatest: false
   },
@@ -1755,7 +1661,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-014-V1',
     code: 'CP-002',
     category: 'Water Supply',
-    fileName: 'CP-002_Reference_Scope_Water_Supply_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Water_Supply_V1',
     uploadDate: '2023-11-25T10:00:00Z',
     isLatest: false
   },
@@ -1763,7 +1669,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-015-V1',
     code: 'CP-002',
     category: 'Waste Management',
-    fileName: 'CP-002_Reference_Scope_Waste_Management_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Waste_Management_V1',
     uploadDate: '2023-12-08T13:35:00Z',
     isLatest: false
   },
@@ -1771,7 +1677,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-016-V1',
     code: 'CP-002',
     category: 'Telecommunication',
-    fileName: 'CP-002_Reference_Scope_Telecommunication_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Telecommunication_V1',
     uploadDate: '2023-11-10T16:10:00Z',
     isLatest: false
   },
@@ -1779,7 +1685,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-017-V1',
     code: 'CP-002',
     category: 'Transportation',
-    fileName: 'CP-002_Reference_Scope_Transportation_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Transportation_V1',
     uploadDate: '2023-12-20T08:25:00Z',
     isLatest: false
   },
@@ -1787,7 +1693,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-018-V1',
     code: 'CP-002',
     category: 'Logistics',
-    fileName: 'CP-002_Reference_Scope_Logistics_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Logistics_V1',
     uploadDate: '2023-11-28T14:50:00Z',
     isLatest: false
   },
@@ -1795,7 +1701,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-019-V1',
     code: 'CP-002',
     category: 'Maintenance Services',
-    fileName: 'CP-002_Reference_Scope_Maintenance_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Maintenance_V1',
     uploadDate: '2023-12-03T09:15:00Z',
     isLatest: false
   },
@@ -1803,7 +1709,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-020-V1',
     code: 'CP-002',
     category: 'Training and Development',
-    fileName: 'CP-002_Reference_Scope_Training_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Training_V1',
     uploadDate: '2023-11-15T15:30:00Z',
     isLatest: false
   },
@@ -1811,7 +1717,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-021-V1',
     code: 'CP-002',
     category: 'Human Resources',
-    fileName: 'CP-002_Reference_Scope_Human_Resources_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Human_Resources_V1',
     uploadDate: '2023-12-10T12:45:00Z',
     isLatest: false
   },
@@ -1819,7 +1725,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-022-V1',
     code: 'CP-002',
     category: 'Financial Management',
-    fileName: 'CP-002_Reference_Scope_Financial_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Financial_V1',
     uploadDate: '2023-11-05T13:00:00Z',
     isLatest: false
   },
@@ -1827,7 +1733,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-023-V1',
     code: 'CP-002',
     category: 'Legal Services',
-    fileName: 'CP-002_Reference_Scope_Legal_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Legal_V1',
     uploadDate: '2023-12-15T10:20:00Z',
     isLatest: false
   },
@@ -1835,7 +1741,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-024-V1',
     code: 'CP-002',
     category: 'Procurement Services',
-    fileName: 'CP-002_Reference_Scope_Procurement_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Procurement_V1',
     uploadDate: '2023-11-20T14:35:00Z',
     isLatest: false
   },
@@ -1843,7 +1749,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-025-V1',
     code: 'CP-002',
     category: 'Supply Chain Management',
-    fileName: 'CP-002_Reference_Scope_Supply_Chain_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Supply_Chain_V1',
     uploadDate: '2023-12-05T08:50:00Z',
     isLatest: false
   },
@@ -1851,7 +1757,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-026-V1',
     code: 'CP-002',
     category: 'Manufacturing Services',
-    fileName: 'CP-002_Reference_Scope_Manufacturing_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Manufacturing_V1',
     uploadDate: '2023-11-25T15:05:00Z',
     isLatest: false
   },
@@ -1859,7 +1765,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-027-V1',
     code: 'CP-002',
     category: 'Mining Operations',
-    fileName: 'CP-002_Reference_Scope_Mining_Operations_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Mining_Operations_V1',
     uploadDate: '2023-12-12T11:30:00Z',
     isLatest: false
   },
@@ -1867,7 +1773,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-028-V1',
     code: 'CP-002',
     category: 'Oil and Gas Services',
-    fileName: 'CP-002_Reference_Scope_Oil_Gas_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Oil_Gas_V1',
     uploadDate: '2023-11-18T13:45:00Z',
     isLatest: false
   },
@@ -1875,7 +1781,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-029-V1',
     code: 'CP-002',
     category: 'Renewable Energy',
-    fileName: 'CP-002_Reference_Scope_Renewable_Energy_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Renewable_Energy_V1',
     uploadDate: '2023-12-20T09:00:00Z',
     isLatest: false
   },
@@ -1883,7 +1789,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-030-V1',
     code: 'CP-002',
     category: 'Chemical Processing',
-    fileName: 'CP-002_Reference_Scope_Chemical_Processing_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Chemical_Processing_V1',
     uploadDate: '2023-11-08T16:15:00Z',
     isLatest: false
   },
@@ -1891,7 +1797,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-031-V1',
     code: 'CP-002',
     category: 'Food and Beverage',
-    fileName: 'CP-002_Reference_Scope_Food_Beverage_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Food_Beverage_V1',
     uploadDate: '2023-12-15T12:40:00Z',
     isLatest: false
   },
@@ -1899,7 +1805,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-032-V1',
     code: 'CP-002',
     category: 'Pharmaceutical Services',
-    fileName: 'CP-002_Reference_Scope_Pharmaceutical_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Pharmaceutical_V1',
     uploadDate: '2023-11-25T10:55:00Z',
     isLatest: false
   },
@@ -1907,7 +1813,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-033-V1',
     code: 'CP-002',
     category: 'Healthcare Services',
-    fileName: 'CP-002_Reference_Scope_Healthcare_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Healthcare_V1',
     uploadDate: '2023-12-05T14:10:00Z',
     isLatest: false
   },
@@ -1915,7 +1821,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-034-V1',
     code: 'CP-002',
     category: 'Education and Training',
-    fileName: 'CP-002_Reference_Scope_Education_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Education_V1',
     uploadDate: '2023-11-30T09:25:00Z',
     isLatest: false
   },
@@ -1923,7 +1829,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-035-V1',
     code: 'CP-002',
     category: 'Research and Development',
-    fileName: 'CP-002_Reference_Scope_Research_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Research_V1',
     uploadDate: '2023-12-10T15:40:00Z',
     isLatest: false
   },
@@ -1931,7 +1837,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-036-V1',
     code: 'CP-002',
     category: 'Technology Services',
-    fileName: 'CP-002_Reference_Scope_Technology_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Technology_V1',
     uploadDate: '2023-11-12T08:05:00Z',
     isLatest: false
   },
@@ -1939,7 +1845,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-037-V1',
     code: 'CP-002',
     category: 'IT Infrastructure',
-    fileName: 'CP-002_Reference_Scope_IT_Infrastructure_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_IT_Infrastructure_V1',
     uploadDate: '2023-12-18T12:30:00Z',
     isLatest: false
   },
@@ -1947,7 +1853,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-038-V1',
     code: 'CP-002',
     category: 'Digital Transformation',
-    fileName: 'CP-002_Reference_Scope_Digital_Transformation_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Digital_Transformation_V1',
     uploadDate: '2023-11-22T14:45:00Z',
     isLatest: false
   },
@@ -1955,7 +1861,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-039-V1',
     code: 'CP-002',
     category: 'Cybersecurity',
-    fileName: 'CP-002_Reference_Scope_Cybersecurity_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Cybersecurity_V1',
     uploadDate: '2023-12-08T11:20:00Z',
     isLatest: false
   },
@@ -1963,7 +1869,7 @@ export const WORK_PACKAGE_LIBRARY = [
     id: 'CP002-040-V1',
     code: 'CP-002',
     category: 'Data Analytics',
-    fileName: 'CP-002_Reference_Scope_Data_Analytics_V1.pdf',
+    fileName: 'CP-002_Reference_Scope_Data_Analytics_V1',
     uploadDate: '2023-11-15T16:35:00Z',
     isLatest: false
   }
@@ -2031,7 +1937,7 @@ export const getDocumentsFromStorage = (): Document[] => {
 const getSampleDocuments = (): Document[] => [
   {
     id: 'DOC-001',
-    fileName: 'contract_mining_services.pdf',
+    fileName: 'contract_mining_services',
     description: 'Mining equipment rental and maintenance contract for Q1 2024',
     category: 'Contract Request Form',
     area: 'Morowali',
@@ -2052,7 +1958,7 @@ const getSampleDocuments = (): Document[] => [
   },
   {
     id: 'DOC-002',
-    fileName: 'safety_procedure_heavy_equipment.pdf',
+    fileName: 'safety_procedure_heavy_equipment',
     description: 'Standard operating procedures for heavy equipment operation',
     category: 'Safety Procedures',
     area: 'Sorowako',
@@ -2106,7 +2012,7 @@ const getSampleDocuments = (): Document[] => [
   },
   {
     id: 'DOC-005',
-    fileName: 'meeting_minutes_project_review.pdf',
+    fileName: 'meeting_minutes_project_review',
     description: 'Weekly project review meeting minutes',
     category: 'Minutes of Meeting',
     area: 'Morowali',
@@ -2123,7 +2029,7 @@ const getSampleDocuments = (): Document[] => [
   },
   {
     id: 'DOC-006',
-    fileName: 'procurement_request_equipment.pdf',
+    fileName: 'procurement_request_equipment',
     description: 'Heavy equipment procurement request for construction phase',
     category: 'Procurement Request',
     area: 'Pomalaa',
@@ -2141,7 +2047,7 @@ const getSampleDocuments = (): Document[] => [
   },
   {
     id: 'DOC-007',
-    fileName: 'technical_specification_machinery.pdf',
+    fileName: 'technical_specification_machinery',
     description: 'Technical specifications for mining machinery installation',
     category: 'Technical Specification',
     area: 'Sorowako',
@@ -2160,7 +2066,7 @@ const getSampleDocuments = (): Document[] => [
   },
   {
     id: 'DOC-008',
-    fileName: 'administration_policy_2024.pdf',
+    fileName: 'administration_policy_2024',
     description: 'Updated company administration policies for 2024',
     category: 'Administration Document',
     area: 'Bahodopi',
@@ -2179,7 +2085,7 @@ const getSampleDocuments = (): Document[] => [
   },
   {
     id: 'DOC-009',
-    fileName: 'work_order_construction.pdf',
+    fileName: 'work_order_construction',
     description: 'Construction work order for facility expansion',
     category: 'Scope of Works',
     area: 'Morowali',
@@ -2196,7 +2102,7 @@ const getSampleDocuments = (): Document[] => [
   },
   {
     id: 'DOC-010',
-    fileName: 'deviation_form_material.pdf',
+    fileName: 'deviation_form_material',
     description: 'Material specification deviation request',
     category: 'Deviation Form',
     area: 'Pomalaa',

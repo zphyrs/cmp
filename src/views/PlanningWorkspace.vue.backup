@@ -246,7 +246,8 @@
                       : filteredWorkPackageLibrary.slice(0, 4)"
                     :key="template.id"
                     :template="template"
-                    @download="handleDownload" />
+                    @download="handleDownload"
+                    @show-history="handleShowHistory" />
                 </div>
                 <!-- Show remaining count when collapsed -->
                 <div
@@ -530,9 +531,21 @@ import {
   approveDocument,
   rejectDocument,
   type Document,
-  type CatalogueItem,
 } from "@/data/mockData";
 
+// Use CatalogueItem interface for consistency with mock data
+interface CatalogueItem {
+  id: string;
+  code: string;
+  category: string;
+  fileType: string;
+  fileName: string;
+  uploadDate: string;
+  status: 'approved' | 'pending' | 'rejected';
+  uploaderName: string;
+  approverName?: string;
+  approvedDate?: string;
+}
 import { useToast } from "@/composables/useToast";
 
 const router = useRouter();
@@ -546,7 +559,7 @@ const uploadModalOpen = ref(false);
 const searchQuery = ref("");
 const historyModalOpen = ref(false);
 const selectedDocumentForHistory = ref<CatalogueItem | null>(null);
-const selectedDocumentHistories = ref<CatalogueItem[] | null>(null);
+
 // Expand/collapse state for each section
 const pricingCatalogueExpanded = ref(false);
 const scopeOfWorksExpanded = ref(false);
@@ -564,7 +577,8 @@ const filteredPricingCatalogue = computed(() => {
   return CONTRACT_TEMPLATES.pricingCatalogue.filter(
     (template) =>
       template.status === "approved" &&
-      (template.category.toLowerCase().includes(query) ||
+      (template.code.toLowerCase().includes(query) ||
+        template.category.toLowerCase().includes(query) ||
         (template.fileType && template.fileType.toLowerCase().includes(query)) ||
         template.fileName.toLowerCase().includes(query)),
   );
@@ -578,45 +592,25 @@ const filteredScopeOfWorks = computed(() => {
   return CONTRACT_TEMPLATES.scopeOfWorks.filter(
     (template) =>
       template.status === "approved" &&
-      (template.category.toLowerCase().includes(query) ||
+      (template.code.toLowerCase().includes(query) ||
+        template.category.toLowerCase().includes(query) ||
         (template.fileType && template.fileType.toLowerCase().includes(query)) ||
         template.fileName.toLowerCase().includes(query)),
   );
 });
 
-const filteredWorkPackageLibrary = computed<CatalogueItem[]>(() => {
+const filteredWorkPackageLibrary = computed(() => {
   if (!searchQuery.value.trim()) {
-    return WORK_PACKAGE_LIBRARY.map((el) => {
-      return {
-        id: el.id,
-        fileName: el.fileName,
-        fileType: el.fileName,
-        category: el.category,
-        status: "approved",
-        uploadDate: el.uploadDate,
-        uploaderName: "User",
-      };
-    });
+    return WORK_PACKAGE_LIBRARY;
   }
   const query = searchQuery.value.toLowerCase();
-
   return WORK_PACKAGE_LIBRARY.filter(
     (template) =>
       template.code.toLowerCase().includes(query) ||
       template.category.toLowerCase().includes(query) ||
       (template.fileType && template.fileType.toLowerCase().includes(query)) ||
       template.fileName.toLowerCase().includes(query),
-  ).map((el) => {
-    return {
-      id: el.id,
-      fileName: el.fileName,
-      fileType: el.fileName,
-      category: el.category,
-      status: "approved",
-      uploadDate: el.uploadDate,
-      uploaderName: "User",
-    };
-  });
+  );
 });
 
 const filteredPlanningDocuments = computed(() => {
@@ -661,18 +655,15 @@ const handleDownload = (fileName: string) => {
   });
 };
 
-const handleShowHistory = (template: CatalogueItem) => {
+const handleShowHistory = (template: any) => {
+  console.log("Show history for:", template);
   selectedDocumentForHistory.value = template;
-  selectedDocumentHistories.value = CONTRACT_TEMPLATES.pricingCatalogue.filter(
-    (el) => (el.fileType = template.fileType),
-  );
   historyModalOpen.value = true;
 };
 
 const closeHistoryModal = () => {
   historyModalOpen.value = false;
   selectedDocumentForHistory.value = null;
-  selectedDocumentHistories.value = null;
 };
 
 const getAreaDocuments = (area: string): Document[] => {

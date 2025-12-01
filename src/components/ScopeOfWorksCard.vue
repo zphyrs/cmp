@@ -1,43 +1,25 @@
 <template>
-  <DocumentCard
-    :code="template.code"
-    :category="template.category"
-    :file-type="template.fileType"
-    :upload-date="template.uploadDate"
-    :file-name="template.fileName"
-    :uploader-name="template.uploaderName"
-    :approver-name="template.approverName"
-    :approved-date="template.approvedDate"
-    variant="scope"
-    @download="handleDownload"
-  />
+  <DocumentCard :data="props.template" variant="scope" @download="handleDownload" @show-history="handleShowHistory" />
 </template>
 
 <script setup lang="ts">
+import type { CatalogueItem } from "@/data/mockData";
 import DocumentCard from "./DocumentCard.vue";
 
-interface Template {
-  id: string;
-  code: string;
-  category: string;
-  fileType?: string;
-  uploadDate: string | Date;
-  fileName: string;
-  status: string;
-  uploaderName?: string;
-  approverName?: string;
-  approvedDate?: string | Date;
-}
-
-defineProps<{
-  template: Template;
+const props = defineProps<{
+  template: CatalogueItem;
 }>();
 
 const emit = defineEmits<{
   download: [fileName: string];
+  showHistory: [template: any];
 }>();
 
 const handleDownload = (fileName: string) => {
-  emit('download', fileName);
+  emit("download", fileName);
+};
+
+const handleShowHistory = (template: any) => {
+  emit("showHistory", template);
 };
 </script>

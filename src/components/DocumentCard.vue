@@ -16,86 +16,78 @@
       </div>
       <div class="flex-1">
         <p class="font-medium text-slate-800">
-          {{ displayTitle }}
+          {{ props.data.fileType }}
         </p>
-        <p class="text-sm text-slate-600">{{ props.fileType }}</p>
+        <p class="text-sm text-slate-600">{{ props.data.fileName }}</p>
 
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1 mt-2">
           <span class="text-xs text-slate-500">Uploaded by:</span>
-          <span class="text-xs font-medium">{{ uploaderName }}</span>
+          <span class="text-xs font-medium">{{ props.data.uploaderName }}</span>
           <span class="text-xs text-slate-500">({{ formattedDate }})</span>
         </div>
 
         <!-- Metadata Section -->
-        <div v-if="approverName" class="flex items-center gap-1">
+        <div v-if="props.data.approverName" class="flex items-center gap-1">
           <span class="text-xs text-slate-500">Approved by:</span>
-          <span class="text-xs font-medium">{{ approverName }}</span>
+          <span class="text-xs font-medium">{{ props.data.approverName }}</span>
           <span class="text-xs text-slate-500">({{ formattedApprovedDate }})</span>
         </div>
       </div>
     </div>
-    <Button
-      size="sm"
-      variant="ghost"
-      @click="handleDownload"
-      :class="[
-        variant === 'pricing' ? 'hover:bg-blue-200' : variant === 'scope' ? 'hover:bg-blue-200' : 'hover:bg-gray-200',
-      ]">
-      <Download class="w-4 h-4" />
-    </Button>
+    <div class="flex gap-1">
+      <Button
+        size="sm"
+        variant="ghost"
+        @click="handleShowHistory"
+        :class="[
+          variant === 'pricing' ? 'hover:bg-blue-200' : variant === 'scope' ? 'hover:bg-blue-200' : 'hover:bg-gray-200',
+        ]"
+        title="Show History">
+        <History class="w-4 h-4" />
+      </Button>
+      <Button
+        size="sm"
+        variant="ghost"
+        @click="handleDownload"
+        :class="[
+          variant === 'pricing' ? 'hover:bg-blue-200' : variant === 'scope' ? 'hover:bg-blue-200' : 'hover:bg-gray-200',
+        ]"
+        title="Download">
+        <Download class="w-4 h-4" />
+      </Button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { FileText, Download } from "lucide-vue-next";
+import { FileText, Download, History } from "lucide-vue-next";
 import Button from "@/components/ui/button/Button.vue";
+import type { CatalogueItem } from "@/data/mockData";
 
 interface DocumentCardProps {
-  code: string;
-  category: string;
-  fileType?: string;
-  uploadDate: string | Date;
-  fileName: string;
+  data: CatalogueItem;
   variant?: "pricing" | "scope" | "library";
-  uploaderName?: string;
-  approverName?: string;
-  approvedDate?: string | Date;
 }
 
 const props = withDefaults(defineProps<DocumentCardProps>(), {
   variant: "pricing",
-  uploaderName: "",
-  approverName: "",
-  approvedDate: "",
 });
 
 const emit = defineEmits<{
   download: [fileName: string];
+  showHistory: [template: CatalogueItem];
 }>();
-
-const displayTitle = computed(() => {
-  switch (props.variant) {
-    case "pricing":
-      return `${props.code} Cost Structure of ${props.category}`;
-    case "scope":
-      return `${props.code} Reference Scope of Works of ${props.category}`;
-    case "library":
-      return `${props.code} ${props.fileType || props.category} (Archive)`;
-    default:
-      return props.fileName;
-  }
-});
 
 const subtitle = computed(() => {
   if (props.variant === "library") {
-    return `Category: ${props.category} | ${props.fileType || "Reference Document"}`;
+    return `Category: ${props.data.category} | ${props.data.fileType || "Reference Document"}`;
   }
-  return `${props.category} | ${props.fileType || "Reference Document"}`;
+  return `${props.data.category} | ${props.data.fileType || "Reference Document"}`;
 });
 
 const formattedDate = computed(() => {
-  return new Date(props.uploadDate).toLocaleDateString("en-US", {
+  return new Date(props.data.uploadDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -105,8 +97,8 @@ const formattedDate = computed(() => {
 });
 
 const formattedApprovedDate = computed(() => {
-  if (!props.approvedDate) return "";
-  return new Date(props.approvedDate).toLocaleDateString("en-US", {
+  if (!props.data.approvedDate) return "";
+  return new Date(props.data.approvedDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -116,6 +108,22 @@ const formattedApprovedDate = computed(() => {
 });
 
 const handleDownload = () => {
-  emit("download", props.fileName);
+  emit("download", props.data.fileName);
+};
+
+const handleShowHistory = () => {
+  var data: CatalogueItem = {
+    id: props.data.id,
+    category: props.data.category,
+    fileType: props.data.fileType,
+    fileName: props.data.fileName,
+    uploadDate: props.data.uploadDate,
+    status: props.data.status,
+    uploaderName: props.data.uploaderName,
+    approverName: props.data.approverName,
+    approvedDate: props.data.approvedDate,
+  };
+
+  emit("showHistory", data);
 };
 </script>

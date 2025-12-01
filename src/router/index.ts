@@ -59,7 +59,7 @@ router.beforeEach((to, from, next) => {
     return
   }
 
-  if (to.meta.requiresCMT && !authStore.isCMTTeam) {
+  if (to.meta.requiresCMT) {
     next('/workspace-selector')
     return
   }
