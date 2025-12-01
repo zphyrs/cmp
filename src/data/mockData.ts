@@ -176,6 +176,294 @@ export const CONTRACT_TEMPLATES = {
       workName: 'Consultancy Services',
       fileName: 'CP-003_Cost_Structure_Engineering_Consultancy.pdf',
       uploadDate: '2024-02-25T11:45:00Z'
+    },
+    {
+      id: 'CP003-005',
+      code: 'CP-003',
+      category: 'Mining',
+      workName: 'Drilling Equipment Rental',
+      fileName: 'CP-003_Cost_Structure_Mining_Drilling_Equipment.pdf',
+      uploadDate: '2024-01-15T08:30:00Z'
+    },
+    {
+      id: 'CP003-006',
+      code: 'CP-003',
+      category: 'Construction',
+      workName: 'Road Development',
+      fileName: 'CP-003_Cost_Structure_Construction_Road_Development.pdf',
+      uploadDate: '2024-01-18T11:20:00Z'
+    },
+    {
+      id: 'CP003-007',
+      code: 'CP-003',
+      category: 'Environmental',
+      workName: 'Waste Management',
+      fileName: 'CP-003_Cost_Structure_Environmental_Waste_Management.pdf',
+      uploadDate: '2024-01-22T13:45:00Z'
+    },
+    {
+      id: 'CP003-008',
+      code: 'CP-003',
+      category: 'Safety',
+      workName: 'Safety Equipment Supply',
+      fileName: 'CP-003_Cost_Structure_Safety_Equipment.pdf',
+      uploadDate: '2024-01-25T09:00:00Z'
+    },
+    {
+      id: 'CP003-009',
+      code: 'CP-003',
+      category: 'IT Services',
+      workName: 'Software Implementation',
+      fileName: 'CP-003_Cost_Structure_IT_Software.pdf',
+      uploadDate: '2024-01-28T14:15:00Z'
+    },
+    {
+      id: 'CP003-010',
+      code: 'CP-003',
+      category: 'Mining',
+      workName: 'Blasting Services',
+      fileName: 'CP-003_Cost_Structure_Mining_Blasting.pdf',
+      uploadDate: '2024-02-01T10:30:00Z'
+    },
+    {
+      id: 'CP003-011',
+      code: 'CP-003',
+      category: 'Construction',
+      workName: 'Building Construction',
+      fileName: 'CP-003_Cost_Structure_Construction_Building.pdf',
+      uploadDate: '2024-02-04T12:00:00Z'
+    },
+    {
+      id: 'CP003-012',
+      code: 'CP-003',
+      category: 'Electrical',
+      workName: 'Power Installation',
+      fileName: 'CP-003_Cost_Structure_Electrical_Power.pdf',
+      uploadDate: '2024-02-07T15:30:00Z'
+    },
+    {
+      id: 'CP003-013',
+      code: 'CP-003',
+      category: 'Mechanical',
+      workName: 'Equipment Maintenance',
+      fileName: 'CP-003_Cost_Structure_Mechanical_Maintenance.pdf',
+      uploadDate: '2024-02-10T08:45:00Z'
+    },
+    {
+      id: 'CP003-014',
+      code: 'CP-003',
+      category: 'Survey',
+      workName: 'Geotechnical Survey',
+      fileName: 'CP-003_Cost_Structure_Survey_Geotechnical.pdf',
+      uploadDate: '2024-02-13T11:10:00Z'
+    },
+    {
+      id: 'CP003-015',
+      code: 'CP-003',
+      category: 'Logistics',
+      workName: 'Supply Chain Management',
+      fileName: 'CP-003_Cost_Structure_Logistics_Supply_Chain.pdf',
+      uploadDate: '2024-02-16T13:25:00Z'
+    },
+    {
+      id: 'CP003-016',
+      code: 'CP-003',
+      category: 'Training',
+      workName: 'Employee Training',
+      fileName: 'CP-003_Cost_Structure_Training_Employee.pdf',
+      uploadDate: '2024-02-19T09:40:00Z'
+    },
+    {
+      id: 'CP003-017',
+      code: 'CP-003',
+      category: 'Medical',
+      workName: 'Healthcare Services',
+      fileName: 'CP-003_Cost_Structure_Medical_Healthcare.pdf',
+      uploadDate: '2024-02-22T16:05:00Z'
+    },
+    {
+      id: 'CP003-018',
+      code: 'CP-003',
+      category: 'Catering',
+      workName: 'Food Services',
+      fileName: 'CP-003_Cost_Structure_Catering_Food.pdf',
+      uploadDate: '2024-02-25T10:20:00Z'
+    },
+    {
+      id: 'CP003-019',
+      code: 'CP-003',
+      category: 'Security',
+      workName: 'Security Services',
+      fileName: 'CP-003_Cost_Structure_Security_Services.pdf',
+      uploadDate: '2024-02-28T12:50:00Z'
+    },
+    {
+      id: 'CP003-020',
+      code: 'CP-003',
+      category: 'Cleaning',
+      workName: 'Facility Cleaning',
+      fileName: 'CP-003_Cost_Structure_Cleaning_Facility.pdf',
+      uploadDate: '2024-03-02T14:15:00Z'
+    },
+    {
+      id: 'CP003-021',
+      code: 'CP-003',
+      category: 'Mining',
+      workName: 'Ore Processing',
+      fileName: 'CP-003_Cost_Structure_Mining_Processing.pdf',
+      uploadDate: '2024-03-05T11:35:00Z'
+    },
+    {
+      id: 'CP003-022',
+      code: 'CP-003',
+      category: 'Construction',
+      workName: 'Foundation Work',
+      fileName: 'CP-003_Cost_Structure_Construction_Foundation.pdf',
+      uploadDate: '2024-03-08T15:00:00Z'
+    },
+    {
+      id: 'CP003-023',
+      code: 'CP-003',
+      category: 'Plumbing',
+      workName: 'Water System Installation',
+      fileName: 'CP-003_Cost_Structure_Plumbing_Water.pdf',
+      uploadDate: '2024-03-11T09:25:00Z'
+    },
+    {
+      id: 'CP003-024',
+      code: 'CP-003',
+      category: 'HVAC',
+      workName: 'Climate Control System',
+      fileName: 'CP-003_Cost_Structure_HVAC_Climate.pdf',
+      uploadDate: '2024-03-14T13:40:00Z'
+    },
+    {
+      id: 'CP003-025',
+      code: 'CP-003',
+      category: 'Fire Safety',
+      workName: 'Fire Protection System',
+      fileName: 'CP-003_Cost_Structure_Fire_Safety.pdf',
+      uploadDate: '2024-03-17T10:55:00Z'
+    },
+    {
+      id: 'CP003-026',
+      code: 'CP-003',
+      category: 'Telecommunication',
+      workName: 'Communication Network',
+      fileName: 'CP-003_Cost_Structure_Telecom_Network.pdf',
+      uploadDate: '2024-03-20T16:10:00Z'
+    },
+    {
+      id: 'CP003-027',
+      code: 'CP-003',
+      category: 'Laboratory',
+      workName: 'Testing Services',
+      fileName: 'CP-003_Cost_Structure_Lab_Testing.pdf',
+      uploadDate: '2024-03-23T08:30:00Z'
+    },
+    {
+      id: 'CP003-028',
+      code: 'CP-003',
+      category: 'Research',
+      workName: 'R&D Services',
+      fileName: 'CP-003_Cost_Structure_Research_RD.pdf',
+      uploadDate: '2024-03-26T14:45:00Z'
+    },
+    {
+      id: 'CP003-029',
+      code: 'CP-003',
+      category: 'Quality Control',
+      workName: 'Inspection Services',
+      fileName: 'CP-003_Cost_Structure_QC_Inspection.pdf',
+      uploadDate: '2024-03-29T11:00:00Z'
+    },
+    {
+      id: 'CP003-030',
+      code: 'CP-003',
+      category: 'Welding',
+      workName: 'Welding Services',
+      fileName: 'CP-003_Cost_Structure_Welding_Services.pdf',
+      uploadDate: '2024-04-01T12:15:00Z'
+    },
+    {
+      id: 'CP003-031',
+      code: 'CP-003',
+      category: 'Painting',
+      workName: 'Industrial Painting',
+      fileName: 'CP-003_Cost_Structure_Painting_Industrial.pdf',
+      uploadDate: '2024-04-04T15:30:00Z'
+    },
+    {
+      id: 'CP003-032',
+      code: 'CP-003',
+      category: 'Landscaping',
+      workName: 'Ground Maintenance',
+      fileName: 'CP-003_Cost_Structure_Landscaping_Ground.pdf',
+      uploadDate: '2024-04-07T09:45:00Z'
+    },
+    {
+      id: 'CP003-033',
+      code: 'CP-003',
+      category: 'Pest Control',
+      workName: 'Pest Management',
+      fileName: 'CP-003_Cost_Structure_Pest_Control.pdf',
+      uploadDate: '2024-04-10T13:00:00Z'
+    },
+    {
+      id: 'CP003-034',
+      code: 'CP-003',
+      category: 'Waste Management',
+      workName: 'Recycling Services',
+      fileName: 'CP-003_Cost_Structure_Waste_Recycling.pdf',
+      uploadDate: '2024-04-13T16:20:00Z'
+    },
+    {
+      id: 'CP003-035',
+      code: 'CP-003',
+      category: 'Energy',
+      workName: 'Renewable Energy',
+      fileName: 'CP-003_Cost_Structure_Energy_Renewable.pdf',
+      uploadDate: '2024-04-16T10:35:00Z'
+    },
+    {
+      id: 'CP003-036',
+      code: 'CP-003',
+      category: 'Water Treatment',
+      workName: 'Water Purification',
+      fileName: 'CP-003_Cost_Structure_Water_Treatment.pdf',
+      uploadDate: '2024-04-19T14:50:00Z'
+    },
+    {
+      id: 'CP003-037',
+      code: 'CP-003',
+      category: 'Fuel',
+      workName: 'Fuel Supply',
+      fileName: 'CP-003_Cost_Structure_Fuel_Supply.pdf',
+      uploadDate: '2024-04-22T08:05:00Z'
+    },
+    {
+      id: 'CP003-038',
+      code: 'CP-003',
+      category: 'Lubricants',
+      workName: 'Industrial Lubricants',
+      fileName: 'CP-003_Cost_Structure_Lubricants_Industrial.pdf',
+      uploadDate: '2024-04-25T12:25:00Z'
+    },
+    {
+      id: 'CP003-039',
+      code: 'CP-003',
+      category: 'Spare Parts',
+      workName: 'Equipment Parts',
+      fileName: 'CP-003_Cost_Structure_Spare_Parts.pdf',
+      uploadDate: '2024-04-28T15:40:00Z'
+    },
+    {
+      id: 'CP003-040',
+      code: 'CP-003',
+      category: 'Tools',
+      workName: 'Industrial Tools',
+      fileName: 'CP-003_Cost_Structure_Tools_Industrial.pdf',
+      uploadDate: '2024-05-01T11:55:00Z'
     }
   ],
   scopeOfWorks: [
@@ -214,6 +502,251 @@ export const CONTRACT_TEMPLATES = {
       category: 'Medium Term Services',
       fileName: 'CP-002_Reference_Scope_Medium_Term.pdf',
       uploadDate: '2024-02-23T15:30:00Z'
+    },
+    {
+      id: 'CP002-006',
+      code: 'CP-002',
+      category: 'Engineering Design',
+      fileName: 'CP-002_Reference_Scope_Engineering_Design.pdf',
+      uploadDate: '2024-01-10T11:00:00Z'
+    },
+    {
+      id: 'CP002-007',
+      code: 'CP-002',
+      category: 'Feasibility Study',
+      fileName: 'CP-002_Reference_Scope_Feasibility_Study.pdf',
+      uploadDate: '2024-01-12T14:30:00Z'
+    },
+    {
+      id: 'CP002-008',
+      code: 'CP-002',
+      category: 'Environmental Impact',
+      fileName: 'CP-002_Reference_Scope_Environmental_Impact.pdf',
+      uploadDate: '2024-01-15T09:15:00Z'
+    },
+    {
+      id: 'CP002-009',
+      code: 'CP-002',
+      category: 'Health and Safety',
+      fileName: 'CP-002_Reference_Scope_Health_Safety.pdf',
+      uploadDate: '2024-01-18T16:45:00Z'
+    },
+    {
+      id: 'CP002-010',
+      code: 'CP-002',
+      category: 'Quality Assurance',
+      fileName: 'CP-002_Reference_Scope_Quality_Assurance.pdf',
+      uploadDate: '2024-01-20T10:20:00Z'
+    },
+    {
+      id: 'CP002-011',
+      code: 'CP-002',
+      category: 'Project Management',
+      fileName: 'CP-002_Reference_Scope_Project_Management.pdf',
+      uploadDate: '2024-01-22T13:55:00Z'
+    },
+    {
+      id: 'CP002-012',
+      code: 'CP-002',
+      category: 'Infrastructure Development',
+      fileName: 'CP-002_Reference_Scope_Infrastructure.pdf',
+      uploadDate: '2024-01-25T08:40:00Z'
+    },
+    {
+      id: 'CP002-013',
+      code: 'CP-002',
+      category: 'Power Generation',
+      fileName: 'CP-002_Reference_Scope_Power_Generation.pdf',
+      uploadDate: '2024-01-28T15:10:00Z'
+    },
+    {
+      id: 'CP002-014',
+      code: 'CP-002',
+      category: 'Water Supply',
+      fileName: 'CP-002_Reference_Scope_Water_Supply.pdf',
+      uploadDate: '2024-01-30T12:25:00Z'
+    },
+    {
+      id: 'CP002-015',
+      code: 'CP-002',
+      category: 'Waste Management',
+      fileName: 'CP-002_Reference_Scope_Waste_Management.pdf',
+      uploadDate: '2024-02-01T09:50:00Z'
+    },
+    {
+      id: 'CP002-016',
+      code: 'CP-002',
+      category: 'Telecommunication',
+      fileName: 'CP-002_Reference_Scope_Telecommunication.pdf',
+      uploadDate: '2024-02-03T14:15:00Z'
+    },
+    {
+      id: 'CP002-017',
+      code: 'CP-002',
+      category: 'Transportation',
+      fileName: 'CP-002_Reference_Scope_Transportation.pdf',
+      uploadDate: '2024-02-05T11:30:00Z'
+    },
+    {
+      id: 'CP002-018',
+      code: 'CP-002',
+      category: 'Logistics',
+      fileName: 'CP-002_Reference_Scope_Logistics.pdf',
+      uploadDate: '2024-02-07T16:05:00Z'
+    },
+    {
+      id: 'CP002-019',
+      code: 'CP-002',
+      category: 'Maintenance Services',
+      fileName: 'CP-002_Reference_Scope_Maintenance.pdf',
+      uploadDate: '2024-02-09T10:40:00Z'
+    },
+    {
+      id: 'CP002-020',
+      code: 'CP-002',
+      category: 'Training and Development',
+      fileName: 'CP-002_Reference_Scope_Training.pdf',
+      uploadDate: '2024-02-11T13:20:00Z'
+    },
+    {
+      id: 'CP002-021',
+      code: 'CP-002',
+      category: 'Human Resources',
+      fileName: 'CP-002_Reference_Scope_Human_Resources.pdf',
+      uploadDate: '2024-02-13T08:55:00Z'
+    },
+    {
+      id: 'CP002-022',
+      code: 'CP-002',
+      category: 'Financial Management',
+      fileName: 'CP-002_Reference_Scope_Financial.pdf',
+      uploadDate: '2024-02-15T15:30:00Z'
+    },
+    {
+      id: 'CP002-023',
+      code: 'CP-002',
+      category: 'Legal Services',
+      fileName: 'CP-002_Reference_Scope_Legal.pdf',
+      uploadDate: '2024-02-17T12:05:00Z'
+    },
+    {
+      id: 'CP002-024',
+      code: 'CP-002',
+      category: 'Procurement Services',
+      fileName: 'CP-002_Reference_Scope_Procurement.pdf',
+      uploadDate: '2024-02-19T09:40:00Z'
+    },
+    {
+      id: 'CP002-025',
+      code: 'CP-002',
+      category: 'Supply Chain Management',
+      fileName: 'CP-002_Reference_Scope_Supply_Chain.pdf',
+      uploadDate: '2024-02-21T14:15:00Z'
+    },
+    {
+      id: 'CP002-026',
+      code: 'CP-002',
+      category: 'Manufacturing Services',
+      fileName: 'CP-002_Reference_Scope_Manufacturing.pdf',
+      uploadDate: '2024-02-23T11:50:00Z'
+    },
+    {
+      id: 'CP002-027',
+      code: 'CP-002',
+      category: 'Mining Operations',
+      fileName: 'CP-002_Reference_Scope_Mining_Operations.pdf',
+      uploadDate: '2024-02-25T16:25:00Z'
+    },
+    {
+      id: 'CP002-028',
+      code: 'CP-002',
+      category: 'Oil and Gas Services',
+      fileName: 'CP-002_Reference_Scope_Oil_Gas.pdf',
+      uploadDate: '2024-02-27T10:00:00Z'
+    },
+    {
+      id: 'CP002-029',
+      code: 'CP-002',
+      category: 'Renewable Energy',
+      fileName: 'CP-002_Reference_Scope_Renewable_Energy.pdf',
+      uploadDate: '2024-03-01T13:35:00Z'
+    },
+    {
+      id: 'CP002-030',
+      code: 'CP-002',
+      category: 'Chemical Processing',
+      fileName: 'CP-002_Reference_Scope_Chemical_Processing.pdf',
+      uploadDate: '2024-03-03T09:10:00Z'
+    },
+    {
+      id: 'CP002-031',
+      code: 'CP-002',
+      category: 'Food and Beverage',
+      fileName: 'CP-002_Reference_Scope_Food_Beverage.pdf',
+      uploadDate: '2024-03-05T15:45:00Z'
+    },
+    {
+      id: 'CP002-032',
+      code: 'CP-002',
+      category: 'Pharmaceutical Services',
+      fileName: 'CP-002_Reference_Scope_Pharmaceutical.pdf',
+      uploadDate: '2024-03-07T12:20:00Z'
+    },
+    {
+      id: 'CP002-033',
+      code: 'CP-002',
+      category: 'Healthcare Services',
+      fileName: 'CP-002_Reference_Scope_Healthcare.pdf',
+      uploadDate: '2024-03-09T08:55:00Z'
+    },
+    {
+      id: 'CP002-034',
+      code: 'CP-002',
+      category: 'Education and Training',
+      fileName: 'CP-002_Reference_Scope_Education.pdf',
+      uploadDate: '2024-03-11T14:30:00Z'
+    },
+    {
+      id: 'CP002-035',
+      code: 'CP-002',
+      category: 'Research and Development',
+      fileName: 'CP-002_Reference_Scope_Research.pdf',
+      uploadDate: '2024-03-13T11:05:00Z'
+    },
+    {
+      id: 'CP002-036',
+      code: 'CP-002',
+      category: 'Technology Services',
+      fileName: 'CP-002_Reference_Scope_Technology.pdf',
+      uploadDate: '2024-03-15T16:40:00Z'
+    },
+    {
+      id: 'CP002-037',
+      code: 'CP-002',
+      category: 'IT Infrastructure',
+      fileName: 'CP-002_Reference_Scope_IT_Infrastructure.pdf',
+      uploadDate: '2024-03-17T10:15:00Z'
+    },
+    {
+      id: 'CP002-038',
+      code: 'CP-002',
+      category: 'Digital Transformation',
+      fileName: 'CP-002_Reference_Scope_Digital_Transformation.pdf',
+      uploadDate: '2024-03-19T13:50:00Z'
+    },
+    {
+      id: 'CP002-039',
+      code: 'CP-002',
+      category: 'Cybersecurity',
+      fileName: 'CP-002_Reference_Scope_Cybersecurity.pdf',
+      uploadDate: '2024-03-21T09:25:00Z'
+    },
+    {
+      id: 'CP002-040',
+      code: 'CP-002',
+      category: 'Data Analytics',
+      fileName: 'CP-002_Reference_Scope_Data_Analytics.pdf',
+      uploadDate: '2024-03-23T15:00:00Z'
     }
   ]
 } as const
@@ -231,12 +764,372 @@ export const WORK_PACKAGE_LIBRARY = [
     isLatest: false
   },
   {
+    id: 'CP003-001-V2',
+    code: 'CP-003',
+    category: 'Mining',
+    workName: 'Heavy Equipment Rental',
+    fileName: 'CP-003_Cost_Structure_Mining_Heavy_Equipment_V2.pdf',
+    uploadDate: '2023-11-20T14:30:00Z',
+    isLatest: false
+  },
+  {
     id: 'CP003-002-V1',
     code: 'CP-003',
     category: 'Construction',
     workName: 'Infrastructure Development',
     fileName: 'CP-003_Cost_Structure_Construction_Infrastructure_V1.pdf',
     uploadDate: '2024-01-10T14:30:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-002-V2',
+    code: 'CP-003',
+    category: 'Construction',
+    workName: 'Infrastructure Development',
+    fileName: 'CP-003_Cost_Structure_Construction_Infrastructure_V2.pdf',
+    uploadDate: '2023-12-05T09:15:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-003-V1',
+    code: 'CP-003',
+    category: 'Transportation',
+    workName: 'Material Logistics',
+    fileName: 'CP-003_Cost_Structure_Transportation_Logistics_V1.pdf',
+    uploadDate: '2023-11-30T11:45:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-004-V1',
+    code: 'CP-003',
+    category: 'Engineering',
+    workName: 'Consultancy Services',
+    fileName: 'CP-003_Cost_Structure_Engineering_Consultancy_V1.pdf',
+    uploadDate: '2023-12-10T15:20:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-005-V1',
+    code: 'CP-003',
+    category: 'Mining',
+    workName: 'Drilling Equipment Rental',
+    fileName: 'CP-003_Cost_Structure_Mining_Drilling_Equipment_V1.pdf',
+    uploadDate: '2023-12-01T08:30:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-006-V1',
+    code: 'CP-003',
+    category: 'Construction',
+    workName: 'Road Development',
+    fileName: 'CP-003_Cost_Structure_Construction_Road_Development_V1.pdf',
+    uploadDate: '2023-11-25T13:10:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-007-V1',
+    code: 'CP-003',
+    category: 'Environmental',
+    workName: 'Waste Management',
+    fileName: 'CP-003_Cost_Structure_Environmental_Waste_Management_V1.pdf',
+    uploadDate: '2023-12-08T10:40:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-008-V1',
+    code: 'CP-003',
+    category: 'Safety',
+    workName: 'Safety Equipment Supply',
+    fileName: 'CP-003_Cost_Structure_Safety_Equipment_V1.pdf',
+    uploadDate: '2023-11-15T14:55:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-009-V1',
+    code: 'CP-003',
+    category: 'IT Services',
+    workName: 'Software Implementation',
+    fileName: 'CP-003_Cost_Structure_IT_Software_V1.pdf',
+    uploadDate: '2023-12-20T09:25:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-010-V1',
+    code: 'CP-003',
+    category: 'Mining',
+    workName: 'Blasting Services',
+    fileName: 'CP-003_Cost_Structure_Mining_Blasting_V1.pdf',
+    uploadDate: '2023-11-10T16:00:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-011-V1',
+    code: 'CP-003',
+    category: 'Construction',
+    workName: 'Building Construction',
+    fileName: 'CP-003_Cost_Structure_Construction_Building_V1.pdf',
+    uploadDate: '2023-12-05T11:35:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-012-V1',
+    code: 'CP-003',
+    category: 'Electrical',
+    workName: 'Power Installation',
+    fileName: 'CP-003_Cost_Structure_Electrical_Power_V1.pdf',
+    uploadDate: '2023-11-28T13:50:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-013-V1',
+    code: 'CP-003',
+    category: 'Mechanical',
+    workName: 'Equipment Maintenance',
+    fileName: 'CP-003_Cost_Structure_Mechanical_Maintenance_V1.pdf',
+    uploadDate: '2023-12-12T08:15:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-014-V1',
+    code: 'CP-003',
+    category: 'Survey',
+    workName: 'Geotechnical Survey',
+    fileName: 'CP-003_Cost_Structure_Survey_Geotechnical_V1.pdf',
+    uploadDate: '2023-11-18T15:30:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-015-V1',
+    code: 'CP-003',
+    category: 'Logistics',
+    workName: 'Supply Chain Management',
+    fileName: 'CP-003_Cost_Structure_Logistics_Supply_Chain_V1.pdf',
+    uploadDate: '2023-12-03T10:05:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-016-V1',
+    code: 'CP-003',
+    category: 'Training',
+    workName: 'Employee Training',
+    fileName: 'CP-003_Cost_Structure_Training_Employee_V1.pdf',
+    uploadDate: '2023-11-22T14:20:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-017-V1',
+    code: 'CP-003',
+    category: 'Medical',
+    workName: 'Healthcare Services',
+    fileName: 'CP-003_Cost_Structure_Medical_Healthcare_V1.pdf',
+    uploadDate: '2023-12-15T09:45:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-018-V1',
+    code: 'CP-003',
+    category: 'Catering',
+    workName: 'Food Services',
+    fileName: 'CP-003_Cost_Structure_Catering_Food_V1.pdf',
+    uploadDate: '2023-11-08T16:10:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-019-V1',
+    code: 'CP-003',
+    category: 'Security',
+    workName: 'Security Services',
+    fileName: 'CP-003_Cost_Structure_Security_Services_V1.pdf',
+    uploadDate: '2023-12-01T12:25:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-020-V1',
+    code: 'CP-003',
+    category: 'Cleaning',
+    workName: 'Facility Cleaning',
+    fileName: 'CP-003_Cost_Structure_Cleaning_Facility_V1.pdf',
+    uploadDate: '2023-11-25T11:40:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-021-V1',
+    code: 'CP-003',
+    category: 'Mining',
+    workName: 'Ore Processing',
+    fileName: 'CP-003_Cost_Structure_Mining_Processing_V1.pdf',
+    uploadDate: '2023-12-08T14:55:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-022-V1',
+    code: 'CP-003',
+    category: 'Construction',
+    workName: 'Foundation Work',
+    fileName: 'CP-003_Cost_Structure_Construction_Foundation_V1.pdf',
+    uploadDate: '2023-11-12T09:10:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-023-V1',
+    code: 'CP-003',
+    category: 'Plumbing',
+    workName: 'Water System Installation',
+    fileName: 'CP-003_Cost_Structure_Plumbing_Water_V1.pdf',
+    uploadDate: '2023-12-18T15:35:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-024-V1',
+    code: 'CP-003',
+    category: 'HVAC',
+    workName: 'Climate Control System',
+    fileName: 'CP-003_Cost_Structure_HVAC_Climate_V1.pdf',
+    uploadDate: '2023-11-05T08:50:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-025-V1',
+    code: 'CP-003',
+    category: 'Fire Safety',
+    workName: 'Fire Protection System',
+    fileName: 'CP-003_Cost_Structure_Fire_Safety_V1.pdf',
+    uploadDate: '2023-12-10T13:15:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-026-V1',
+    code: 'CP-003',
+    category: 'Telecommunication',
+    workName: 'Communication Network',
+    fileName: 'CP-003_Cost_Structure_Telecom_Network_V1.pdf',
+    uploadDate: '2023-11-30T10:40:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-027-V1',
+    code: 'CP-003',
+    category: 'Laboratory',
+    workName: 'Testing Services',
+    fileName: 'CP-003_Cost_Structure_Lab_Testing_V1.pdf',
+    uploadDate: '2023-12-14T16:25:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-028-V1',
+    code: 'CP-003',
+    category: 'Research',
+    workName: 'R&D Services',
+    fileName: 'CP-003_Cost_Structure_Research_RD_V1.pdf',
+    uploadDate: '2023-11-20T12:00:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-029-V1',
+    code: 'CP-003',
+    category: 'Quality Control',
+    workName: 'Inspection Services',
+    fileName: 'CP-003_Cost_Structure_QC_Inspection_V1.pdf',
+    uploadDate: '2023-12-05T14:30:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-030-V1',
+    code: 'CP-003',
+    category: 'Welding',
+    workName: 'Welding Services',
+    fileName: 'CP-003_Cost_Structure_Welding_Services_V1.pdf',
+    uploadDate: '2023-11-15T09:45:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-031-V1',
+    code: 'CP-003',
+    category: 'Painting',
+    workName: 'Industrial Painting',
+    fileName: 'CP-003_Cost_Structure_Painting_Industrial_V1.pdf',
+    uploadDate: '2023-12-12T11:10:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-032-V1',
+    code: 'CP-003',
+    category: 'Landscaping',
+    workName: 'Ground Maintenance',
+    fileName: 'CP-003_Cost_Structure_Landscaping_Ground_V1.pdf',
+    uploadDate: '2023-11-08T15:55:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-033-V1',
+    code: 'CP-003',
+    category: 'Pest Control',
+    workName: 'Pest Management',
+    fileName: 'CP-003_Cost_Structure_Pest_Control_V1.pdf',
+    uploadDate: '2023-12-18T08:20:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-034-V1',
+    code: 'CP-003',
+    category: 'Waste Management',
+    workName: 'Recycling Services',
+    fileName: 'CP-003_Cost_Structure_Waste_Recycling_V1.pdf',
+    uploadDate: '2023-11-25T13:35:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-035-V1',
+    code: 'CP-003',
+    category: 'Energy',
+    workName: 'Renewable Energy',
+    fileName: 'CP-003_Cost_Structure_Energy_Renewable_V1.pdf',
+    uploadDate: '2023-12-08T10:50:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-036-V1',
+    code: 'CP-003',
+    category: 'Water Treatment',
+    workName: 'Water Purification',
+    fileName: 'CP-003_Cost_Structure_Water_Treatment_V1.pdf',
+    uploadDate: '2023-11-12T16:15:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-037-V1',
+    code: 'CP-003',
+    category: 'Fuel',
+    workName: 'Fuel Supply',
+    fileName: 'CP-003_Cost_Structure_Fuel_Supply_V1.pdf',
+    uploadDate: '2023-12-15T12:40:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-038-V1',
+    code: 'CP-003',
+    category: 'Lubricants',
+    workName: 'Industrial Lubricants',
+    fileName: 'CP-003_Cost_Structure_Lubricants_Industrial_V1.pdf',
+    uploadDate: '2023-11-20T09:05:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-039-V1',
+    code: 'CP-003',
+    category: 'Spare Parts',
+    workName: 'Equipment Parts',
+    fileName: 'CP-003_Cost_Structure_Spare_Parts_V1.pdf',
+    uploadDate: '2023-12-10T14:20:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP003-040-V1',
+    code: 'CP-003',
+    category: 'Tools',
+    workName: 'Industrial Tools',
+    fileName: 'CP-003_Cost_Structure_Tools_Industrial_V1.pdf',
+    uploadDate: '2023-11-05T11:45:00Z',
     isLatest: false
   },
   // Old CP-002 versions
@@ -249,6 +1142,14 @@ export const WORK_PACKAGE_LIBRARY = [
     isLatest: false
   },
   {
+    id: 'CP002-001-V2',
+    code: 'CP-002',
+    category: 'Consultancy',
+    fileName: 'CP-002_Reference_Scope_Consultancy_V2.pdf',
+    uploadDate: '2023-10-15T09:30:00Z',
+    isLatest: false
+  },
+  {
     id: 'CP002-002-V1',
     code: 'CP-002',
     category: 'Study',
@@ -257,11 +1158,323 @@ export const WORK_PACKAGE_LIBRARY = [
     isLatest: false
   },
   {
+    id: 'CP002-002-V2',
+    code: 'CP-002',
+    category: 'Study',
+    fileName: 'CP-002_Reference_Scope_Study_V2.pdf',
+    uploadDate: '2023-11-28T11:45:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-003-V1',
+    code: 'CP-002',
+    category: 'Mining and Earth Work',
+    fileName: 'CP-002_Reference_Scope_Mining_Earth_Work_V1.pdf',
+    uploadDate: '2023-12-10T14:10:00Z',
+    isLatest: false
+  },
+  {
     id: 'CP002-004-V1',
     code: 'CP-002',
     category: 'Construction Work',
     fileName: 'CP-002_Reference_Scope_Construction_V1.pdf',
     uploadDate: '2023-10-12T12:10:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-004-V2',
+    code: 'CP-002',
+    category: 'Construction Work',
+    fileName: 'CP-002_Reference_Scope_Construction_V2.pdf',
+    uploadDate: '2023-11-18T15:35:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-005-V1',
+    code: 'CP-002',
+    category: 'Medium Term Services',
+    fileName: 'CP-002_Reference_Scope_Medium_Term_V1.pdf',
+    uploadDate: '2023-12-01T10:25:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-006-V1',
+    code: 'CP-002',
+    category: 'Engineering Design',
+    fileName: 'CP-002_Reference_Scope_Engineering_Design_V1.pdf',
+    uploadDate: '2023-11-22T13:50:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-007-V1',
+    code: 'CP-002',
+    category: 'Feasibility Study',
+    fileName: 'CP-002_Reference_Scope_Feasibility_Study_V1.pdf',
+    uploadDate: '2023-12-15T08:15:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-008-V1',
+    code: 'CP-002',
+    category: 'Environmental Impact',
+    fileName: 'CP-002_Reference_Scope_Environmental_Impact_V1.pdf',
+    uploadDate: '2023-11-08T16:40:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-009-V1',
+    code: 'CP-002',
+    category: 'Health and Safety',
+    fileName: 'CP-002_Reference_Scope_Health_Safety_V1.pdf',
+    uploadDate: '2023-12-05T11:05:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-010-V1',
+    code: 'CP-002',
+    category: 'Quality Assurance',
+    fileName: 'CP-002_Reference_Scope_Quality_Assurance_V1.pdf',
+    uploadDate: '2023-11-30T14:30:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-011-V1',
+    code: 'CP-002',
+    category: 'Project Management',
+    fileName: 'CP-002_Reference_Scope_Project_Management_V1.pdf',
+    uploadDate: '2023-12-12T09:55:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-012-V1',
+    code: 'CP-002',
+    category: 'Infrastructure Development',
+    fileName: 'CP-002_Reference_Scope_Infrastructure_V1.pdf',
+    uploadDate: '2023-11-15T12:20:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-013-V1',
+    code: 'CP-002',
+    category: 'Power Generation',
+    fileName: 'CP-002_Reference_Scope_Power_Generation_V1.pdf',
+    uploadDate: '2023-12-18T15:45:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-014-V1',
+    code: 'CP-002',
+    category: 'Water Supply',
+    fileName: 'CP-002_Reference_Scope_Water_Supply_V1.pdf',
+    uploadDate: '2023-11-25T10:00:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-015-V1',
+    code: 'CP-002',
+    category: 'Waste Management',
+    fileName: 'CP-002_Reference_Scope_Waste_Management_V1.pdf',
+    uploadDate: '2023-12-08T13:35:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-016-V1',
+    code: 'CP-002',
+    category: 'Telecommunication',
+    fileName: 'CP-002_Reference_Scope_Telecommunication_V1.pdf',
+    uploadDate: '2023-11-10T16:10:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-017-V1',
+    code: 'CP-002',
+    category: 'Transportation',
+    fileName: 'CP-002_Reference_Scope_Transportation_V1.pdf',
+    uploadDate: '2023-12-20T08:25:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-018-V1',
+    code: 'CP-002',
+    category: 'Logistics',
+    fileName: 'CP-002_Reference_Scope_Logistics_V1.pdf',
+    uploadDate: '2023-11-28T14:50:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-019-V1',
+    code: 'CP-002',
+    category: 'Maintenance Services',
+    fileName: 'CP-002_Reference_Scope_Maintenance_V1.pdf',
+    uploadDate: '2023-12-03T09:15:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-020-V1',
+    code: 'CP-002',
+    category: 'Training and Development',
+    fileName: 'CP-002_Reference_Scope_Training_V1.pdf',
+    uploadDate: '2023-11-15T15:30:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-021-V1',
+    code: 'CP-002',
+    category: 'Human Resources',
+    fileName: 'CP-002_Reference_Scope_Human_Resources_V1.pdf',
+    uploadDate: '2023-12-10T12:45:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-022-V1',
+    code: 'CP-002',
+    category: 'Financial Management',
+    fileName: 'CP-002_Reference_Scope_Financial_V1.pdf',
+    uploadDate: '2023-11-05T13:00:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-023-V1',
+    code: 'CP-002',
+    category: 'Legal Services',
+    fileName: 'CP-002_Reference_Scope_Legal_V1.pdf',
+    uploadDate: '2023-12-15T10:20:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-024-V1',
+    code: 'CP-002',
+    category: 'Procurement Services',
+    fileName: 'CP-002_Reference_Scope_Procurement_V1.pdf',
+    uploadDate: '2023-11-20T14:35:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-025-V1',
+    code: 'CP-002',
+    category: 'Supply Chain Management',
+    fileName: 'CP-002_Reference_Scope_Supply_Chain_V1.pdf',
+    uploadDate: '2023-12-05T08:50:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-026-V1',
+    code: 'CP-002',
+    category: 'Manufacturing Services',
+    fileName: 'CP-002_Reference_Scope_Manufacturing_V1.pdf',
+    uploadDate: '2023-11-25T15:05:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-027-V1',
+    code: 'CP-002',
+    category: 'Mining Operations',
+    fileName: 'CP-002_Reference_Scope_Mining_Operations_V1.pdf',
+    uploadDate: '2023-12-12T11:30:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-028-V1',
+    code: 'CP-002',
+    category: 'Oil and Gas Services',
+    fileName: 'CP-002_Reference_Scope_Oil_Gas_V1.pdf',
+    uploadDate: '2023-11-18T13:45:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-029-V1',
+    code: 'CP-002',
+    category: 'Renewable Energy',
+    fileName: 'CP-002_Reference_Scope_Renewable_Energy_V1.pdf',
+    uploadDate: '2023-12-20T09:00:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-030-V1',
+    code: 'CP-002',
+    category: 'Chemical Processing',
+    fileName: 'CP-002_Reference_Scope_Chemical_Processing_V1.pdf',
+    uploadDate: '2023-11-08T16:15:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-031-V1',
+    code: 'CP-002',
+    category: 'Food and Beverage',
+    fileName: 'CP-002_Reference_Scope_Food_Beverage_V1.pdf',
+    uploadDate: '2023-12-15T12:40:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-032-V1',
+    code: 'CP-002',
+    category: 'Pharmaceutical Services',
+    fileName: 'CP-002_Reference_Scope_Pharmaceutical_V1.pdf',
+    uploadDate: '2023-11-25T10:55:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-033-V1',
+    code: 'CP-002',
+    category: 'Healthcare Services',
+    fileName: 'CP-002_Reference_Scope_Healthcare_V1.pdf',
+    uploadDate: '2023-12-05T14:10:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-034-V1',
+    code: 'CP-002',
+    category: 'Education and Training',
+    fileName: 'CP-002_Reference_Scope_Education_V1.pdf',
+    uploadDate: '2023-11-30T09:25:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-035-V1',
+    code: 'CP-002',
+    category: 'Research and Development',
+    fileName: 'CP-002_Reference_Scope_Research_V1.pdf',
+    uploadDate: '2023-12-10T15:40:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-036-V1',
+    code: 'CP-002',
+    category: 'Technology Services',
+    fileName: 'CP-002_Reference_Scope_Technology_V1.pdf',
+    uploadDate: '2023-11-12T08:05:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-037-V1',
+    code: 'CP-002',
+    category: 'IT Infrastructure',
+    fileName: 'CP-002_Reference_Scope_IT_Infrastructure_V1.pdf',
+    uploadDate: '2023-12-18T12:30:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-038-V1',
+    code: 'CP-002',
+    category: 'Digital Transformation',
+    fileName: 'CP-002_Reference_Scope_Digital_Transformation_V1.pdf',
+    uploadDate: '2023-11-22T14:45:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-039-V1',
+    code: 'CP-002',
+    category: 'Cybersecurity',
+    fileName: 'CP-002_Reference_Scope_Cybersecurity_V1.pdf',
+    uploadDate: '2023-12-08T11:20:00Z',
+    isLatest: false
+  },
+  {
+    id: 'CP002-040-V1',
+    code: 'CP-002',
+    category: 'Data Analytics',
+    fileName: 'CP-002_Reference_Scope_Data_Analytics_V1.pdf',
+    uploadDate: '2023-11-15T16:35:00Z',
     isLatest: false
   }
 ]
