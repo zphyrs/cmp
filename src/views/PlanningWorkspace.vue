@@ -62,13 +62,19 @@
             </TabsTrigger>
             <TabsTrigger
               value="review"
-              v-if="user?.role === 'CMT_TEAM'"
+              v-if="
+                user?.role === UserRole.CONTRACT_MANAGEMENT_SENIOR_MANAGER ||
+                user?.role === UserRole.CONTRACT_MANAGEMENT_SUPERVISOR
+              "
               className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-8 py-2.5">
               Review Required
             </TabsTrigger>
           </TabsList>
 
-          <Button @click="uploadModalOpen = true" className="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2">
+          <Button
+            v-if="user?.role !== UserRole.USER"
+            @click="uploadModalOpen = true"
+            className="bg-[#007d79] hover:bg-[#006663] flex items-center gap-2">
             <UploadIcon class="w-4 h-4" />
             Upload Document
           </Button>
@@ -295,7 +301,14 @@
         </TabsContent>
 
         <!-- Review Required Tab (CMT only) -->
-        <TabsContent v-if="user?.role === 'CMT_TEAM'" value="review" className="space-y-6">
+        <TabsContent
+          v-if="
+            user?.role === UserRole.CONTRACT_MANAGEMENT_ANALYST ||
+            user?.role === UserRole.CONTRACT_MANAGEMENT_SENIOR_MANAGER ||
+            user?.role === UserRole.CONTRACT_MANAGEMENT_SUPERVISOR
+          "
+          value="review"
+          className="space-y-6">
           <div class="bg-white rounded-lg shadow-lg p-6">
             <div class="flex items-center justify-between mb-6">
               <h3 class="text-2xl font-semibold text-slate-800">Documents Pending Review</h3>
@@ -392,7 +405,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "@/stores/auth";
+import { useAuthStore, UserRole } from "@/stores/auth";
 import Button from "@/components/ui/button/Button.vue";
 import Card from "@/components/ui/card/Card.vue";
 import CardContent from "@/components/ui/card/CardContent.vue";

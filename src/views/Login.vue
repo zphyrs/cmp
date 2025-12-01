@@ -129,7 +129,6 @@
 
               <Button
                 @click="handleWindowsAuth"
-                :disabled="!selectedAppUser.trim()"
                 className="w-full h-14 text-lg bg-[#007d79] hover:bg-[#006663] transition-colors">
                 Sign In with Windows Authentication
               </Button>
@@ -240,15 +239,15 @@ const handleFrontgateLogin = () => {
 
 // Handle Windows authentication
 const handleWindowsAuth = () => {
-  if (selectedAppUser.value.trim()) {
-    const user = authStore.findUser(selectedAppUser.value.trim(), "windows");
-    if (user) {
-      // In a real application, you would validate Windows credentials here
-      authStore.login(user);
-      router.push("/workspace-selector");
-    } else {
-      alert("Invalid credentials. Please use your username and password from Application or Frontgate login.");
-    }
+  selectedAppUser.value = "jsmith";
+
+  const user = authStore.findUser(selectedAppUser.value.trim(), "windows");
+  if (user) {
+    // In a real application, you would validate Windows credentials here
+    authStore.login(user);
+    router.push("/workspace-selector");
+  } else {
+    alert("Invalid credentials. Please use your username and password from Application or Frontgate login.");
   }
 };
 </script>
