@@ -72,7 +72,9 @@
             className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-6 py-2.5 flex items-center gap-2">
             Review Required
             <!-- Age-based badges in tab -->
-            <div v-if="getPendingDocumentsOlderThan7Days().length > 0 || getPendingDocumentsWithin7Days().length > 0" class="flex items-center gap-1">
+            <div
+              v-if="getPendingDocumentsOlderThan7Days().length > 0 || getPendingDocumentsWithin7Days().length > 0"
+              class="flex items-center gap-1">
               <span
                 v-if="getPendingDocumentsOlderThan7Days().length > 0"
                 class="flex items-center gap-1 px-1.5 py-0.5 bg-red-100 text-red-700 rounded-full text-xs font-medium cursor-help"
@@ -93,7 +95,9 @@
             className="data-[state=active]:bg-[#007d79] data-[state=active]:text-white px-6 py-2.5 flex items-center gap-2">
             Submitted Document
             <!-- Age-based badges in tab -->
-            <div v-if="getPendingDocumentsOlderThan7Days().length > 0 || getPendingDocumentsWithin7Days().length > 0" class="flex items-center gap-1">
+            <div
+              v-if="getPendingDocumentsOlderThan7Days().length > 0 || getPendingDocumentsWithin7Days().length > 0"
+              class="flex items-center gap-1">
               <span
                 v-if="getPendingDocumentsOlderThan7Days().length > 0"
                 class="flex items-center gap-1 px-1.5 py-0.5 bg-red-100 text-red-700 rounded-full text-xs font-medium cursor-help"
@@ -448,15 +452,11 @@
 
                     <!-- Action Buttons -->
                     <div class="flex gap-2 mt-3">
-                      <Button
-                        size="sm"
-                        @click="handleApproveDocument(doc.id)"
-                        className="bg-green-600 hover:bg-green-700 text-white">
-                        ✓ Approve
-                      </Button>
+                      <Button size="sm" variant="primary" @click="handleApproveDocument(doc.id)">✓ Approve</Button>
                       <Button size="sm" variant="destructive" @click="handleRejectDocument(doc.id)">✗ Revise</Button>
-                      <Button size="sm" variant="ghost">
+                      <Button size="sm" variant="default">
                         <Download class="w-4 h-4" />
+                        Download
                       </Button>
                     </div>
                   </div>
@@ -558,15 +558,9 @@
 
                     <!-- Action Buttons -->
                     <div class="flex gap-2 mt-3">
-                      <Button
-                        size="sm"
-                        @click="handleApproveDocument(doc.id)"
-                        className="bg-green-600 hover:bg-green-700 text-white">
-                        ✓ Approve
-                      </Button>
-                      <Button size="sm" variant="destructive" @click="handleRejectDocument(doc.id)">✗ Revise</Button>
-                      <Button size="sm" variant="ghost" @click="handleDownload(doc.fileName || 'document')">
+                      <Button size="sm" variant="default" @click="handleDownload(doc.fileName || 'document')">
                         <Download class="w-4 h-4" />
+                        Download
                       </Button>
                     </div>
                   </div>
