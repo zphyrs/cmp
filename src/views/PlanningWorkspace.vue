@@ -121,43 +121,14 @@
                 </Button>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div
+                <PricingCatalogueCard
                   v-for="template in pricingCatalogueExpanded
                     ? filteredPricingCatalogue
                     : filteredPricingCatalogue.slice(0, 4)"
                   :key="template.id"
-                  class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-md transition-shadow">
-                  <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <FileText class="w-6 h-6 text-white" />
-                    </div>
-                    <div class="flex-1">
-                      <p class="font-medium text-slate-800">
-                        {{ template.code }} Cost Structure of {{ template.category }}
-                      </p>
-                      <p class="text-sm text-slate-600">{{ template.category }} | {{ template.workName }}</p>
-                      <p class="text-xs text-slate-500 mt-1">
-                        Uploaded:
-                        {{
-                          new Date(template.uploadDate).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })
-                        }}
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    @click="handleDownload(template.fileName)"
-                    class="hover:bg-blue-200">
-                    <Download class="w-4 h-4" />
-                  </Button>
-                </div>
+                  :template="template"
+                  @download="handleDownload"
+                />
               </div>
               <!-- Show remaining count when collapsed -->
               <div v-if="!pricingCatalogueExpanded && filteredPricingCatalogue.length > 4" class="text-center mt-4">
@@ -208,41 +179,12 @@
                 </Button>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div
+                <ScopeOfWorksCard
                   v-for="template in scopeOfWorksExpanded ? filteredScopeOfWorks : filteredScopeOfWorks.slice(0, 4)"
                   :key="template.id"
-                  class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg hover:shadow-md transition-shadow">
-                  <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <FileText class="w-6 h-6 text-white" />
-                    </div>
-                    <div class="flex-1">
-                      <p class="font-medium text-slate-800">
-                        {{ template.code }} Reference Scope of Works of {{ template.category }}
-                      </p>
-                      <p class="text-sm text-slate-600">{{ template.category }}</p>
-                      <p class="text-xs text-slate-500 mt-1">
-                        Uploaded:
-                        {{
-                          new Date(template.uploadDate).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })
-                        }}
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    @click="handleDownload(template.fileName)"
-                    class="hover:bg-blue-200">
-                    <Download class="w-4 h-4" />
-                  </Button>
-                </div>
+                  :template="template"
+                  @download="handleDownload"
+                />
               </div>
               <!-- Show remaining count when collapsed -->
               <div v-if="!scopeOfWorksExpanded && filteredScopeOfWorks.length > 4" class="text-center mt-4">
@@ -299,45 +241,14 @@
 
               <div v-if="filteredWorkPackageLibrary.length > 0">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div
+                  <WorkPackageLibraryCard
                     v-for="template in workPackageLibraryExpanded
                       ? filteredWorkPackageLibrary
                       : filteredWorkPackageLibrary.slice(0, 4)"
                     :key="template.id"
-                    class="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-3">
-                      <div class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center">
-                        <FileText class="w-6 h-6 text-white" />
-                      </div>
-                      <div class="flex-1">
-                        <p class="font-medium text-slate-800">
-                          {{ template.code }} {{ template.workName ? template.workName : template.category }} (Archive)
-                        </p>
-                        <p class="text-sm text-slate-600">
-                          Category: {{ template.category }} | {{ template.workName || "Reference Document" }}
-                        </p>
-                        <p class="text-xs text-slate-500 mt-1">
-                          Uploaded:
-                          {{
-                            new Date(template.uploadDate).toLocaleDateString("en-US", {
-                              year: "numeric",
-                              month: "short",
-                              day: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })
-                          }}
-                        </p>
-                      </div>
-                    </div>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      @click="handleDownload(template.fileName)"
-                      class="hover:bg-gray-200">
-                      <Download class="w-4 h-4" />
-                    </Button>
-                  </div>
+                    :template="template"
+                    @download="handleDownload"
+                  />
                 </div>
                 <!-- Show remaining count when collapsed -->
                 <div
@@ -594,6 +505,9 @@ import TabsList from "@/components/ui/tabs/TabsList.vue";
 import TabsTrigger from "@/components/ui/tabs/TabsTrigger.vue";
 import TabsContent from "@/components/ui/tabs/TabsContent.vue";
 import UploadModal from "@/components/UploadModal.vue";
+import PricingCatalogueCard from "@/components/PricingCatalogueCard.vue";
+import ScopeOfWorksCard from "@/components/ScopeOfWorksCard.vue";
+import WorkPackageLibraryCard from "@/components/WorkPackageLibraryCard.vue";
 import {
   Building2,
   Bell,
@@ -639,28 +553,31 @@ const allAreaOptions = ["all", ...AREAS];
 // Filter functions
 const filteredPricingCatalogue = computed(() => {
   if (!searchQuery.value.trim()) {
-    return CONTRACT_TEMPLATES.pricingCatalogue;
+    return CONTRACT_TEMPLATES.pricingCatalogue.filter(template => template.status === 'approved');
   }
   const query = searchQuery.value.toLowerCase();
   return CONTRACT_TEMPLATES.pricingCatalogue.filter(
     (template) =>
-      template.code.toLowerCase().includes(query) ||
-      template.category.toLowerCase().includes(query) ||
-      (template.workName && template.workName.toLowerCase().includes(query)) ||
-      template.fileName.toLowerCase().includes(query),
+      template.status === 'approved' &&
+      (template.code.toLowerCase().includes(query) ||
+        template.category.toLowerCase().includes(query) ||
+        (template.fileType && template.fileType.toLowerCase().includes(query)) ||
+        template.fileName.toLowerCase().includes(query)),
   );
 });
 
 const filteredScopeOfWorks = computed(() => {
   if (!searchQuery.value.trim()) {
-    return CONTRACT_TEMPLATES.scopeOfWorks;
+    return CONTRACT_TEMPLATES.scopeOfWorks.filter(template => template.status === 'approved');
   }
   const query = searchQuery.value.toLowerCase();
   return CONTRACT_TEMPLATES.scopeOfWorks.filter(
     (template) =>
-      template.code.toLowerCase().includes(query) ||
-      template.category.toLowerCase().includes(query) ||
-      template.fileName.toLowerCase().includes(query),
+      template.status === 'approved' &&
+      (template.code.toLowerCase().includes(query) ||
+        template.category.toLowerCase().includes(query) ||
+        (template.fileType && template.fileType.toLowerCase().includes(query)) ||
+        template.fileName.toLowerCase().includes(query)),
   );
 });
 
@@ -673,7 +590,7 @@ const filteredWorkPackageLibrary = computed(() => {
     (template) =>
       template.code.toLowerCase().includes(query) ||
       template.category.toLowerCase().includes(query) ||
-      (template.workName && template.workName.toLowerCase().includes(query)) ||
+      (template.fileType && template.fileType.toLowerCase().includes(query)) ||
       template.fileName.toLowerCase().includes(query),
   );
 });
